@@ -6,6 +6,10 @@ Rails.application.routes.draw do
 
   get 'events' => 'events#index'
 
-  resources :events
+  resources :events do
+    collection do
+      get 'join'
+    end
+  end
 
 end

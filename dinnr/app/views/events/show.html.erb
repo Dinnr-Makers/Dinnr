@@ -4,3 +4,7 @@
 <p><%= @event.date %></p>
 <p><%= @event.size %></p>
 <p><%= @event.guests %></p>
+
+<!-- <a href="/events/join_event">Join Event</a> -->
+
+<%= link_to "Join Event", join_events_path(@event.id) %>

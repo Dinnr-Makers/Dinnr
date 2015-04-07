@@ -20,7 +20,6 @@ def create_event
   fill_in 'Date', with: 'Tuesday 7.30pm'
   fill_in 'Size', with: '3'
   click_button 'Create Event'
-
 end
 
 feature 'events' do

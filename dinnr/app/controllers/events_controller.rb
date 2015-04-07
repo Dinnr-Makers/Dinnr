@@ -55,4 +55,9 @@ class EventsController < ApplicationController
 
   end
 
+  def join
+    p params
+
+  end
+
 end
