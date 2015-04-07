@@ -101,6 +101,15 @@ feature 'events' do
       expect(page).to have_content 'You can only delete events that you have created'
       expect(current_path).to eq('/events')
     end
+
+    scenario 'lets a user delete an event they have created' do
+      user_sign_up
+      visit '/'
+      create_event
+      click_link "Delete Dinner with Thomas"
+      expect(page).to have_content 'Event deleted successfully'
+      expect(current_path).to eq '/events'
+    end
   end
 
 end
