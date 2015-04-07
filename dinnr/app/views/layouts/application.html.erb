@@ -27,7 +27,7 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="dinnr-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li ><a href="events/new">Create Event<span class="sr-only">(current)</span></a></li>
+          <li ><%= link_to "Create event", new_event_path %></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><%= link_to "Sign in", new_user_session_path %></li>

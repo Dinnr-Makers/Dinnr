@@ -1,6 +1,7 @@
 {
   "name": "dsl-generated dependencies",
   "dependencies": {
-    "bootstrap": "latest"
+    "bootstrap": "latest",
+    "materialize": "latest"
   }
 }
