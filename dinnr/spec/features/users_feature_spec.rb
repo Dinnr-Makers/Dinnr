@@ -88,8 +88,7 @@ feature 'users' do
       user_two_sign_up
       click_link "Dinner with Thomas"
       click_link "Join Event"
-      expect(page).to have_content "You have joined the event"
-      expect(page).to have content "alice@example.com"
+      expect(page).to have_content "alice@example.com has joined Dinner with Thomas"
     end
 
   end
