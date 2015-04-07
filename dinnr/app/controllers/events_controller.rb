@@ -7,13 +7,17 @@ class EventsController < ApplicationController
   end
 
   def new
-
     @event = Event.new
   end
 
   def create
-    Event.create(event_params)
-    redirect_to '/events'
+    @event =  Event.new(event_params)
+    @event.user_id = current_user
+    if @event.save
+      redirect_to '/events'
+    else
+      render 'new'
+    end
   end
 
   def event_params
@@ -22,6 +26,14 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+  end
+
+  def edit
+    @event = Event.find(params[:id])
+    unless @event.user == current_user
+      flash[:notice] = 'You can only edit events that you have created'
+      redirect_to '/events'
+    end
   end
 
 end
