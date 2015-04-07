@@ -1,0 +1,21 @@
+<%= form_for Event.new do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+    <%= f.label :description %>
+  <%= f.text_field :description %>
+
+    <%= f.label :location %>
+  <%= f.text_field :location %>
+
+    <%= f.label :date %>
+  <%= f.text_field :date %>
+
+    <%= f.label :size %>
+  <%= f.text_field :size %>
+
+    <%= f.label :guests %>
+  <%= f.text_field :guests %>
+
+  <%= f.submit %>
+<% end %>
