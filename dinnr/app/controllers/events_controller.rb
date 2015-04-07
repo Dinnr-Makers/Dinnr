@@ -58,7 +58,7 @@ class EventsController < ApplicationController
   def join
     @event = Event.find(params[:id])
     flash[:notice] = "#{current_user.email} has joined #{@event.title}"
-    # redirect_to '/events'
+    redirect_to '/events'
   end
 
 end
