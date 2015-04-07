@@ -1,6 +1,6 @@
 <% if @events.any? %>
   <% @events.each do |event|%>
-    <h2> <%= event.title %></h2>
+    <h3><%= link_to event.title, event_path(event)%></h3>
     <p> <%= event.location %></p>
   <% end %>
 <% else %>

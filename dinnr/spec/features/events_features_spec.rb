@@ -37,4 +37,16 @@ feature 'events' do
     end
   end
 
+  context 'viewing an event' do
+
+    let!(:dinwitht){Event.create(title: 'Dinner with Thomas', description: "Dinner at Thomas' house", location: 'E1 1EJ', date: 'Tuesday 7.30pm', size: '3')}
+
+    scenario 'lets a user view an event' do
+      visit '/events'
+      click_link ('Dinner with Thomas')
+      expect(page).to have_content "Dinner at Thomas' house"
+      expect(current_path).to eq "/events/#{dinwitht.id}"
+    end
+  end
+
 end
