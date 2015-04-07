@@ -8,4 +8,17 @@ feature 'events' do
       expect(page).to have_link 'Add an event'
     end
   end
+
+  context 'events have been added' do
+
+    before do
+      Event.create(title: 'Dinner with Thomas', location: 'E1 1EJ', date: 'Tuesday 7.30pm' )
+    end
+
+    scenario 'display events' do
+      visit '/events'
+      expect(page).to have_content 'Dinner with Thomas'
+    end
+  end
+
 end

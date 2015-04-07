@@ -1,3 +1,10 @@
-No events yet
+<% if @events.any? %>
+  <% @events.each do |event|%>
+    <h2> <%= event.title %></h2>
+    <p> <%= event.location %></p>
+  <% end %>
+<% else %>
+ <p> No events yet </p>
+<% end %>
 
 <a href="#">Add an event</a>
