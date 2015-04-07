@@ -7,19 +7,27 @@
   <%= csrf_meta_tags %>
 </head>
 
-<body class="container-fluid">
+<body>
+<div class="container-fluid">
 <header class="row">
   
   <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
 
+  <%= link_to "Sign in", new_user_session_path %>
+  <%= link_to "Sign up", new_user_registration_path %>
+
   </div>
 </nav>
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
 </header>
 
 <main class="row"><%= yield %></main>
 
 <footer class="row"></footer>
 
+</div>
 </body>
 </html>
