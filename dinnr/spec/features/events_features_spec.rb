@@ -1,5 +1,16 @@
 require 'rails_helper'
 
+def user_sign_up
+
+  visit '/'
+  click_link('Sign up')
+  fill_in('Email', with: 'test@example.com')
+  fill_in('Password', with: 'testtest')
+  fill_in('Password confirmation', with: 'testtest')
+  click_button('Sign up')
+
+end
+
 feature 'events' do
   context 'no events have been added' do
     scenario 'should display a prompt to add an event' do
@@ -24,6 +35,7 @@ feature 'events' do
   context 'adding an event' do
 
     scenario 'prompts a user to fill out a from and then displays the new event' do
+      user_sign_up
       visit '/events'
       click_link 'Add an event'
       fill_in 'Title', with: 'Dinner with Thomas'

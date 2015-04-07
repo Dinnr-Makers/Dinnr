@@ -14,6 +14,12 @@ feature 'users' do
       expect(page).not_to have_link('Sign out')
     end
 
+    it 'should not be able to create a new event' do
+      visit '/'
+      click_link 'Add an event'
+      expect(page).to have_content 'You need to sign in or sign up before continuing'
+    end
+
   end
 
   context 'user signed in and on the home page' do
