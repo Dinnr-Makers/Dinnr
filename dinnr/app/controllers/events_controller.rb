@@ -12,7 +12,7 @@ class EventsController < ApplicationController
 
   def create
     @event =  Event.new(event_params)
-    @event.user_id = current_user
+    @event.user = current_user
     if @event.save
       redirect_to '/events'
     else
@@ -34,6 +34,24 @@ class EventsController < ApplicationController
       flash[:notice] = 'You can only edit events that you have created'
       redirect_to '/events'
     end
+  end
+
+  def update
+    @event = Event.find(params[:id])
+    @event.update(event_params)
+    redirect_to '/events'
+  end
+
+  def destroy
+    @event = Event.find(params[:id])
+    if @event.user == current_user
+      # @event.destroy
+      redirect_to '/events'
+    else
+      flash[:notice] = 'You can only delete events that you have created'
+      redirect_to '/events'
+    end
+
   end
 
 end
