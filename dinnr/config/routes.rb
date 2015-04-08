@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :events do
     collection do
-      get 'join'
+      post 'join'
     end
   end
 
