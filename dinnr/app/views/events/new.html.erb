@@ -1,40 +1,24 @@
-<nav>
-  <ul class="right hide-on-med-and-down">
-  </ul>
-
-  <ul id="slide-out" class="side-nav">
-    <li><a href="#!">What?</a></li>
+  <ul class="section table-of-contents teal lighten-3 col s12 m3">
+  <li><a href="#!">What?</a></li>
     <li><a href="#!">When?</a></li>
     <li><a href="#!">Where?</a></li>
     <li><a href="#!">Who + How Many?</a></li>
     <li><a href="#!">Publish</a></li>
   </ul>
-  <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-</nav><br>
 
-<div class="col-md-6">
-<div class="form-group">
+
+<div class="form-group col s12 m6">
 <%= form_for Event.new do |f| %>
   <%= f.label :title %>
-  <%= f.text_field :title, class: 'form-control'%>
-
-
-    <%= f.label :description %>
-  <%= f.text_field :description, class: 'form-control'%>
-
-    <%= f.label :location %>
-  <%= f.text_field :location, class: 'form-control' %>
-
-    <%= f.label :date %>
-  <%= f.text_field :date, class: 'form-control' %>
-
-    <%= f.label :size %>
-  <%= f.text_field :size, class: 'form-control' %>
-
-    <%= f.label :guests %>
-  <%= f.text_field :guests, class: 'form-control' %>
-<%= f.submit 'Create Event', :class => 'btn btn-primary'%>
-   
+    <%= f.text_field :title, class: 'form-control'%>
+  <%= f.label :description %>
+    <%= f.text_field :description, class: 'form-control'%>
+  <%= f.label :location %>
+    <%= f.text_field :location, class: 'form-control' %>
+  <%= f.label :date %>
+    <%= f.text_field :date, class: 'form-control' %>
+  <%= f.label :size %>
+    <%= f.text_field :size, class: 'form-control' %>
+  <%= f.submit 'Create Event', :class => 'btn btn-primary'%>
 <% end %>
-</div>
 </div>
