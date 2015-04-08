@@ -1,0 +1,17 @@
+{
+  "name": "Dinnr",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Dinnr-Makers/Dinnr",
+  "authors": [
+    "Thomas Strothjohann <thomas@strothjohann.net>"
+  ],
+  "description": "Dinnr app",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
