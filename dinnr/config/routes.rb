@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   get 'events' => 'events#index'
 
   resources :events do
-    resources :bookings
+    resources :bookings do
+      collection do
+        get "leave"
+      end
+    end
   end
 
 

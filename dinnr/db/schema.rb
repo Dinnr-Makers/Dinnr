@@ -35,9 +35,11 @@ ActiveRecord::Schema.define(version: 20150408142324) do
     t.text     "guests"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "event_id"
     t.integer  "user_id"
   end
 
+  add_index "events", ["event_id"], name: "index_events_on_event_id", using: :btree
   add_index "events", ["user_id"], name: "index_events_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
@@ -62,5 +64,6 @@ ActiveRecord::Schema.define(version: 20150408142324) do
 
   add_foreign_key "bookings", "events"
   add_foreign_key "bookings", "users"
+  add_foreign_key "events", "events"
   add_foreign_key "events", "users"
 end
