@@ -3,16 +3,15 @@
 <head>
   <title>Dinnr</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
+  <%= javascript_include_tag 'application'%>
   <%= csrf_meta_tags %>
 </head>
 
 <body>
-<!-- <div class="container"> -->
+
   <header class="row">
     <nav>
       <div class="nav-wrapper">
-        <a href="/" class="brand-logo">Dinnr</a>
         <%= link_to "Dinnr", root_path, class: "brand-logo" %>
         <a href="#" data-activates="dinnr-nav" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
         <ul class="right hide-on-med-and-down">
@@ -38,6 +37,5 @@
 
 <footer class="row"></footer>
 
-<!-- </div> -->
 </body>
 </html>

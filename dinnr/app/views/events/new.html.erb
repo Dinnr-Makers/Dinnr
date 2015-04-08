@@ -1,13 +1,15 @@
-  <ul class="section table-of-contents teal lighten-3 col s12 m3">
-  <li><a href="#!">What?</a></li>
-    <li><a href="#!">When?</a></li>
-    <li><a href="#!">Where?</a></li>
-    <li><a href="#!">Who + How Many?</a></li>
-    <li><a href="#!">Publish</a></li>
-  </ul>
+  <div class="col s12 m3 teal lighten-4">
+    <ul class="section table-of-contents">
+      <li><a href="#what">What?</a></li>
+      <li><a href="#when">When?</a></li>
+      <li><a href="#where">Where?</a></li>
+      <li><a href="#who">Who + How Many?</a></li>
+      <li><a href="#publish">Publish</a></li>
+    </ul>
+  </div>
 
 
-<div class="form-group col s12 m6">
+<div id="what" class="form-group col s12 m6 section scrollspy">
 <%= form_for Event.new do |f| %>
   <%= f.label :title %>
     <%= f.text_field :title, class: 'form-control'%>
@@ -22,3 +24,20 @@
   <%= f.submit 'Create Event', :class => 'btn btn-primary'%>
 <% end %>
 </div>
+
+<div  id="when" class="section scrollspy row col s12">
+  <h1>When</h1>
+</div>
+
+<div  id="where" class="section scrollspy row col s12">
+  <h1>Where</h1>
+</div>
+
+<div  id="who" class="section scrollspy row col s12">
+  <h1>Who and how many</h1>
+</div>
+
+<div  id="publish" class="section scrollspy row col s12">
+  <h1>Publish</h1>
+</div>
+
