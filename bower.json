@@ -5,7 +5,6 @@
   "authors": [
     "Thomas Strothjohann <thomas@strothjohann.net>"
   ],
-  "description": "Dinnr app",
   "license": "MIT",
   "ignore": [
     "**/.*",
