@@ -60,7 +60,6 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @event.add_guest(current_user)
     @event.save
-    flash[:notice] = "You have joined #{@event.title}"
     redirect_to :back
   end
 
