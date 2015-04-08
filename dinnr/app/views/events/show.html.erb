@@ -3,10 +3,13 @@
 <p><%= @event.location %></p>
 <p><%= @event.date %></p>
 <p><%= @event.size %></p>
-<% @guests.each_with_index do |guest, index| %>
-  <p>Guest <%= index +1 %>: <%= guest.email %></p>
+
+<%if @guests.any? %>
+  <% @guests.each_with_index do |guest, index| %>
+    <p>Guest <%= index +1 %>: <%= guest.email %></p>
+  <% end %>
+<% else %>
+  <p>No guests yet</p>
 <% end %>
 
-<!-- <a href="/events/join_event">Join Event</a> -->
-
-<%= link_to "Join Event", {:controller => "events", :action => "join", :id => @event.id }, :method => "post" %>
+<%= link_to "Join Event", new_event_booking_path(@event.id) %>

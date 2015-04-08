@@ -1,3 +1,5 @@
+require 'byebug'
+
 class EventsController < ApplicationController
 
   before_action :authenticate_user!, :except => [:index, :show]
@@ -26,7 +28,8 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @guests = @event.guests
+    @bookings = Booking.where("event_id = #{@event.id}")
+    @guests = @bookings.map{|booking| booking.user_id}.map{|guest| User.find(guest)}
   end
 
   def edit
@@ -56,11 +59,18 @@ class EventsController < ApplicationController
 
   end
 
-  def join
-    @event = Event.find(params[:id])
-    @event.add_guest(current_user)
-    @event.save
-    redirect_to :back
-  end
+  # def join
+  #   @event = Event.find(params[:id])
+  #   @event.add_guest(current_user)
+  #   @event.save
+  #   redirect_to :back
+  # end
+
+  # def leave
+  #   @event = Event.find(params[:id])
+  #   @event.remove_guest(current_user)
+  #   @event.save
+  #   redirect_to action: 'show', id: @event.id
+  # end
 
 end

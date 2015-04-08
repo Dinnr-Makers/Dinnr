@@ -63,6 +63,12 @@ feature 'events' do
       expect(page).to have_content "Dinner at Thomas' house"
       expect(current_path).to eq "/events/#{dinwitht.id}"
     end
+
+    scenario 'should show that there are no guests when created' do
+      visit '/events'
+      click_link ('Dinner with Thomas')
+      expect(page).to have_content "No guests yet"
+    end
   end
 
   context 'editing an event' do

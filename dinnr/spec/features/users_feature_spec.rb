@@ -81,16 +81,6 @@ feature 'users' do
       expect(current_path).to eq '/events'
     end
 
-    it 'should be able to join another users event' do
-      visit '/'
-      user_one_create_event
-      click_link("Sign out", match: :first)
-      user_two_sign_up
-      click_link "Dinner with Thomas"
-      click_link "Join Event"
-      expect(page).to have_content "Guest 1: alice@example.com"
-    end
-
   end
 
 end

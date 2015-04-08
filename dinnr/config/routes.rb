@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   get 'events' => 'events#index'
 
   resources :events do
-    collection do
-      post 'join'
-    end
+    resources :bookings
   end
+
+
 
 end
