@@ -2,7 +2,7 @@ require 'rails_helper'
 
 def user_one_sign_up
   visit '/'
-  click_link('Sign up')
+  click_link('Sign up', match: :first)
   fill_in('Email', with: 'test@example.com')
   fill_in('Password', with: 'testtest')
   fill_in('Password confirmation', with: 'testtest')
@@ -11,7 +11,7 @@ end
 
 def user_two_sign_up
   visit '/'
-  click_link('Sign up')
+  click_link('Sign up', match: :first)
   fill_in('Email', with: 'alice@example.com')
   fill_in('Password', with: 'password')
   fill_in('Password confirmation', with: 'password')
@@ -20,7 +20,7 @@ end
 
 def user_one_create_event
   visit '/events'
-  click_link 'Add an event'
+  click_link('Create event', match: :first)
   fill_in 'Title', with: 'Dinner with Thomas'
   fill_in 'Description', with: "Dinner at Thomas' house"
   fill_in 'Location', with: 'E1 1EJ'
@@ -45,7 +45,7 @@ feature 'users' do
 
     it 'should not be able to create a new event' do
       visit '/'
-      click_link 'Add an event'
+      click_link('Create event', match: :first)
       expect(page).to have_content 'You need to sign in or sign up before continuing'
     end
 
@@ -70,7 +70,7 @@ feature 'users' do
 
     it 'should be able to create a new event' do
       visit '/'
-      click_link 'Add an event'
+      click_link('Create event', match: :first)
       fill_in 'Title', with: 'Dinner with Thomas'
       fill_in 'Description', with: "Dinner at Thomas' house"
       fill_in 'Location', with: 'E1 1EJ'
@@ -84,7 +84,7 @@ feature 'users' do
     it 'should be able to join another users event' do
       visit '/'
       user_one_create_event
-      click_link "Sign out"
+      click_link("Sign out", match: :first)
       user_two_sign_up
       click_link "Dinner with Thomas"
       click_link "Join Event"

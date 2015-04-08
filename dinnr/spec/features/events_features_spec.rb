@@ -3,7 +3,7 @@ require 'rails_helper'
 def user_sign_up
 
   visit '/'
-  click_link('Sign up')
+  click_link('Sign up', match: :first)
   fill_in('Email', with: 'test@example.com')
   fill_in('Password', with: 'testtest')
   fill_in('Password confirmation', with: 'testtest')
@@ -13,7 +13,7 @@ end
 
 def create_event
   visit '/events'
-  click_link 'Add an event'
+  click_link('Create event', match: :first)
   fill_in 'Title', with: 'Dinner with Thomas'
   fill_in 'Description', with: "Dinner at Thomas' house"
   fill_in 'Location', with: 'E1 1EJ'
@@ -27,7 +27,7 @@ feature 'events' do
     scenario 'should display a prompt to add an event' do
       visit '/events'
       expect(page).to have_content 'No events yet'
-      expect(page).to have_link 'Add an event'
+      expect(page).to have_link 'Create event'
     end
   end
 
