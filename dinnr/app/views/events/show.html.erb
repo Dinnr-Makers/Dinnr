@@ -3,7 +3,9 @@
 <p><%= @event.location %></p>
 <p><%= @event.date %></p>
 <p><%= @event.size %></p>
-<p><%= @event.guests %></p>
+<% @guests.each_with_index do |guest, index| %>
+  <p>Guest <%= index +1 %>: <%= guest.email %></p>
+<% end %>
 
 <!-- <a href="/events/join_event">Join Event</a> -->
 

@@ -26,6 +26,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @guests = @event.guests
   end
 
   def edit
@@ -57,8 +58,9 @@ class EventsController < ApplicationController
 
   def join
     @event = Event.find(params[:id])
-    @event.guests << current_user
-    flash[:notice] = "#{current_user.email} has joined #{@event.title}"
+    @event.add_guest(current_user)
+    @event.save
+    flash[:notice] = "You have joined #{@event.title}"
     redirect_to :back
   end
 
