@@ -10,7 +10,8 @@
 
 
 <div id="what" class="form-group col s12 m6 section scrollspy">
-<%= form_for Event.new do |f| %>
+
+<%= form_for @event do |f| %>
   <%= f.label :title %>
     <%= f.text_field :title, class: 'form-control'%>
   <%= f.label :description %>

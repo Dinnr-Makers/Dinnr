@@ -8,7 +8,6 @@
 </head>
 
 <body>
-
   <header class="row">
     <nav>
       <div class="nav-wrapper">
@@ -21,8 +20,13 @@
         </ul>
         <ul class="side-nav" id="dinnr-nav">
           <li ><%= link_to "Create event", new_event_path %></li>
-          <li><%= link_to "Sign in", new_user_session_path %></li>
-          <li><%= link_to "Sign up", new_user_registration_path %></li>
+          <% if user_signed_in? %>
+            <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to "Sign in", new_user_session_path %></li>
+            <li><%= link_to "Sign up", new_user_registration_path %></li>
+            <li><%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %></li>
+          <% end %>
         </ul>
       </div>
     </nav>
