@@ -3,23 +3,43 @@
 <head>
   <title>Dinnr</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application'%>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
+  <header class="row">
+    <nav>
+      <div class="nav-wrapper">
+        <%= link_to "Dinnr", root_path, class: "brand-logo" %>
+        <a href="#" data-activates="dinnr-nav" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+        <ul class="right hide-on-med-and-down">
+          <li ><%= link_to "Create event", new_event_path %></li>
+          <li><%= link_to "Sign in", new_user_session_path %></li>
+          <li><%= link_to "Sign up", new_user_registration_path %></li>
+        </ul>
+        <ul class="side-nav" id="dinnr-nav">
+          <li ><%= link_to "Create event", new_event_path %></li>
+          <% if user_signed_in? %>
+            <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to "Sign in", new_user_session_path %></li>
+            <li><%= link_to "Sign up", new_user_registration_path %></li>
+            <li><%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %></li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
 
-<% if user_signed_in? %>
-  <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-<% else %>
-  <%= link_to "Sign in", new_user_session_path %>
-  <%= link_to "Sign up", new_user_registration_path %>
-  <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
+<% if flash[:notice] || flash[:alert]%>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
 <% end %>
+</header>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<main class="row"><%= yield %></main>
 
-<%= yield %>
+<footer class="row"></footer>
 
 </body>
 </html>
