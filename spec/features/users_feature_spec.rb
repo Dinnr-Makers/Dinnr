@@ -25,9 +25,9 @@ def user_one_create_event
   click_link('Create event', match: :first)
   fill_in 'Title', with: 'Dinner with Thomas'
   fill_in 'Description', with: "Dinner at Thomas' house"
-  fill_in 'Location', with: 'E1 1EJ'
+  fill_in 'autocomplete', with: 'E1 1EJ'
   fill_in 'Date', with: 'Tuesday 7.30pm'
-  fill_in 'Size', with: '3'
+  fill_in 'Size', with: '2'
   click_button 'Create Event'
 end
 
@@ -75,9 +75,9 @@ feature 'users' do
       click_link('Create event', match: :first)
       fill_in 'Title', with: 'Dinner with Thomas'
       fill_in 'Description', with: "Dinner at Thomas' house"
-      fill_in 'Location', with: 'E1 1EJ'
+      fill_in 'autocomplete', with: 'E1 1EJ'
       fill_in 'Date', with: 'Tuesday 7.30pm'
-      fill_in 'Size', with: '3'
+      fill_in 'Size', with: '2'
       click_button 'Create Event'
       expect(page).to have_content 'Dinner with Thomas'
       expect(current_path).to eq '/events'
@@ -109,10 +109,6 @@ feature 'users profile page' do
       user_one_sign_up
       visit '/users'
       expect(page).to have_content 'lastname'
-    end
-
-    xit 'should display the uploaded image' do
-
     end
 
   end
