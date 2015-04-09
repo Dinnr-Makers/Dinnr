@@ -16,7 +16,7 @@ def create_event
   click_link('Create event', match: :first)
   fill_in 'Title', with: 'Dinner with Thomas'
   fill_in 'Description', with: "Dinner at Thomas' house"
-  fill_in 'Location', with: 'E1 1EJ'
+  fill_in 'autocomplete', with: '16 woodchurch road'
   fill_in 'Date', with: 'Tuesday 7.30pm'
   fill_in 'Size', with: '2'
   click_button 'Create Event'
@@ -34,7 +34,7 @@ feature 'events' do
   context 'events have been added' do
 
     before do
-      Event.create(title: 'Dinner with Thomas', location: 'E1 1EJ', date: 'Tuesday 7.30pm' )
+      Event.create(title: 'Dinner with Thomas', location: '16 woodchurch road', date: 'Tuesday 7.30pm' )
     end
 
     scenario 'display events' do
@@ -55,7 +55,7 @@ feature 'events' do
 
   context 'viewing an event' do
 
-    let!(:dinwitht){Event.create(title: 'Dinner with Thomas', description: "Dinner at Thomas' house", location: 'E1 1EJ', date: 'Tuesday 7.30pm', size: '3')}
+    let!(:dinwitht){Event.create(title: 'Dinner with Thomas', description: "Dinner at Thomas' house", location: '16 woodchurch road', date: 'Tuesday 7.30pm', size: '3')}
 
     scenario 'lets a user view an event' do
       visit '/events'

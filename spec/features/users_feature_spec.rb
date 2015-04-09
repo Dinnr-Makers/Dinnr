@@ -23,7 +23,7 @@ def user_one_create_event
   click_link('Create event', match: :first)
   fill_in 'Title', with: 'Dinner with Thomas'
   fill_in 'Description', with: "Dinner at Thomas' house"
-  fill_in 'Location', with: 'E1 1EJ'
+  fill_in 'autocomplete', with: 'E1 1EJ'
   fill_in 'Date', with: 'Tuesday 7.30pm'
   fill_in 'Size', with: '2'
   click_button 'Create Event'
@@ -73,7 +73,7 @@ feature 'users' do
       click_link('Create event', match: :first)
       fill_in 'Title', with: 'Dinner with Thomas'
       fill_in 'Description', with: "Dinner at Thomas' house"
-      fill_in 'Location', with: 'E1 1EJ'
+      fill_in 'autocomplete', with: 'E1 1EJ'
       fill_in 'Date', with: 'Tuesday 7.30pm'
       fill_in 'Size', with: '2'
       click_button 'Create Event'
