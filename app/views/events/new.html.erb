@@ -16,26 +16,24 @@
         <%= f.text_field :title, class: 'form-control'%>
       <%= f.label :description %>
         <%= f.text_field :description, class: 'form-control'%>
-      <%= f.label :location %>
-        <%= f.text_field :location, class: 'form-control' %>
-      <%= f.label :date %>
-        <%= f.text_field :date, class: 'form-control' %>
-      <%= f.label :size %>
-        <%= f.text_field :size, class: 'form-control' %>
-      <%= f.submit 'Create Event', :class => 'btn btn-primary'%>
-    <% end %>
-    </div>
+
+
+
+
+
 
     <div  id="when" class="section scrollspy col s12 m6 offset-m3">
       <h1>When</h1>
+        <%= f.label :date %>
+        <%= f.text_field :date, class: 'form-control' %>
     </div>
 
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
     <div id="where" class="section scrollspy col s12 m6 offset-m3">
       <h1>Where</h1>
       <div id="locationField">
-      <input id="autocomplete" placeholder="Enter your address"
-             onFocus="geolocate()" type="text"></input>
+        <%= f.label :location %>
+        <%= f.text_field :location, class: 'form-control', id: "autocomplete", placeholder: "Enter your address" %>
     </div>
 
     <table id="address">
@@ -69,10 +67,15 @@
 
     <div  id="who" class="section scrollspy col s12 m6 offset-m3">
       <h1>Who and how many</h1>
+        <%= f.label :size %>
+        <%= f.text_field :size, class: 'form-control' %>
     </div>
 
     <div  id="publish" class="section scrollspy col s12 m6 offset-m3">
       <h1>Publish</h1>
+    <%= f.submit 'Create Event', :class => 'btn btn-primary'%>
+    <% end %>
+    </div>
     </div>
   </div>
 </div>
