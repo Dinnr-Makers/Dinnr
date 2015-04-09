@@ -22,15 +22,15 @@
 
 
 
-    <div  id="when" class="section scrollspy col s12 m6 offset-m3">
-      <h1>When</h1>
+    <div  id="when" class="section scrollspy col s12">
+      <h3>When</h3>
         <%= f.label :date %>
         <%= f.text_field :date, class: 'form-control' %>
     </div>
 
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
-    <div id="where" class="section scrollspy col s12 m6 offset-m3">
-      <h1>Where</h1>
+    <div id="where" class="section scrollspy col s12">
+      <h3>Where</h3>
       <div id="locationField">
         <%= f.label :location %>
         <%= f.text_field :location, class: 'form-control', id: "autocomplete", placeholder: "Enter your address" %>
@@ -65,14 +65,14 @@
     </table>
     </div>
 
-    <div  id="who" class="section scrollspy col s12 m6 offset-m3">
-      <h1>Who and how many</h1>
+    <div  id="who" class="section scrollspy col s12">
+      <h3>Who and how many</h3>
         <%= f.label :size %>
         <%= f.text_field :size, class: 'form-control' %>
     </div>
 
-    <div  id="publish" class="section scrollspy col s12 m6 offset-m3">
-      <h1>Publish</h1>
+    <div  id="publish" class="section scrollspy col s12">
+      <h3>Publish</h3>
     <%= f.submit 'Create Event', :class => 'btn btn-primary'%>
     <% end %>
     </div>

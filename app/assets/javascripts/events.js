@@ -11,7 +11,7 @@ $(document).ready( function() {
   });
 
     $('.scrollspy').scrollSpy();
-    $('.toc-wrapper').pushpin({ top: $('.toc-wrapper').offset().top });
+    $('.toc-wrapper').pushpin({ offset: $('.toc-wrapper').offset().top });
     initializeAutocomplete();
 });
 
