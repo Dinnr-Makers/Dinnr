@@ -10,7 +10,6 @@ $(document).ready( function() {
       closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
   });
 
-
     $('.scrollspy').scrollSpy();
     $('.toc-wrapper').pushpin({ top: $('.toc-wrapper').offset().top });
 });

@@ -32,7 +32,7 @@ class BookingsController < ApplicationController
     else
       @booking.first.destroy
     end
-    redirect_to :back
+    redirect_to "/events"
   end
 
 end

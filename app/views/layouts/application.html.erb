@@ -10,7 +10,7 @@
 <body>
   <header class="row">
     <nav>
-      <div class="nav-wrapper">
+      <div class="nav-wrapper col s12">
         <%= link_to "Dinnr", root_path, class: "brand-logo" %>
         <a href="#" data-activates="dinnr-nav" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
         <ul class="right hide-on-med-and-down">
@@ -41,7 +41,7 @@
 <% end %>
 </header>
 
-<main class="row"><%= yield %></main>
+<main><%= yield %></main>
 
 <footer class="row"></footer>
 
