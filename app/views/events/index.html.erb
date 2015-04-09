@@ -1,5 +1,6 @@
+<div class="row">
 <% if @events.any? %>
-  <% @events.each do |event|%>
+  <% @events.each do |event| %>
 
 <div class="panel col s12 m6 l4">
   <div class="card blue-grey lighten-5">
@@ -40,7 +41,8 @@
     
   </div>
     <div class="card-action">
-      <a href="#">APPLY</a>
+      <%= link_to "Join Event", new_event_booking_path(event.id) %>
+      <%= link_to "Leave Event", leave_event_bookings_path(event.id) %>
     </div>
   </div>
 </div>
@@ -48,3 +50,4 @@
 <% else %>
   <p> No events yet </p>
 <% end %>
+</div>

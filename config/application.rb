@@ -17,9 +17,9 @@ Bundler.require(*Rails.groups)
 
 module Dinnr
   class Application < Rails::Application
-   
+
     config.assets.paths << Rails.root.join("vendor", "assets", "bower_components")
-    config.assets.paths << Rails.root.join("app", "assets", "fonts")
+    # config.assets.paths << Rails.root.join("app", "assets", "fonts")
     # config.assets.precompile << %r(.*.(?:eot|svp|ttf|woff|woff2)$)
 
     # Settings in config/environments/* take precedence over those specified here.
@@ -38,4 +38,3 @@ module Dinnr
     config.active_record.raise_in_transactional_callbacks = true
   end
 end
-

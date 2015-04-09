@@ -1,44 +1,45 @@
-  <div class="col s12 m3 teal lighten-4">
-    <ul class="section table-of-contents">
-      <li><a href="#what">What?</a></li>
-      <li><a href="#when">When?</a></li>
-      <li><a href="#where">Where?</a></li>
-      <li><a href="#who">Who + How Many?</a></li>
-      <li><a href="#publish">Publish</a></li>
-    </ul>
+<div class="row">
+    <div class="toc-wrapper teal lighten-4 col s12 m3">
+      <ul class="section table-of-contents">
+        <li><a href="#what">What?</a></li>
+        <li><a href="#when">When?</a></li>
+        <li><a href="#where">Where?</a></li>
+        <li><a href="#who">Who + How Many?</a></li>
+        <li><a href="#publish">Publish</a></li>
+      </ul>
   </div>
 
+  <div class="col s12 m6 offset-m3">
+    <div id="what" class="form-group section scrollspy">
+    <%= form_for @event do |f| %>
+      <%= f.label :title %>
+        <%= f.text_field :title, class: 'form-control'%>
+      <%= f.label :description %>
+        <%= f.text_field :description, class: 'form-control'%>
+      <%= f.label :location %>
+        <%= f.text_field :location, class: 'form-control' %>
+      <%= f.label :date %>
+        <%= f.text_field :date, class: 'form-control' %>
+      <%= f.label :size %>
+        <%= f.text_field :size, class: 'form-control' %>
+      <%= f.submit 'Create Event', :class => 'btn btn-primary'%>
+    <% end %>
+    </div>
 
-<div id="what" class="form-group col s12 m6 section scrollspy">
+    <div  id="when" class="section scrollspy col s12 m6 offset-m3">
+      <h1>When</h1>
+    </div>
 
-<%= form_for @event do |f| %>
-  <%= f.label :title %>
-    <%= f.text_field :title, class: 'form-control'%>
-  <%= f.label :description %>
-    <%= f.text_field :description, class: 'form-control'%>
-  <%= f.label :location %>
-    <%= f.text_field :location, class: 'form-control' %>
-  <%= f.label :date %>
-    <%= f.text_field :date, class: 'form-control' %>
-  <%= f.label :size %>
-    <%= f.text_field :size, class: 'form-control' %>
-  <%= f.submit 'Create Event', :class => 'btn btn-primary'%>
-<% end %>
+    <div  id="where" class="section scrollspy col s12 m6 offset-m3">
+      <h1>Where</h1>
+    </div>
+
+    <div  id="who" class="section scrollspy col s12 m6 offset-m3">
+      <h1>Who and how many</h1>
+    </div>
+
+    <div  id="publish" class="section scrollspy col s12 m6 offset-m3">
+      <h1>Publish</h1>
+    </div>
+  </div>
 </div>
-
-<div  id="when" class="section scrollspy row col s12">
-  <h1>When</h1>
-</div>
-
-<div  id="where" class="section scrollspy row col s12">
-  <h1>Where</h1>
-</div>
-
-<div  id="who" class="section scrollspy row col s12">
-  <h1>Who and how many</h1>
-</div>
-
-<div  id="publish" class="section scrollspy row col s12">
-  <h1>Publish</h1>
-</div>
-
