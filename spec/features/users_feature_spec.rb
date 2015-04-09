@@ -25,7 +25,7 @@ def user_one_create_event
   fill_in 'Description', with: "Dinner at Thomas' house"
   fill_in 'Location', with: 'E1 1EJ'
   fill_in 'Date', with: 'Tuesday 7.30pm'
-  fill_in 'Size', with: '3'
+  fill_in 'Size', with: '2'
   click_button 'Create Event'
 end
 
@@ -75,7 +75,7 @@ feature 'users' do
       fill_in 'Description', with: "Dinner at Thomas' house"
       fill_in 'Location', with: 'E1 1EJ'
       fill_in 'Date', with: 'Tuesday 7.30pm'
-      fill_in 'Size', with: '3'
+      fill_in 'Size', with: '2'
       click_button 'Create Event'
       expect(page).to have_content 'Dinner with Thomas'
       expect(current_path).to eq '/events'

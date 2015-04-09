@@ -18,7 +18,7 @@ def create_event
   fill_in 'Description', with: "Dinner at Thomas' house"
   fill_in 'Location', with: 'E1 1EJ'
   fill_in 'Date', with: 'Tuesday 7.30pm'
-  fill_in 'Size', with: '3'
+  fill_in 'Size', with: '2'
   click_button 'Create Event'
 end
 
