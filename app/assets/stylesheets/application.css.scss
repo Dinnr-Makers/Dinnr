@@ -15,3 +15,11 @@
 
 $roboto-font-path: "../assets/";
 @import 'materialize/sass/materialize.scss';
+
+@font-face {
+    font-family: "Roboto";
+    src: font-url("Roboto-Regular.woff2") format("woff2"),
+        font-url("Roboto-Regular.woff") format("woff"),
+        font-url("Roboto-Regular.ttf") format("truetype");
+    font-weight: 400;
+}
