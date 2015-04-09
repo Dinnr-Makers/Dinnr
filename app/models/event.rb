@@ -3,7 +3,13 @@ class Event < ActiveRecord::Base
   belongs_to :user
   has_many :bookings
 
-  serialize :guests,Array
+  serialize :guests, Array
+
+  geocoded_by :address
+
+  def address
+    [housenumber, street, city, postcode, country].compact.join(', ')
+  end
 
   def add_guest(guest)
     unless guests.include? guest

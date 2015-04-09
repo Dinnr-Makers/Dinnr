@@ -36,6 +36,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    addressable (2.3.7)
     arel (6.0.0)
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
@@ -75,6 +76,7 @@ GEM
     execjs (2.5.0)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
+    geocoder (1.2.8)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
     hashie (3.4.0)
@@ -89,6 +91,8 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.2)
     jwt (1.4.1)
+    launchy (2.4.3)
+      addressable (~> 2.3)
     loofah (2.0.1)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -230,8 +234,10 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   devise
   dotenv-rails
+  geocoder
   jbuilder (~> 2.0)
   jquery-rails
+  launchy
   omniauth-facebook
   pg
   rails (= 4.2.1)

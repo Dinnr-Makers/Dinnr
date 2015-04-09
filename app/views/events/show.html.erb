@@ -1,12 +1,16 @@
 <p><%= @event.title %></p>
-<p><%= @event.description %></p>
-<p><%= @event.location %></p>
 <p><%= @event.date %></p>
+<p><%= @event.description %></p>
+<p><%= @event.housenumber %> <%= @event.street %></p>
+<p><%= @event.city %></p>
+<p><%= @event.postcode %></p>
+<p><%= @event.country %></p>
 <p><%= @event.size %></p>
 
 <%if @guests.any? %>
   <% @guests.each_with_index do |guest, index| %>
-    <p>Guest <%= index +1 %>: <%= guest.email %></p>
+    <p>Guest <%= index +1 %>: <%= guest.first_name %></p>
+    <p><%= image_tag guest.image %></p>
   <% end %>
 <% else %>
   <p>No guests yet</p>
