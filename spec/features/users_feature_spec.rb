@@ -84,3 +84,23 @@ feature 'users' do
   end
 
 end
+
+feature 'users profile page' do
+
+  context 'no users signed up' do
+    it 'should display no users yet' do
+      visit '/users'
+      expect(page).to have_content 'No users yet'
+    end
+
+  end
+
+  context 'user signed in and on profile page' do
+    it 'should display the user email' do
+      user_one_sign_up
+      visit '/users'
+      expect(page).to have_content 'test@example.com'
+    end
+  end
+
+end
