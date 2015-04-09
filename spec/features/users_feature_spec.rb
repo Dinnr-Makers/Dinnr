@@ -3,6 +3,8 @@ require 'rails_helper'
 def user_one_sign_up
   visit '/'
   click_link('Sign up', match: :first)
+  fill_in('First name', with: 'firstname')
+  fill_in('Last name', with: 'lastname')
   fill_in('Email', with: 'test@example.com')
   fill_in('Password', with: 'testtest')
   fill_in('Password confirmation', with: 'testtest')
@@ -96,10 +98,17 @@ feature 'users profile page' do
   end
 
   context 'user signed in and on profile page' do
-    it 'should display the user email' do
+    it 'should display the user details' do
       user_one_sign_up
       visit '/users'
       expect(page).to have_content 'test@example.com'
+      expect(page).to have_content 'firstname'
+    end
+
+    it 'should display the user\'s last name' do
+      user_one_sign_up
+      visit '/users'
+      expect(page).to have_content 'lastname'
     end
   end
 
