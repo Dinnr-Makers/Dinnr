@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
+      user.first_name = auth.info.first_name
+      user.last_name = auth.info.last_name
       user.image = auth.info.image
       user.password = Devise.friendly_token[0,20]
     end
@@ -19,7 +21,6 @@ class User < ActiveRecord::Base
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
         user.email = data["email"] if user.email.blank?
-        user.first_name = data["first_name"] if user.first_name.blank?
       end
     end
   end

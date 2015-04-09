@@ -110,6 +110,13 @@ feature 'users profile page' do
       visit '/users'
       expect(page).to have_content 'lastname'
     end
+
+    xit 'should display the uploaded image' do
+
+    end
+
   end
+
+
 
 end
