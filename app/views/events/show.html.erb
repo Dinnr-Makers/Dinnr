@@ -10,7 +10,7 @@
 <%if @guests.any? %>
   <% @guests.each_with_index do |guest, index| %>
     <p>Guest <%= index +1 %>: <%= guest.first_name %></p>
-    <p><%= image_tag guest.image %></p>
+    <p><a href="/users"><%= image_tag guest.image %></a></p>
   <% end %>
 <% else %>
   <p>No guests yet</p>
