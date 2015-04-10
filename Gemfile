@@ -54,6 +54,8 @@ group :development, :test do
   gem 'spring'
 
   gem 'dotenv-rails'
+
+  gem 'foreman'
 end
 
 group :test do
