@@ -64,33 +64,6 @@ feature 'users' do
       expect(page).not_to have_link('Delete')
     end
 
-    it 'should not see a join event button' do
-      visit '/'
-      expect(page).not_to have_link('Join Event')
-    end
-
-    it 'should not see a leave event' do
-      visit '/'
-      expect(page).not_to have_link('Leave Event')
-    end
-
-  end
-
-  context 'user not signed in and on an event page' do
-
-    let!(:dinwithC){Event.create(title: 'Dinner with Chris', description: "Dinner at Chris' house", location: 'BN3 6FU', date: 'Wednesday 7.30pm', size: '3')}
-
-    it 'should not see a join event button' do
-      visit '/'
-      click_link 'Dinner with Chris'
-      expect(page).not_to have_link('Join Event')
-    end
-
-    it 'should not see a leave event' do
-      visit '/'
-      click_link 'Dinner with Chris'
-      expect(page).not_to have_link('Leave Event')
-    end
   end
 
   context 'user signed in and on the home page' do
