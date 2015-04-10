@@ -28,7 +28,7 @@ var map;
 function initializeMap() {
   // Create a simple map.
   map = new google.maps.Map(document.getElementById('map-canvas'), {
-    zoom: 15
+    zoom: 10
   });
   // Load a GeoJSON from the same server as our demo.
   map.data.loadGeoJson('/map.json');
@@ -38,8 +38,16 @@ function initializeMap() {
       map.setCenter(event_loc.feature.getGeometry().get());
     }
   });
-};
 
+  var infowindow = new google.maps.InfoWindow();
+  map.data.addListener('click', function(event) {
+    var myHTML = event.feature.getProperty('title') + event.feature.getProperty('description');
+    infowindow.setContent("<div style='width:150px;'>"+myHTML+"</div>");
+    infowindow.setPosition(event.feature.getGeometry().get());
+    infowindow.setOptions({pixelOffset: new google.maps.Size(0,-30)});
+    infowindow.open(map);
+  });
+};
 
 
 
