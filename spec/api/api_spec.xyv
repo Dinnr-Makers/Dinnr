@@ -13,6 +13,10 @@ class DinnrTest < Test::Unit::TestCase
   def test_serve_events
     get "/map.json"
     assert last_response.ok?
+    p last_response.body
+    # assert last_response.body.include?("description")
   end
+
+  
 
 end

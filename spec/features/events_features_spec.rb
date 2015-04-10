@@ -1,4 +1,5 @@
 require 'rails_helper'
+require "rack/test"
 
 
 def user_sign_up
@@ -118,7 +119,35 @@ feature 'events' do
     end
   end
 
+  context "API Rack-test" do
+    include Rack::Test::Methods
+    
+    def app
+    Rails.application
+    end
+
+    scenario "it serves Events" do
+      user_sign_up
+      visit '/'
+      create_event
+
+      get "/map.json"
+      assert last_response.ok?
+      assert last_response.body.include?("Dinner with Thomas")
+    end
+  end
 end
+
+describe "API", :type => :request do
+  scenario "it doesn't serve events that haven't been geocoded" do
+      # Seed the database is missing
+
+    get "/map.json"
+    json = JSON.parse(response.body)
+    expect(json['features'].length).to eq(0)
+  end
+end
+
 
 
 

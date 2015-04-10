@@ -58,7 +58,7 @@ class EventsController < ApplicationController
   end
 
   def map
-    @events = Event.all 
+    @events = Event.all.where.not("longitude" => nil)
   end
 
 end
