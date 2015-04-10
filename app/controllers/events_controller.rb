@@ -21,7 +21,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:title, :description, :location, :date, :size, :housenumber, :street, :city, :country, :postcode)
+    params.require(:event).permit(:title, :description, :location, :date, :time, :size, :housenumber, :street, :city, :country, :postcode)
   end
 
   def show
@@ -54,7 +54,6 @@ class EventsController < ApplicationController
       flash[:notice] = 'You can only delete events that you have created'
       redirect_to '/events'
     end
-
   end
 
   # def join

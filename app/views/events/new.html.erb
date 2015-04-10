@@ -17,15 +17,12 @@
       <%= f.label :description %>
         <%= f.text_field :description, class: 'form-control'%>
 
-
-
-
-
-
     <div  id="when" class="section scrollspy col s12">
       <h3>When</h3>
         <%= f.label :date %>
-        <%= f.text_field :date, class: 'form-control' %>
+        <%= f.date_field :date, class: 'datepicker' %>
+         <%= f.label :time %>
+        <%= f.time_field :time %>
     </div>
 
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>

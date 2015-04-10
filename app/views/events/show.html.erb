@@ -1,10 +1,11 @@
 <p><%= @event.title %></p>
-<p><%= @event.date %></p>
 <p><%= @event.description %></p>
-<p><%= @event.housenumber %> <%= @event.street %></p>
-<p><%= @event.city %></p>
-<p><%= @event.postcode %></p>
-<p><%= @event.country %></p>
+<p><%= @event.date_format %><br>
+<%= @event.time_format %></p>
+<p><%= @event.housenumber %> <%= @event.street %><br>
+<%= @event.city %><br>
+<%= @event.postcode %><br>
+<%= @event.country %></p>
 <p><%= @event.size %></p>
 
 <%if @guests.any? %>

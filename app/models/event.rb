@@ -1,5 +1,7 @@
 class Event < ActiveRecord::Base
 
+  attr_accessor :time_format
+
   belongs_to :user
   has_many :bookings
 
@@ -20,6 +22,14 @@ class Event < ActiveRecord::Base
 
   def remove_guest(guest)
     guests.delete(guest)
+  end
+
+  def date_format
+    self.date.strftime('%a %d %b') 
+  end
+
+  def time_format
+    self.time.strftime("%I:%M%p")
   end
 
 end
