@@ -4,6 +4,8 @@
   <title>Dinnr</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application'%>
+
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
   <%= csrf_meta_tags %>
 </head>
 
@@ -40,7 +42,9 @@
   <p class="alert"><%= alert %></p>
 <% end %>
 </header>
-
+<div class="row">
+  <div class="col s12 main-map" id="map-canvas"></div>
+</div>
 <main><%= yield %></main>
 
 <footer class="row"></footer>

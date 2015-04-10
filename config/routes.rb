@@ -15,6 +15,6 @@ Rails.application.routes.draw do
 
   resources :users
 
-
+  get 'map' => 'events#map'
 
 end
