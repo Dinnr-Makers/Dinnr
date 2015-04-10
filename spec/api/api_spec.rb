@@ -2,13 +2,12 @@ require "rubygems"
 require "rack/test"
 require "test/unit"
 
-OUTER_APP = Rack::Builder.parse_file('config.ru').first
 
 class DinnrTest < Test::Unit::TestCase
   include Rack::Test::Methods
 
   def app
-    OUTER_APP
+    Rails.application
   end
 
   def test_serve_events
