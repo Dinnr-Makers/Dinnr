@@ -32,6 +32,9 @@ def user_one_create_event
 end
 
 feature 'users' do
+
+  let!(:dinwithC){Event.create(title: 'Dinner with Chris', description: "Dinner at Chris' house", location: 'BN3 6FU', date: 'Wednesday 7.30pm', size: '3')}
+
   context 'user not signed in and on the home page' do
 
     it 'should see a sign in and sign up link' do
@@ -61,6 +64,16 @@ feature 'users' do
       fill_in 'Email', with: 'alice@example.com'
       click_button 'Send me reset password instructions'
       expect(page).to have_content "You will receive an email with instructions on how to reset your password in a few minutes."
+    end
+
+    it 'should not see an edit link' do
+      visit '/'
+      expect(page).not_to have_link('Edit')
+    end
+
+    it 'should not see a delete link' do
+      visit '/'
+      expect(page).not_to have_link('Delete')
     end
 
   end
