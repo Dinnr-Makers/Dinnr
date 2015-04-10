@@ -113,6 +113,34 @@ feature 'users profile page' do
 
   end
 
+end
+
+feature 'updating profile details' do
+
+  it 'should be able to change the users first name' do
+    user_one_sign_up
+    visit 'users/edit'
+    fill_in('First name', with: 'Chris')
+    fill_in('Current password', with: 'testtest')
+    click_button('Update')
+    expect(page).to have_content 'Your account has been updated successfully.'
+    visit '/users'
+    expect(page).to have_content 'Chris'
+  end
+
+  it 'should be able to change the users last name' do
+    user_one_sign_up
+    visit 'users/edit'
+    fill_in('Last name', with: 'Ward')
+    fill_in('Current password', with: 'testtest')
+    click_button('Update')
+    expect(page).to have_content 'Your account has been updated successfully.'
+    visit '/users'
+    expect(page).to have_content 'Ward'
+  end
+
+
+
 
 
 end
