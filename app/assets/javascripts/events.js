@@ -11,12 +11,13 @@ $(document).ready( function() {
   });
 
     $('.scrollspy').scrollSpy();
+     //on create_event_page? 
     if($('.toc-wrapper').length > 0){
-    $('.toc-wrapper').pushpin({ offset: $('.toc-wrapper').offset().top });
+      $('.toc-wrapper').pushpin({ offset: $('.toc-wrapper').offset().top });
+      initializeAutocomplete();
     };
-    initializeMap();
-    // initializeAutocomplete();
     
+    initializeMap();
 });
 
 
@@ -25,12 +26,17 @@ var map;
 function initializeMap() {
   // Create a simple map.
   map = new google.maps.Map(document.getElementById('map-canvas'), {
-    zoom: 4,
-    center: {lat: -28, lng: 137.883}
+    zoom: 15
   });
   // Load a GeoJSON from the same server as our demo.
   map.data.loadGeoJson('/map.json');
-}
+
+  google.maps.event.addListener(map.data, 'addfeature', function (e) {
+        if (e.feature.getGeometry().getType() === 'Point') {
+            map.setCenter(e.feature.getGeometry().get());
+            }
+    });
+};
 
 
 
