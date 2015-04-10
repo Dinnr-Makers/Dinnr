@@ -17,7 +17,9 @@ $(document).ready( function() {
       initializeAutocomplete();
     };
     
-    initializeMap();
+    if($("#map-canvas").length > 0){
+      initializeMap();
+    }
 });
 
 
@@ -31,11 +33,11 @@ function initializeMap() {
   // Load a GeoJSON from the same server as our demo.
   map.data.loadGeoJson('/map.json');
 
-  google.maps.event.addListener(map.data, 'addfeature', function (e) {
-        if (e.feature.getGeometry().getType() === 'Point') {
-            map.setCenter(e.feature.getGeometry().get());
-            }
-    });
+  google.maps.event.addListener(map.data, 'addfeature', function(event_loc) {
+    if (event_loc.feature.getGeometry().getType() === 'Point') {
+      map.setCenter(event_loc.feature.getGeometry().get());
+    }
+  });
 };
 
 
