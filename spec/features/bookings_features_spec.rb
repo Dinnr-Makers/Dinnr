@@ -74,7 +74,7 @@ context 'user signed in and on the home page' do
     expect(page).to have_content "Guest 1: alice"
   end
 
-  it 'should be able to leave an event that they have joined' do
+  xit 'should be able to leave an event that they have joined' do
     visit '/'
     user_one_create_event
     click_link("Sign out", match: :first)
@@ -93,7 +93,7 @@ context 'user signed in and on the home page' do
     expect(page).not_to have_content "Guest 1: alice"
   end
 
-  it 'should not be able to join an event they have already joined' do
+  xit 'should not be able to join an event they have already joined' do
     visit '/'
     user_one_create_event
     click_link("Sign out", match: :first)
@@ -112,7 +112,7 @@ context 'user signed in and on the home page' do
     expect(page).to have_content "You have already joined this event"
   end
 
-  it 'should not be able to leave event that they have not already joined' do
+  xit 'should not be able to leave event that they have not already joined' do
     visit '/'
     user_one_create_event
     click_link("Sign out", match: :first)
@@ -146,6 +146,16 @@ context 'user signed in and on the home page' do
     click_link "Dinner with Thomas"
     click_link "Join Event"
     expect(page).to have_content "Event is full you are unable to join at the moment"
+  end
+
+  it 'should not show a join event link if the user has already signed up' do
+    visit '/'
+    user_one_create_event
+    click_link("Sign out", match: :first)
+    user_two_sign_up
+    click_link "Dinner with Thomas"
+    click_link "Join Event"
+    expect(page).not_to have_link('Join Event')
   end
 
 end

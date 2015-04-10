@@ -35,15 +35,16 @@
       </tbody>
     </table>
     <div>
+    <% if user_signed_in? %>
     <%= link_to "Edit", edit_event_path(event) %>
     <%= link_to "Delete", event_path(event), method: :delete %>
     </div>
-
-  </div>
     <div class="card-action">
       <%= link_to "Join Event", new_event_booking_path(event.id) %>
       <%= link_to "Leave Event", leave_event_bookings_path(event.id) %>
+    <% end %>
     </div>
+  </div>
   </div>
 </div>
   <% end %>

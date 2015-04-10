@@ -16,5 +16,10 @@
   <p>No guests yet</p>
 <% end %>
 
-<%= link_to "Join Event", new_event_booking_path(@event.id) %>
-<%= link_to "Leave Event", leave_event_bookings_path(@event.id) %>
+<% if user_signed_in? && @guests.include?(current_user) %>
+  <%= link_to "Leave Event", leave_event_bookings_path(@event.id) %>
+<% else %>
+<% if user_signed_in? %>
+  <%= link_to "Join Event", new_event_booking_path(@event.id) %>
+  <% end %>
+<% end %>

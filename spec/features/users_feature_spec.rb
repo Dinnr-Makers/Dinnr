@@ -32,6 +32,9 @@ def user_one_create_event
 end
 
 feature 'users' do
+
+  let!(:dinwithC){Event.create(title: 'Dinner with Chris', description: "Dinner at Chris' house", location: 'BN3 6FU', date: 'Wednesday 7.30pm', size: '3')}
+
   context 'user not signed in and on the home page' do
 
     it 'should see a sign in and sign up link' do
@@ -51,6 +54,43 @@ feature 'users' do
       expect(page).to have_content 'You need to sign in or sign up before continuing'
     end
 
+    it 'should not see an edit link' do
+      visit '/'
+      expect(page).not_to have_link('Edit')
+    end
+
+    it 'should not see a delete link' do
+      visit '/'
+      expect(page).not_to have_link('Delete')
+    end
+
+    it 'should not see a join event button' do
+      visit '/'
+      expect(page).not_to have_link('Join Event')
+    end
+
+    it 'should not see a leave event' do
+      visit '/'
+      expect(page).not_to have_link('Leave Event')
+    end
+
+  end
+
+  context 'user not signed in and on an event page' do
+
+    let!(:dinwithC){Event.create(title: 'Dinner with Chris', description: "Dinner at Chris' house", location: 'BN3 6FU', date: 'Wednesday 7.30pm', size: '3')}
+
+    it 'should not see a join event button' do
+      visit '/'
+      click_link 'Dinner with Chris'
+      expect(page).not_to have_link('Join Event')
+    end
+
+    it 'should not see a leave event' do
+      visit '/'
+      click_link 'Dinner with Chris'
+      expect(page).not_to have_link('Leave Event')
+    end
   end
 
   context 'user signed in and on the home page' do
@@ -112,7 +152,5 @@ feature 'users profile page' do
     end
 
   end
-
-
 
 end
