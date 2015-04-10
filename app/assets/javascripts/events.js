@@ -39,10 +39,11 @@ function initializeMap() {
     }
   });
 
+  //Create info window that pops up when you click the marker
   var infowindow = new google.maps.InfoWindow();
   map.data.addListener('click', function(event) {
-    var myHTML = event.feature.getProperty('title') + event.feature.getProperty('description');
-    infowindow.setContent("<div style='width:150px;'>"+myHTML+"</div>");
+    var windowcontent = event.feature.getProperty('title') + event.feature.getProperty('description');
+    infowindow.setContent("<div class='window-thing' style='width:150px;'>"+ windowcontent +"</div>");
     infowindow.setPosition(event.feature.getGeometry().get());
     infowindow.setOptions({pixelOffset: new google.maps.Size(0,-30)});
     infowindow.open(map);

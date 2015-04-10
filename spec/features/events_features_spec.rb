@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+
 def user_sign_up
 
   visit '/'
