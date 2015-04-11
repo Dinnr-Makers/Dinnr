@@ -73,23 +73,26 @@ feature 'events' do
     end
   end
 
-  context 'editing an event' do
+  context 'editing an event that has not been created by user' do
 
     let!(:dinwithC){Event.create(title: 'Dinner with Chris', description: "Dinner at Chris' house", location: 'BN3 6FU', date: 'Wednesday 7.30pm', size: '3')}
 
     scenario 'does not let a user edit an event that they have not created' do
       user_sign_up
       visit '/'
-      click_link 'Edit Dinner with Chris'
+      click_link('Edit', match: :first)
       expect(page).to have_content 'You can only edit events that you have created'
       expect(current_path).to eq('/events')
     end
+  end
+
+  context 'editing an event that has been created by user' do
 
     scenario 'does let a user edit an event they have created' do
       user_sign_up
       create_event
       visit '/'
-      click_link 'Edit Dinner with Thomas'
+      click_link('Edit', match: :first)
       fill_in 'Title', with: "Dinner at Thomas' house in Whitechapel"
       click_button 'Update Event'
       expect(page).to have_content "Dinner at Thomas' house in Whitechapel"
@@ -97,23 +100,26 @@ feature 'events' do
     end
   end
 
-  context 'deleting an event' do
+  context 'deleting an event that has not been created by user' do
 
     let!(:dinwithC){Event.create(title: 'Dinner with Chris', description: "Dinner at Chris' house", location: 'BN3 6FU', date: 'Wednesday 7.30pm', size: '3')}
 
     scenario 'does not let a user delete and event that they have not created' do
       user_sign_up
       visit '/'
-      click_link "Delete Dinner with Chris"
+      click_link("Delete", match: :first)
       expect(page).to have_content 'You can only delete events that you have created'
       expect(current_path).to eq('/events')
     end
+  end
+
+  context 'deleting an event that has been created by user' do
 
     scenario 'lets a user delete an event they have created' do
       user_sign_up
       visit '/'
       create_event
-      click_link "Delete Dinner with Thomas"
+      click_link "Delete"
       expect(page).to have_content 'Event deleted successfully'
       expect(current_path).to eq '/events'
     end

@@ -10,7 +10,7 @@
   <div class="card-content ">
     <span class="card-title">
     <%= link_to event.title, event_path(event)%>
-    </span> 
+    </span>
     <table>
       <tbody>
         <tr>
@@ -36,15 +36,16 @@
       </tbody>
     </table>
     <div>
-    <%= link_to "Edit #{event.title}", edit_event_path(event) %>
-    <%= link_to "Delete #{event.title}", event_path(event), method: :delete %>
+    <% if user_signed_in? %>
+    <%= link_to "Edit", edit_event_path(event) %>
+    <%= link_to "Delete", event_path(event), method: :delete %>
     </div>
-    
-  </div>
     <div class="card-action">
       <%= link_to "Join Event", new_event_booking_path(event.id) %>
       <%= link_to "Leave Event", leave_event_bookings_path(event.id) %>
+    <% end %>
     </div>
+  </div>
   </div>
 </div>
   <% end %>
@@ -52,3 +53,6 @@
   <p> No events yet </p>
 <% end %>
 </div>
+
+
+

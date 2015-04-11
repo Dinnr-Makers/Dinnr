@@ -74,54 +74,6 @@ context 'user signed in and on the home page' do
     expect(page).to have_content "Guest 1: alice"
   end
 
-  it 'should be able to leave an event that they have joined' do
-    visit '/'
-    user_one_create_event
-    click_link("Sign out", match: :first)
-    visit '/'
-    click_link('Sign up', match: :first)
-    fill_in('user[first_name]', with: 'alice')
-    fill_in('user[last_name]', with: 'alice surname')
-    fill_in('Email', with: 'alice@example.com')
-    fill_in('Password', with: 'password')
-    fill_in('Password confirmation', with: 'password')
-    click_button('Sign up')
-    click_link "Dinner with Thomas"
-    click_link "Join Event"
-    expect(page).to have_content "Guest 1: alice"
-    click_link "Leave Event"
-    expect(page).not_to have_content "Guest 1: alice"
-  end
-
-  it 'should not be able to join an event they have already joined' do
-    visit '/'
-    user_one_create_event
-    click_link("Sign out", match: :first)
-    visit '/'
-    click_link('Sign up', match: :first)
-    fill_in('user[first_name]', with: 'alice')
-    fill_in('user[last_name]', with: 'alice surname')
-    fill_in('Email', with: 'alice@example.com')
-    fill_in('Password', with: 'password')
-    fill_in('Password confirmation', with: 'password')
-    click_button('Sign up')
-    click_link "Dinner with Thomas"
-    click_link "Join Event"
-    expect(page).to have_content "Guest 1: alice"
-    click_link "Join Event"
-    expect(page).to have_content "You have already joined this event"
-  end
-
-  it 'should not be able to leave event that they have not already joined' do
-    visit '/'
-    user_one_create_event
-    click_link("Sign out", match: :first)
-    user_two_sign_up
-    click_link "Dinner with Thomas"
-    click_link "Leave Event"
-    expect(page).to have_content "You have not joined this event yet"
-  end
-
   it 'should not be able to join their own event' do
     visit '/'
     user_one_create_event
@@ -149,3 +101,56 @@ context 'user signed in and on the home page' do
   end
 
 end
+
+context 'user not signed in and on an event page' do
+
+  let!(:dinwithC){Event.create(title: 'Dinner with Chris', description: "Dinner at Chris' house", location: 'BN3 6FU', date: 'Wednesday 7.30pm', size: '3')}
+
+  it 'should not see a join event button' do
+    visit '/'
+    click_link 'Dinner with Chris'
+    expect(page).not_to have_link('Join Event')
+  end
+
+  it 'should not see a leave event' do
+    visit '/'
+    click_link 'Dinner with Chris'
+    expect(page).not_to have_link('Leave Event')
+  end
+end
+
+context 'user not signed in and on the home page' do
+
+  let!(:dinwithC){Event.create(title: 'Dinner with Chris', description: "Dinner at Chris' house", location: 'BN3 6FU', date: 'Wednesday 7.30pm', size: '3')}
+
+    it 'should not see a join event button' do
+      visit '/'
+      expect(page).not_to have_link('Join Event')
+    end
+
+    it 'should not see a leave event' do
+      visit '/'
+      expect(page).not_to have_link('Leave Event')
+    end
+
+end
+
+context 'user signed in and on an event page' do
+
+    before do
+    user_one_sign_up
+  end
+
+  it 'should not show a join event link if the user has already signed up' do
+    visit '/'
+    user_one_create_event
+    click_link("Sign out", match: :first)
+    user_two_sign_up
+    click_link "Dinner with Thomas"
+    click_link "Join Event"
+    expect(page).not_to have_link('Join Event')
+  end
+
+
+end
+
