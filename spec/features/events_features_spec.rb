@@ -10,7 +10,6 @@ def user_sign_up
   fill_in('Password', with: 'testtest')
   fill_in('Password confirmation', with: 'testtest')
   click_button('Sign up')
-
 end
 
 def create_event
@@ -34,14 +33,10 @@ feature 'events' do
   end
 
   context 'events have been added' do
-
-    before do
-      Event.create(title: 'Dinner with Thomas', location: '16 woodchurch road', date: 'Tuesday 7.30pm' )
-    end
-
     scenario 'display events' do
+      event = create(:event)
       visit '/events'
-      expect(page).to have_content 'Dinner with Thomas'
+      expect(page).to have_content event.title
     end
   end
 
@@ -140,6 +135,12 @@ describe "API", :type => :request do
 
   scenario "it doesn't serve events that haven't been geocoded" do
     get "/map.json"
+    json = JSON.parse(response.body)
+    expect(json['features'].length).to eq(1)
+  end
+
+  scenario "it returns data for single events on map/:id" do
+    get "/map/1"
     json = JSON.parse(response.body)
     expect(json['features'].length).to eq(1)
   end
