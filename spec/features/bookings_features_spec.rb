@@ -104,40 +104,38 @@ end
 
 context 'user not signed in and on an event page' do
 
-  let!(:dinwithC){Event.create(title: 'Dinner with Chris', description: "Dinner at Chris' house", location: 'BN3 6FU', date: 'Wednesday 7.30pm', size: '3')}
+  let!(:dinwithC){create(:event)}
 
   it 'should not see a join event button' do
     visit '/'
-    click_link 'Dinner with Chris'
+    click_link dinwithC.title
     expect(page).not_to have_link('Join Event')
   end
 
   it 'should not see a leave event' do
     visit '/'
-    click_link 'Dinner with Chris'
+    click_link dinwithC.title
     expect(page).not_to have_link('Leave Event')
   end
 end
 
 context 'user not signed in and on the home page' do
+  let!(:dinwithC){create(:event)}
+  
+  it 'should not see a join event button' do
+    visit '/'
+    expect(page).not_to have_link('Join Event')
+  end
 
-  let!(:dinwithC){Event.create(title: 'Dinner with Chris', description: "Dinner at Chris' house", location: 'BN3 6FU', date: 'Wednesday 7.30pm', size: '3')}
-
-    it 'should not see a join event button' do
-      visit '/'
-      expect(page).not_to have_link('Join Event')
-    end
-
-    it 'should not see a leave event' do
-      visit '/'
-      expect(page).not_to have_link('Leave Event')
-    end
-
+  it 'should not see a leave event' do
+    visit '/'
+    expect(page).not_to have_link('Leave Event')
+  end
 end
 
 context 'user signed in and on an event page' do
 
-    before do
+  before do
     user_one_sign_up
   end
 
@@ -150,7 +148,4 @@ context 'user signed in and on an event page' do
     click_link "Join Event"
     expect(page).not_to have_link('Join Event')
   end
-
-
 end
-
