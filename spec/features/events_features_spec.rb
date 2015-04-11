@@ -118,42 +118,24 @@ feature 'events' do
       expect(current_path).to eq '/events'
     end
   end
-
-  context "API Rack-test" do
-    include Rack::Test::Methods
-    
-    def app
-    Rails.application
-    end
-
-    scenario "it serves (geocoded) Events" do
-      user_sign_up
-      visit '/events'
-      click_link('Create event', match: :first)
-      fill_in 'Title', with: 'Dinner with Thomas'
-      fill_in 'Description', with: "Dinner at Thomas' house"
-      fill_in 'street_number', with: '16'
-      fill_in 'route', with: 'woodchurch road'
-      fill_in 'locality', with: 'London'
-      fill_in 'postal_code', with: "NW6 3PN"
-      fill_in 'country', with: 'United Kingdom'
-      click_button 'Create Event'
-
-        # event doesn't get geocoded at the moment.
-      get "/map.json"
-      assert last_response.ok?
-      assert last_response.body.include?("Dinner with Thomas")
-    end
-  end
 end
 
 describe "API", :type => :request do
-  scenario "it doesn't serve events that haven't been geocoded" do
-      # Seed the database is missing
+  before(:each) do
+    event = build(:event)
+    geocoded_event = create(:geocoded_event)
+  end
 
+  scenario "it serves events" do
     get "/map.json"
     json = JSON.parse(response.body)
-    expect(json['features'].length).to eq(0)
+    expect(json['features'].length).to eq(1)
+  end
+
+  scenario "it doesn't serve events that haven't been geocoded" do
+    get "/map.json"
+    json = JSON.parse(response.body)
+    expect(json['features'].length).to eq(1)
   end
 end
 

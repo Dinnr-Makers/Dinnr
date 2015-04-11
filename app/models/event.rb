@@ -6,7 +6,7 @@ class Event < ActiveRecord::Base
   serialize :guests, Array
 
   geocoded_by :address
-  after_validation :geocode, if: ->(event){ event.latitude.blank? } 
+  after_validation :geocode
 
   def address
     [housenumber, street, city, postcode, country].compact.join(', ')
