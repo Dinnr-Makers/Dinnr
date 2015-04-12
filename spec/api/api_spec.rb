@@ -17,10 +17,4 @@ describe "API", :type => :request do
     json = JSON.parse(response.body)
     expect(json['features'].length).to eq(1)
   end
-
-  xscenario "it returns data for single events on map/:id" do
-    get "/map/1"
-    json = JSON.parse(response.body)
-    expect(json['features'].length).to eq(1)
-  end
 end
