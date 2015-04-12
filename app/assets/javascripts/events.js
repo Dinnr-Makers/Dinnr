@@ -31,7 +31,7 @@ function initializeMap() {
     zoom: 10
   });
   // Load a GeoJSON from the same server as our demo.
-  map.data.loadGeoJson('/map.json');
+  map.data.loadGeoJson('/api/v1/events/map');
 
   google.maps.event.addListener(map.data, 'addfeature', function(event_loc) {
     if (event_loc.feature.getGeometry().getType() === 'Point') {

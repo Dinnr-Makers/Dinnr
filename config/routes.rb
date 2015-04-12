@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   root to: 'events#index'
-  get 'map' => 'events#map'
+  
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", registrations: 'registrations' }
 
   get 'events' => 'events#index'
@@ -15,5 +15,14 @@ Rails.application.routes.draw do
   end
 
   resources :users
+
+  namespace :api, :defaults => {:format => :json} do
+    namespace :v1 do
+      resources :events do
+        get 'map' => 'map#index', :on => :collection
+        get 'map' => 'map#show'
+      end
+    end
+  end
 
 end

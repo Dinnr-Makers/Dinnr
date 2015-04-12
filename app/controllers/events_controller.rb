@@ -54,11 +54,6 @@ class EventsController < ApplicationController
       flash[:notice] = 'You can only delete events that you have created'
       redirect_to '/events'
     end
-
-  end
-
-  def map
-    @events = Event.all.where.not("longitude" => nil)
   end
 
 end
