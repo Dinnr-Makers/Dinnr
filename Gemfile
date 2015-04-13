@@ -57,6 +57,11 @@ group :development, :test do
   gem 'spring'
 
   gem 'dotenv-rails'
+
+  gem 'factory_girl_rails'
+
+  gem 'foreman'
+
 end
 
 group :test do
@@ -66,6 +71,7 @@ group :test do
   gem 'rspec-collection_matchers'
   gem 'shoulda'
   gem 'launchy'
-
+  gem 'rack-test'
+  gem "test-unit"
 end
 

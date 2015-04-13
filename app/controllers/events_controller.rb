@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
 
-  before_action :authenticate_user!, :except => [:index, :show]
+  before_action :authenticate_user!, :except => [:index, :show, :map]
 
   def index
     @events = Event.all
@@ -57,18 +57,8 @@ class EventsController < ApplicationController
 
   end
 
-  # def join
-  #   @event = Event.find(params[:id])
-  #   @event.add_guest(current_user)
-  #   @event.save
-  #   redirect_to :back
-  # end
-
-  # def leave
-  #   @event = Event.find(params[:id])
-  #   @event.remove_guest(current_user)
-  #   @event.save
-  #   redirect_to action: 'show', id: @event.id
-  # end
+  def map
+    @events = Event.all.where.not("longitude" => nil)
+  end
 
 end
