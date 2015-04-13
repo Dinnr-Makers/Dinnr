@@ -26,14 +26,15 @@ def user_one_create_event
   fill_in 'Title', with: 'Dinner with Thomas'
   fill_in 'Description', with: "Dinner at Thomas' house"
   fill_in 'autocomplete', with: 'E1 1EJ'
-  fill_in 'Date', with: 'Tuesday 7.30pm'
+  fill_in 'Date', with: 'Fri 17 Apr'
+  fill_in 'Time', with: '06:00PM'
   fill_in 'Size', with: '2'
   click_button 'Create Event'
 end
 
 feature 'users' do
 
-  let!(:dinwithC){Event.create(title: 'Dinner with Chris', description: "Dinner at Chris' house", location: 'BN3 6FU', date: 'Wednesday 7.30pm', size: '3')}
+  let!(:dinwithC){create(:event)}
 
   context 'user not signed in and on the home page' do
 
@@ -101,7 +102,8 @@ feature 'users' do
       fill_in 'Title', with: 'Dinner with Thomas'
       fill_in 'Description', with: "Dinner at Thomas' house"
       fill_in 'autocomplete', with: 'E1 1EJ'
-      fill_in 'Date', with: 'Tuesday 7.30pm'
+      fill_in 'Date', with: 'Fri 17 Apr'
+      fill_in 'Time', with: '06:00PM'
       fill_in 'Size', with: '2'
       click_button 'Create Event'
       expect(page).to have_content 'Dinner with Thomas'

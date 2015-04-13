@@ -19,10 +19,10 @@
 
     <div  id="when" class="section scrollspy col s12">
       <h3>When</h3>
-        <%= f.label :date %>
-        <%= f.date_field :date, class: 'datepicker' %>
-         <%= f.label :time %>
-        <%= f.time_field :time %>
+        <%= f.label :date, :required => true %>
+        <%= f.date_field :date, class: 'datepicker', :required => true %>
+         <%= f.label :time, :required => true %>
+        <%= f.time_field :time, :required => true %>
     </div>
 
     

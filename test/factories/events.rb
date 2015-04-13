@@ -15,7 +15,8 @@ FactoryGirl.define do
     title "Pauls Birthday Party"
     description "Party for Paul's 21. birthday"
     location "22 Sancroft Street, London, United Kingdom"
-    date "2016-12-12 00:00:00"
+    date "Fri 17 Apr"
+    time "6:00PM"
     size 4
     user_id nil
     housenumber "22"
