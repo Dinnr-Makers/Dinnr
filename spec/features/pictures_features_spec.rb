@@ -49,4 +49,15 @@ feature 'Pictures' do
     end
   end
 
+  context 'creating pictures' do
+    scenario 'prompts user to fill out form' do
+      visit '/pictures'
+      click_link 'Add a picture'
+      fill_in 'Title', with: 'Test picture'
+      click_button 'Create Picture'
+      expect(page).to have_content 'Test picture'
+      expect(current_path).to eq '/pictures'
+    end
+  end
+
 end
