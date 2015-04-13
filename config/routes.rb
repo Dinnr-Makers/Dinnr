@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", registrations: 'registrations' }
 
   get 'events' => 'events#index'
+  get 'pictures' => 'pictures#index'
 
   resources :events do
     resources :bookings do
@@ -15,6 +16,6 @@ Rails.application.routes.draw do
 
   resources :users
 
-
+  resources :pictures
 
 end
