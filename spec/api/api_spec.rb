@@ -1,20 +1,23 @@
 require 'rails_helper'
 
 describe "API", :type => :request do
-  before(:each) do
-    event = build(:event)
-    geocoded_event = create(:geocoded_event)
-  end
+  let!(:geocoded_event){create(:event)}
 
   scenario "it serves events" do
-    get "/map.json"
+    get "/api/v1/events/map"
     json = JSON.parse(response.body)
     expect(json['features'].length).to eq(1)
   end
 
   scenario "it doesn't serve events that haven't been geocoded" do
-    get "/map.json"
+    event_without_geocode = create(:event, housenumber: "55", street: "Nilstreet", city: "Niltown", postcode: "nil", country: "NilCountry")
+    get "/api/v1/events/map"
     json = JSON.parse(response.body)
     expect(json['features'].length).to eq(1)
+  end
+
+  scenario "it returns data for single events on map/:id" do
+    get "/api/v1/events/#{geocoded_event.id}/map"
+    assert response.body.include?(geocoded_event.title)
   end
 end

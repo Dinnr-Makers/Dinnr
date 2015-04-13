@@ -39,4 +39,21 @@ describe Event, type: :model do
     expect(party.size).to eq 3
   end
 
+  it 'should display a date' do
+    options = {:date => Date.new(2015,04,17)}
+    party = Event.new(options)
+    expect(party.date_format).to eq "Fri 17 Apr"
+  end
+
+  it 'should display a time' do
+    options = {:time => Time.new(2015,"apr",17,18,0,0)}
+    party = Event.new(options)
+    expect(party.time_format).to eq "06:00PM"
+  end
+
+  it 'will not allow an invalid date' do
+    party = build(:event, date: Date.new(2010,04,17) )
+    expect(party).not_to be_valid
+  end
+
 end

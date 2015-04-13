@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20150413133823) do
     t.string   "postcode"
     t.float    "latitude"
     t.float    "longitude"
+    t.time     "time"
   end
 
   add_index "events", ["user_id"], name: "index_events_on_user_id", using: :btree

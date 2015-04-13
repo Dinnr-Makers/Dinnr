@@ -15,7 +15,8 @@ def create_event
   fill_in 'Title', with: 'Dinner with Thomas'
   fill_in 'Description', with: "Dinner at Thomas' house"
   fill_in 'autocomplete', with: '16 woodchurch road'
-  fill_in 'Date', with: 'Tuesday 7.30pm'
+  fill_in 'Date', with: '2020-04-30'
+  fill_in 'Time', with: '17:20:00.000'
   fill_in 'Size', with: '2'
   click_button 'Create Event'
 end
@@ -52,6 +53,20 @@ feature 'events' do
       create_event
       expect(page).to have_content 'Dinner with Thomas'
       expect(current_path).to eq '/events'
+    end
+
+    scenario "Shows error message if date is invalid" do
+      user_sign_up
+      visit '/events'
+      click_link('Create event', match: :first)
+      fill_in 'Title', with: 'Dinner with Thomas'
+      fill_in 'Description', with: "Dinner at Thomas' house"
+      fill_in 'autocomplete', with: '16 woodchurch road'
+      fill_in 'Date', with: '1984-04-30'
+      fill_in 'Time', with: '17:20:00.000'
+      fill_in 'Size', with: '2'
+      click_button 'Create Event'
+      expect(page).to have_content("Date is not valid")
     end
   end
 

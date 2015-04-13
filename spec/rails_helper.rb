@@ -39,6 +39,22 @@ Geocoder::Lookup::Test.set_default_stub(
   ]
 )
 
+Geocoder.configure(:lookup => :test)
+
+Geocoder::Lookup::Test.add_stub(
+  "55, Nilstreet, Niltown, nil, NilCountry", [
+    {
+      'latitude'     => nil,
+      'longitude'    => nil,
+      'address'      => 'New York, NY, USA',
+      'state'        => 'New York',
+      'state_code'   => 'NY',
+      'country'      => 'United States',
+      'country_code' => 'US'
+    }
+  ]
+)
+
 # Checks for pending migrations before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!

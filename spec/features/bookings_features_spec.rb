@@ -46,7 +46,8 @@ def user_one_create_event
   fill_in 'Title', with: 'Dinner with Thomas'
   fill_in 'Description', with: "Dinner at Thomas' house"
   fill_in 'autocomplete', with: 'E1 1EJ'
-  fill_in 'Date', with: 'Tuesday 7.30pm'
+  fill_in 'Date', with: '2020-04-30'
+  fill_in 'Time', with: '17:20:00.000'
   fill_in 'Size', with: '2'
   click_button 'Create Event'
 end
