@@ -47,7 +47,7 @@ feature 'events' do
     end
   end
 
-  context 'viewing an event' do    
+  context 'viewing an event' do
     let!(:dinwitht){create(:event)}
 
     scenario 'lets a user view an event' do
@@ -65,21 +65,21 @@ feature 'events' do
   end
 
   context 'editing events' do
-    
+
     scenario 'does not let a user edit an event that they have not created' do
-      create(:event)
+      party = create(:event)
       user_sign_up
       visit '/'
-      click_link('Edit', match: :first)
-      expect(page).to have_content 'You can only edit events that you have created'
-      expect(current_path).to eq('/events')
+      click_link(party.title, match: :first)
+      expect(page).not_to have_content 'Edit'
     end
 
     scenario 'lets a user edit an event he has created' do
       user_sign_up
       create_event
       visit '/'
-      click_link('Edit', match: :first)
+      click_link('Dinner with Thomas', match: :first)
+      click_link('Edit')
       fill_in 'Title', with: "Dinner at Thomas' house in Whitechapel"
       click_button 'Update Event'
       expect(page).to have_content "Dinner at Thomas' house in Whitechapel"
@@ -90,18 +90,18 @@ feature 'events' do
   context 'deleting events' do
 
     scenario 'does not let a user delete and event that they have not created' do
-      create(:event)
+      party = create(:event)
       user_sign_up
       visit '/'
-      click_link("Delete", match: :first)
-      expect(page).to have_content 'You can only delete events that you have created'
-      expect(current_path).to eq('/events')
+      click_link(party.title, match: :first)
+      expect(page).not_to have_content 'Delete'
     end
 
     scenario 'lets a user delete an event they have created' do
       user_sign_up
       visit '/'
       create_event
+      click_link('Dinner with Thomas', match: :first)
       click_link "Delete"
       expect(page).to have_content 'Event deleted successfully'
       expect(current_path).to eq '/events'

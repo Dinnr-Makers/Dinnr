@@ -78,8 +78,7 @@ context 'user signed in and on the home page' do
     visit '/'
     user_one_create_event
     click_link "Dinner with Thomas"
-    click_link "Join Event"
-    expect(page).to have_content "You cannot join your own event"
+    expect(page).not_to have_content "Join Event"
   end
 
   it 'should not let a user join an event if it is full' do
@@ -121,7 +120,7 @@ end
 
 context 'user not signed in and on the home page' do
   let!(:dinwithC){create(:event)}
-  
+
   it 'should not see a join event button' do
     visit '/'
     expect(page).not_to have_link('Join Event')
@@ -139,7 +138,7 @@ context 'user signed in and on an event page' do
     user_one_sign_up
   end
 
-  it 'should not show a join event link if the user has already signed up' do
+  it 'should not show a join event link if the user has already signed up on the event page' do
     visit '/'
     user_one_create_event
     click_link("Sign out", match: :first)
@@ -148,4 +147,5 @@ context 'user signed in and on an event page' do
     click_link "Join Event"
     expect(page).not_to have_link('Join Event')
   end
+
 end
