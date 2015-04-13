@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 
   has_many :events
   has_many :bookings
+  has_many :pictures
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -24,5 +25,7 @@ class User < ActiveRecord::Base
       end
     end
   end
+
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
 
 end

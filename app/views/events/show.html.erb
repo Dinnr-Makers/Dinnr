@@ -16,12 +16,30 @@
 <% else %>
   <p>No guests yet</p>
 <% end %>
-
-<% if user_signed_in? && @guests.include?(current_user) %>
-  <%= link_to "Leave Event", leave_event_bookings_path(@event.id) %>
-<% else %>
-<% if user_signed_in? %>
-  <%= link_to "Join Event", new_event_booking_path(@event.id) %>
+<ul>
+  <% if @pictures.any? %>
+    <% @pictures.each do |picture|%>
+      <li><%= image_tag picture.image.url(:thumb) %>
+      <p> <%= picture.title %> </p></li>
+      <% end %>
+  <% else %>
+    <li><p>No images yet yet</p></li>
   <% end %>
+</ul>
+<%= link_to "Add Image", library_event_pictures_path(@event.id)%>
+
+<% if @display_edit == true %>
+  <%= link_to "Edit", edit_event_path(@event) %>
+  <%= link_to "Delete", event_path(@event), method: :delete %>
+<% else %>
+
+  <% if user_signed_in? && @guests.include?(current_user) %>
+    <%= link_to "Leave Event", leave_event_bookings_path(@event.id) %>
+  <% else %>
+  <% if user_signed_in? %>
+    <%= link_to "Join Event", new_event_booking_path(@event.id) %>
+    <% end %>
+  <% end %>
+
 <% end %>
 

@@ -15,10 +15,18 @@ def create_event
   fill_in 'Title', with: 'Dinner with Thomas'
   fill_in 'Description', with: "Dinner at Thomas' house"
   fill_in 'autocomplete', with: '16 woodchurch road'
-  fill_in 'Date', with: 'Fri 17 Apr'
-  fill_in 'Time', with: '06:00PM'
+  fill_in 'Date', with: '2020-04-30'
+  fill_in 'Time', with: '17:20:00.000'
   fill_in 'Size', with: '2'
   click_button 'Create Event'
+end
+
+def sign_in
+  visit '/'
+  click_link('Sign in', match: :first)
+  fill_in 'Email', with: 'john@doe.com'
+  fill_in 'Password', with: 'testtest'
+  click_button('Log in')
 end
 
 feature 'events' do
@@ -46,9 +54,23 @@ feature 'events' do
       expect(page).to have_content 'Dinner with Thomas'
       expect(current_path).to eq '/events'
     end
+
+    scenario "Shows error message if date is invalid" do
+      user_sign_up
+      visit '/events'
+      click_link('Create event', match: :first)
+      fill_in 'Title', with: 'Dinner with Thomas'
+      fill_in 'Description', with: "Dinner at Thomas' house"
+      fill_in 'autocomplete', with: '16 woodchurch road'
+      fill_in 'Date', with: '1984-04-30'
+      fill_in 'Time', with: '17:20:00.000'
+      fill_in 'Size', with: '2'
+      click_button 'Create Event'
+      expect(page).to have_content("Date is not valid")
+    end
   end
 
-  context 'viewing an event' do    
+  context 'viewing an event' do
     let!(:dinwitht){create(:event)}
 
     scenario 'lets a user view an event' do
@@ -66,21 +88,21 @@ feature 'events' do
   end
 
   context 'editing events' do
-    
+
     scenario 'does not let a user edit an event that they have not created' do
-      create(:event)
+      party = create(:event)
       user_sign_up
       visit '/'
-      click_link('Edit', match: :first)
-      expect(page).to have_content 'You can only edit events that you have created'
-      expect(current_path).to eq('/events')
+      click_link(party.title, match: :first)
+      expect(page).not_to have_content 'Edit'
     end
 
     scenario 'lets a user edit an event he has created' do
       user_sign_up
       create_event
       visit '/'
-      click_link('Edit', match: :first)
+      click_link('Dinner with Thomas', match: :first)
+      click_link('Edit')
       fill_in 'Title', with: "Dinner at Thomas' house in Whitechapel"
       click_button 'Update Event'
       expect(page).to have_content "Dinner at Thomas' house in Whitechapel"
@@ -91,21 +113,51 @@ feature 'events' do
   context 'deleting events' do
 
     scenario 'does not let a user delete and event that they have not created' do
-      create(:event)
+      party = create(:event)
       user_sign_up
       visit '/'
-      click_link("Delete", match: :first)
-      expect(page).to have_content 'You can only delete events that you have created'
-      expect(current_path).to eq('/events')
+      click_link(party.title, match: :first)
+      expect(page).not_to have_content 'Delete'
     end
 
     scenario 'lets a user delete an event they have created' do
       user_sign_up
       visit '/'
       create_event
+      click_link('Dinner with Thomas', match: :first)
       click_link "Delete"
       expect(page).to have_content 'Event deleted successfully'
       expect(current_path).to eq '/events'
     end
   end
+
+  context 'adding images to events' do
+
+    scenario'User can add an image to an event they have created' do
+      user = create(:user)
+      sign_in
+      image = create(:picture)
+      user.pictures << image
+      create_event
+      visit '/'
+      click_link('Dinner with Thomas', match: :first)
+      click_link("Add Image")
+      expect(page).to have_content 'Select Image to add to Dinner with Thomas'
+      click_link 'Add Test Picture'
+      expect(page).to have_content "Test Picture"
+    end
+
+    scenario 'user can not add an image to an event if they have no images uploaded' do
+      user = create(:user)
+      sign_in
+      create_event
+      visit '/'
+      click_link('Dinner with Thomas', match: :first)
+      click_link("Add Image")
+      expect(page).to have_content 'Select Image to add to Dinner with Thomas'
+      expect(page).to have_content "No pictures available to add to event"
+      expect(page).to have_content "Upload Pictures"
+    end
+  end
+
 end

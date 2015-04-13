@@ -26,8 +26,8 @@ def user_one_create_event
   fill_in 'Title', with: 'Dinner with Thomas'
   fill_in 'Description', with: "Dinner at Thomas' house"
   fill_in 'autocomplete', with: 'E1 1EJ'
-  fill_in 'Date', with: 'Fri 17 Apr'
-  fill_in 'Time', with: '06:00PM'
+  fill_in 'Date', with: '2020-04-30'
+  fill_in 'Time', with: '17:20:00.000'
   fill_in 'Size', with: '2'
   click_button 'Create Event'
 end
@@ -141,3 +141,30 @@ feature 'users profile page' do
   end
 
 end
+
+feature 'updating profile details' do
+
+  it 'should be able to change the users first name' do
+    user_one_sign_up
+    visit 'users/edit'
+    fill_in('First name', with: 'Chris')
+    fill_in('Current password', with: 'testtest')
+    click_button('Update')
+    expect(page).to have_content 'Your account has been updated successfully.'
+    visit '/users'
+    expect(page).to have_content 'Chris'
+  end
+
+  it 'should be able to change the users last name' do
+    user_one_sign_up
+    visit 'users/edit'
+    fill_in('Last name', with: 'Ward')
+    fill_in('Current password', with: 'testtest')
+    click_button('Update')
+    expect(page).to have_content 'Your account has been updated successfully.'
+    visit '/users'
+    expect(page).to have_content 'Ward'
+  end
+
+end
+

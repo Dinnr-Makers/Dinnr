@@ -22,8 +22,6 @@ $(document).ready( function() {
     }
 });
 
-
-
 var map;
 function initializeMap() {
   // Create a simple map.

@@ -19,6 +19,11 @@
 
     <div  id="when" class="section scrollspy col s12">
       <h3>When</h3>
+        <% if @event.errors.any? %>
+          <% @event.errors.full_messages.each do |message| %>
+            <div class"form-error"><%= message %></div>
+          <% end %>
+        <% end %>
         <%= f.label :date, :required => true %>
           <%= f.date_field :date, class: 'datepicker', :required => true %>
          <%= f.label :time, :required => true %>

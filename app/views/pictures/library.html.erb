@@ -1,0 +1,14 @@
+<p>Select Image to add to <%= @event.title %></p>
+<ul>
+  <% if @pictures.any? %>
+    <% @pictures.each do |picture|%>
+      <li><%= image_tag picture.image.url(:thumb) %>
+       <%= link_to "Add #{picture.title}", new_eventpicture_path({"event_id" =>"#{@event.id}","picture_id"=>"#{picture.id}"}) %>
+      </li>
+
+    <% end %>
+  <% else %>
+    <li><p>No pictures available to add to event</p></li>
+    <li><%= link_to "Upload Pictures", pictures_path %></li>
+  <% end %>
+</ul>

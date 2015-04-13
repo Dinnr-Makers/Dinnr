@@ -4,7 +4,8 @@ class Event < ActiveRecord::Base
 
   belongs_to :user
   has_many :bookings
-
+  has_many :eventpictures
+  validates :date, presence: true
   validate :future?
   serialize :guests, Array
 
@@ -27,7 +28,7 @@ class Event < ActiveRecord::Base
 
   def date_format
     if date.respond_to?(:strftime)
-      date.strftime('%a %d %b') 
+      date.strftime('%a %d %b')
     else
       date.to_s
     end
