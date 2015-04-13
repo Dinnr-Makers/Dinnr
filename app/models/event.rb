@@ -26,11 +26,19 @@ class Event < ActiveRecord::Base
   end
 
   def date_format
-    self.date.strftime('%a %d %b') 
+    if date.respond_to?(:strftime)
+      date.strftime('%a %d %b') 
+    else
+      date.to_s
+    end
   end
 
   def time_format
-    self.time.strftime("%I:%M%p")
+    if time.respond_to?(:strftime)
+      time.strftime("%I:%M%p")
+    else
+      time.to_s
+    end
   end
 
   def future?
