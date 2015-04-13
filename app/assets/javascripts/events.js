@@ -11,9 +11,44 @@ $(document).ready( function() {
   });
 
     $('.scrollspy').scrollSpy();
-    $('.toc-wrapper').pushpin({ offset: $('.toc-wrapper').offset().top });
-    initializeAutocomplete();
+     //on create_event_page? 
+    if($('.toc-wrapper').length > 0){
+      $('.toc-wrapper').pushpin({ offset: $('.toc-wrapper').offset().top });
+      initializeAutocomplete();
+    };
+    
+    if($("#map-canvas").length > 0){
+      initializeMap();
+    }
 });
+
+
+
+var map;
+function initializeMap() {
+  // Create a simple map.
+  map = new google.maps.Map(document.getElementById('map-canvas'), {
+    zoom: 10
+  });
+  // Load a GeoJSON from the same server as our demo.
+  map.data.loadGeoJson('/map.json');
+
+  google.maps.event.addListener(map.data, 'addfeature', function(event_loc) {
+    if (event_loc.feature.getGeometry().getType() === 'Point') {
+      map.setCenter(event_loc.feature.getGeometry().get());
+    }
+  });
+
+  //Create info window that pops up when you click the marker
+  var infowindow = new google.maps.InfoWindow();
+  map.data.addListener('click', function(event) {
+    var windowcontent = event.feature.getProperty('title') + event.feature.getProperty('description');
+    infowindow.setContent("<div class='window-thing' style='width:150px;'>"+ windowcontent +"</div>");
+    infowindow.setPosition(event.feature.getGeometry().get());
+    infowindow.setOptions({pixelOffset: new google.maps.Size(0,-30)});
+    infowindow.open(map);
+  });
+};
 
 
 

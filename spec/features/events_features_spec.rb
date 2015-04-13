@@ -1,14 +1,12 @@
 require 'rails_helper'
 
 def user_sign_up
-
   visit '/'
   click_link('Sign up', match: :first)
   fill_in('Email', with: 'test@example.com')
   fill_in('Password', with: 'testtest')
   fill_in('Password confirmation', with: 'testtest')
   click_button('Sign up')
-
 end
 
 def create_event
@@ -32,20 +30,16 @@ feature 'events' do
   end
 
   context 'events have been added' do
-
-    before do
-      Event.create(title: 'Dinner with Thomas', location: '16 woodchurch road', date: 'Tuesday 7.30pm' )
-    end
-
     scenario 'display events' do
+      event = create(:event)
       visit '/events'
-      expect(page).to have_content 'Dinner with Thomas'
+      expect(page).to have_content event.title
     end
   end
 
   context 'adding an event' do
 
-    scenario 'prompts a user to fill out a from and then displays the new event' do
+    scenario 'prompts a user to fill out a form and then displays the new event' do
       user_sign_up
       create_event
       expect(page).to have_content 'Dinner with Thomas'
@@ -53,40 +47,35 @@ feature 'events' do
     end
   end
 
-  context 'viewing an event' do
-
-    let!(:dinwitht){Event.create(title: 'Dinner with Thomas', description: "Dinner at Thomas' house", location: '16 woodchurch road', date: 'Tuesday 7.30pm', size: '3')}
+  context 'viewing an event' do    
+    let!(:dinwitht){create(:event)}
 
     scenario 'lets a user view an event' do
       visit '/events'
-      click_link ('Dinner with Thomas')
-      expect(page).to have_content "Dinner at Thomas' house"
+      click_link (dinwitht.title)
+      expect(page).to have_content dinwitht.description
       expect(current_path).to eq "/events/#{dinwitht.id}"
     end
 
     scenario 'should show that there are no guests when created' do
       visit '/events'
-      click_link ('Dinner with Thomas')
+      click_link (dinwitht.title)
       expect(page).to have_content "No guests yet"
     end
   end
 
-  context 'editing an event that has not been created by user' do
-
-    let!(:dinwithC){Event.create(title: 'Dinner with Chris', description: "Dinner at Chris' house", location: 'BN3 6FU', date: 'Wednesday 7.30pm', size: '3')}
-
+  context 'editing events' do
+    
     scenario 'does not let a user edit an event that they have not created' do
+      create(:event)
       user_sign_up
       visit '/'
       click_link('Edit', match: :first)
       expect(page).to have_content 'You can only edit events that you have created'
       expect(current_path).to eq('/events')
     end
-  end
 
-  context 'editing an event that has been created by user' do
-
-    scenario 'does let a user edit an event they have created' do
+    scenario 'lets a user edit an event he has created' do
       user_sign_up
       create_event
       visit '/'
@@ -98,20 +87,16 @@ feature 'events' do
     end
   end
 
-  context 'deleting an event that has not been created by user' do
-
-    let!(:dinwithC){Event.create(title: 'Dinner with Chris', description: "Dinner at Chris' house", location: 'BN3 6FU', date: 'Wednesday 7.30pm', size: '3')}
+  context 'deleting events' do
 
     scenario 'does not let a user delete and event that they have not created' do
+      create(:event)
       user_sign_up
       visit '/'
       click_link("Delete", match: :first)
       expect(page).to have_content 'You can only delete events that you have created'
       expect(current_path).to eq('/events')
     end
-  end
-
-  context 'deleting an event that has been created by user' do
 
     scenario 'lets a user delete an event they have created' do
       user_sign_up
@@ -122,13 +107,4 @@ feature 'events' do
       expect(current_path).to eq '/events'
     end
   end
-
 end
-
-
-
-
-
-
-
-

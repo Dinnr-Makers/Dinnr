@@ -11,11 +11,17 @@
 <%if @guests.any? %>
   <% @guests.each_with_index do |guest, index| %>
     <p>Guest <%= index +1 %>: <%= guest.first_name %></p>
-    <p><%= image_tag guest.image %></p>
+    <p><a href="/users"><%= image_tag guest.image %></a></p>
   <% end %>
 <% else %>
   <p>No guests yet</p>
 <% end %>
 
-<%= link_to "Join Event", new_event_booking_path(@event.id) %>
-<%= link_to "Leave Event", leave_event_bookings_path(@event.id) %>
+<% if user_signed_in? && @guests.include?(current_user) %>
+  <%= link_to "Leave Event", leave_event_bookings_path(@event.id) %>
+<% else %>
+<% if user_signed_in? %>
+  <%= link_to "Join Event", new_event_booking_path(@event.id) %>
+  <% end %>
+<% end %>
+
