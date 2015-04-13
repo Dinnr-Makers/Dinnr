@@ -1,8 +1,11 @@
 class Event < ActiveRecord::Base
 
+  attr_accessor :time_format
+
   belongs_to :user
   has_many :bookings
 
+  validate :future?
   serialize :guests, Array
 
   geocoded_by :address
@@ -20,6 +23,20 @@ class Event < ActiveRecord::Base
 
   def remove_guest(guest)
     guests.delete(guest)
+  end
+
+  def date_format
+    self.date.strftime('%a %d %b') 
+  end
+
+  def time_format
+    self.time.strftime("%I:%M%p")
+  end
+
+  def future?
+    if date < Date.today
+      errors.add(:date, "is not valid")
+    end
   end
 
 end

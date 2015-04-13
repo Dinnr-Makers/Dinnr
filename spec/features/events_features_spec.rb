@@ -15,7 +15,8 @@ def create_event
   fill_in 'Title', with: 'Dinner with Thomas'
   fill_in 'Description', with: "Dinner at Thomas' house"
   fill_in 'autocomplete', with: '16 woodchurch road'
-  fill_in 'Date', with: 'Tuesday 7.30pm'
+  fill_in 'Date', with: 'Fri 17 Apr'
+  fill_in 'Time', with: '06:00PM'
   fill_in 'Size', with: '2'
   click_button 'Create Event'
 end
