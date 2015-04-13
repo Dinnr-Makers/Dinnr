@@ -20,6 +20,7 @@
     <% @pictures.each do |picture|%>
       <li><%= image_tag picture.image.url(:thumb) %>
       <p> <%= picture.title %> </p></li>
+      <%= link_to "Remove #{picture.title}", eventpicture_path({"event_id" =>"#{@event.id}","picture_id"=>"#{picture.id}"}), method: :delete %>
       <% end %>
   <% else %>
     <li><p>No images yet yet</p></li>

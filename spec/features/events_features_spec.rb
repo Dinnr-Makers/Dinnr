@@ -145,4 +145,22 @@ feature 'events' do
     end
   end
 
+  context 'deleting images from events' do
+
+    scenario 'user can delete their own image from an event' do
+      user = create(:user)
+      sign_in
+      image = create(:picture)
+      user.pictures << image
+      create_event
+      visit '/'
+      click_link('Dinner with Thomas', match: :first)
+      click_link("Add Image")
+      expect(page).to have_content 'Select Image to add to Dinner with Thomas'
+      click_link 'Add Test Picture'
+      click_link 'Remove Test Picture'
+      expect(page).not_to have_content 'Test Picture'
+    end
+  end
+
 end
