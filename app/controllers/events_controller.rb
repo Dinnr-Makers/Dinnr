@@ -62,4 +62,6 @@ class EventsController < ApplicationController
     @events = Event.all.where.not("longitude" => nil)
   end
 
+
+
 end

@@ -107,4 +107,18 @@ feature 'events' do
       expect(current_path).to eq '/events'
     end
   end
+
+  context 'adding images to events' do
+
+    scenario'User can add an image to an event they have created' do
+      user_sign_up
+      create_event
+      visit '/'
+      click_link('Dinner with Thomas', match: :first)
+      click_link("Add Image")
+      expect(page).to have_content 'Select Image to add to Dinner with Thomas'
+    end
+
+  end
+
 end

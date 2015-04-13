@@ -13,10 +13,17 @@ Rails.application.routes.draw do
         get "leave"
       end
     end
+    resource :pictures do
+      collection do
+        get "library"
+      end
+    end
   end
 
   resources :users
 
-  resources :pictures
+  resources :pictures do
+
+  end
 
 end
