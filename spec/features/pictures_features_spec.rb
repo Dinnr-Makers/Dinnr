@@ -71,4 +71,14 @@ feature 'Pictures' do
     end
   end
 
+  context 'deleting pictures' do
+    before {Picture.create title: 'Test picture'}
+    scenario '' do
+      visit '/pictures'
+      click_link 'Delete Test picture'
+      expect(page).not_to have_content 'Test picture'
+      expect(page).to have_content 'Picture deleted successfully'
+    end
+  end
+
 end
