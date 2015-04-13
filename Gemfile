@@ -70,5 +70,6 @@ group :test do
   gem 'launchy'
   gem 'rack-test'
   gem "test-unit"
+  gem "selenium-webdriver"
 end
 

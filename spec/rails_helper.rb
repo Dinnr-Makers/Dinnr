@@ -59,6 +59,14 @@ Geocoder::Lookup::Test.add_stub(
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
 
+ActiveRecord::ConnectionAdapters::ConnectionPool.class_eval do
+  def current_connection_id
+    # Thread.current.object_id
+    Thread.main.object_id
+  end
+end
+
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   #config.fixture_path = "#{::Rails.root}/spec/fixtures"
