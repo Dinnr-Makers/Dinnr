@@ -22,8 +22,8 @@ Rails.application.routes.draw do
 
   resources :users
 
-  resources :pictures do
+  resources :pictures
 
-  end
+  resources :eventpictures
 
 end

@@ -4,6 +4,7 @@ describe Event, type: :model do
 
   it { is_expected.to belong_to :user }
   it { is_expected.to have_many :bookings }
+  it { is_expected.to have_many :eventpictures }
 
   let(:kate) { double :user}
   let(:chris) {double :user}

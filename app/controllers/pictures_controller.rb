@@ -10,6 +10,7 @@ class PicturesController < ApplicationController
 
   def create
     @picture = Picture.new(picture_params)
+    @picture.user = current_user
     if @picture.save
       redirect_to '/pictures'
     else
@@ -34,6 +35,7 @@ class PicturesController < ApplicationController
 
   def library
     @event = Event.find(params[:event_id])
+    @pictures = current_user.pictures
   end
 
 end

@@ -29,6 +29,8 @@ class EventsController < ApplicationController
     @bookings = Booking.where("event_id = #{@event.id}")
     @guests = @bookings.map{|booking| booking.user_id}.map{|guest| User.find(guest)}
     @event.user == current_user ? @display_edit = true : @display_edit = false
+    @eventpictures = Eventpicture.where("event_id = #{@event.id}")
+    @pictures = @eventpictures.map{|ep| ep.picture_id}.map{|picture| Picture.find(picture)}
   end
 
   def edit

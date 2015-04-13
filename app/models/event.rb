@@ -2,6 +2,7 @@ class Event < ActiveRecord::Base
 
   belongs_to :user
   has_many :bookings
+  has_many :eventpictures
 
   serialize :guests, Array
 

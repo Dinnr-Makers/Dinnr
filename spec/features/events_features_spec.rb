@@ -20,6 +20,14 @@ def create_event
   click_button 'Create Event'
 end
 
+def sign_in
+  visit '/'
+  click_link('Sign in', match: :first)
+  fill_in 'Email', with: 'john@doe.com'
+  fill_in 'Password', with: 'testtest'
+  click_button('Log in')
+end
+
 feature 'events' do
   context 'no events have been added' do
     scenario 'should display a prompt to add an event' do
@@ -111,14 +119,30 @@ feature 'events' do
   context 'adding images to events' do
 
     scenario'User can add an image to an event they have created' do
-      user_sign_up
+      user = create(:user)
+      sign_in
+      image = create(:picture)
+      user.pictures << image
       create_event
       visit '/'
       click_link('Dinner with Thomas', match: :first)
       click_link("Add Image")
       expect(page).to have_content 'Select Image to add to Dinner with Thomas'
+      click_link 'Add Test Picture'
+      expect(page).to have_content "Test Picture"
     end
 
+    scenario 'user can not add an image to an event if they have no images uploaded' do
+      user = create(:user)
+      sign_in
+      create_event
+      visit '/'
+      click_link('Dinner with Thomas', match: :first)
+      click_link("Add Image")
+      expect(page).to have_content 'Select Image to add to Dinner with Thomas'
+      expect(page).to have_content "No pictures available to add to event"
+      expect(page).to have_content "Upload Pictures"
+    end
   end
 
 end
