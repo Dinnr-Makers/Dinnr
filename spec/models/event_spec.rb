@@ -50,4 +50,9 @@ describe Event, type: :model do
     expect(party.time_format).to eq "06:00PM"
   end
 
+  it 'will not allow an invalid date' do
+    party = build(:event, date: Date.new(2010,04,17) )
+    expect(party).not_to be_valid
+  end
+
 end

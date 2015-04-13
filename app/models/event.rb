@@ -5,6 +5,7 @@ class Event < ActiveRecord::Base
   belongs_to :user
   has_many :bookings
 
+  validate :future?
   serialize :guests, Array
 
   geocoded_by :address
@@ -30,6 +31,12 @@ class Event < ActiveRecord::Base
 
   def time_format
     self.time.strftime("%I:%M%p")
+  end
+
+  def future?
+    if date < Date.today
+      errors.add(:date, "is not valid")
+    end
   end
 
 end

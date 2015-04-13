@@ -12,6 +12,7 @@ FactoryGirl.define do
         end
       end
     end
+
     title "Pauls Birthday Party"
     description "Party for Paul's 21. birthday"
     location "22 Sancroft Street, London, United Kingdom"
@@ -31,9 +32,6 @@ FactoryGirl.define do
     end
   end
 end
-
-
-
 
 FactoryGirl.define do
   factory :user do

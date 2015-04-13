@@ -20,19 +20,18 @@
     <div  id="when" class="section scrollspy col s12">
       <h3>When</h3>
         <%= f.label :date, :required => true %>
-        <%= f.date_field :date, class: 'datepicker', :required => true %>
+          <%= f.date_field :date, class: 'datepicker', :required => true %>
          <%= f.label :time, :required => true %>
-        <%= f.time_field :time, :required => true %>
+          <%= f.time_field :time, :required => true %>
     </div>
 
-    
     
     <div id="where" class="section scrollspy col s12">
       <h3>Where</h3>
       <div class="input-group">
         <div id="locationField">
           <%= f.label :location %>
-          <%= f.text_field :location, class: 'form-control', id: "autocomplete", placeholder: "Enter your address" %>
+            <%= f.text_field :location, class: 'form-control', id: "autocomplete", placeholder: "Enter your address" %>
         </div>
 
         <%= f.label :housenumber, "House Number" %>
@@ -51,7 +50,7 @@
     <div  id="who" class="section scrollspy col s12">
       <h3>Who and how many</h3>
         <%= f.label :size %>
-        <%= f.text_field :size, class: 'form-control' %>
+          <%= f.text_field :size, class: 'form-control' %>
     </div>
 
     <div  id="publish" class="section scrollspy col s12">
