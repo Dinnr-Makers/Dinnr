@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Review, type: :model do
 
   it { is_expected.to belong_to :event }
+  it { is_expected.to belong_to :user }
 
   describe Review, :type => :model do
   it "is invalid if the rating is more than 10" do
