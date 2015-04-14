@@ -33,7 +33,7 @@ feature 'events' do
       fill_in 'Title', with: 'Dinner with Thomas'
       fill_in 'Description', with: "Dinner at Thomas' house"
       fill_in 'autocomplete', with: '16 woodchurch road'
-      fill_in 'Date', with: '1984-04-30'
+      fill_in 'Date', with: '1984-12-30'
       fill_in 'Time', with: '17:20:00.000'
       fill_in 'Size', with: '2'
       click_button 'Create Event'

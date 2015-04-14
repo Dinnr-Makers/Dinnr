@@ -18,8 +18,7 @@ context 'user signed in and on the home page' do
     fill_in('Password', with: 'password')
     fill_in('Password confirmation', with: 'password')
     click_button('Sign up')
-    click_link "Dinner with Thomas"
-    click_link "Join Event"
+    join_event
     expect(page).to have_content "Guest 1: alice"
   end
 
@@ -35,16 +34,13 @@ context 'user signed in and on the home page' do
     user_one_create_event
     click_link("Sign out", match: :first)
     user_two_sign_up
-    click_link "Dinner with Thomas"
-    click_link "Join Event"
+    join_event
     click_link("Sign out", match: :first)
     user_three_sign_up
-    click_link "Dinner with Thomas"
-    click_link "Join Event"
+    join_event
     click_link("Sign out", match: :first)
     user_four_sign_up
-    click_link "Dinner with Thomas"
-    click_link "Join Event"
+    join_event
     expect(page).to have_content "Event is full you are unable to join at the moment"
   end
 
@@ -92,8 +88,7 @@ context 'user signed in and on an event page' do
     user_one_create_event
     click_link("Sign out", match: :first)
     user_two_sign_up
-    click_link "Dinner with Thomas"
-    click_link "Join Event"
+    join_event
     expect(page).not_to have_link('Join Event')
   end
 

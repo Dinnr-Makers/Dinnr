@@ -79,7 +79,7 @@ def user_one_create_event
   click_button 'Create Event'
 end
 
-# reviews feature spec
+# reviews features spec
 
 def leave_review(thoughts,rating)
   visit 'events'
@@ -116,4 +116,20 @@ end
 
 def ticket
   create(:booking, user_id: 3, event_id: 5)
+end
+
+# pictures features spec
+
+def create_picture
+  visit '/pictures'
+  click_link 'Add a picture'
+  fill_in 'Title', with: 'Test picture'
+  click_button 'Create Picture'
+end
+
+# bookings features spec
+
+def join_event
+  click_link "Dinner with Thomas"
+  click_link "Join Event"
 end

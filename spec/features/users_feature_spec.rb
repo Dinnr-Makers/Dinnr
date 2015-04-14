@@ -65,15 +65,7 @@ feature 'users' do
     end
 
     it 'should be able to create a new event' do
-      visit '/'
-      click_link('Create event', match: :first)
-      fill_in 'Title', with: 'Dinner with Thomas'
-      fill_in 'Description', with: "Dinner at Thomas' house"
-      fill_in 'autocomplete', with: 'E1 1EJ'
-      fill_in 'Date', with: 'Fri 17 Apr'
-      fill_in 'Time', with: '06:00PM'
-      fill_in 'Size', with: '2'
-      click_button 'Create Event'
+      create_event
       expect(page).to have_content 'Dinner with Thomas'
       expect(current_path).to eq '/events'
     end
