@@ -1,17 +1,10 @@
 require 'rails_helper'
 
-def create_picture
-  visit '/pictures'
-  click_link 'Add a picture'
-  fill_in 'Title', with: 'Test picture'
-  click_button 'Create Picture'
-end
-
 feature 'Pictures' do
 
   context 'no pictures uploaded yet' do
 
-    scenario 'should display a prompt to add a picture' do
+    scenario 'displays a prompt to add a picture' do
       visit '/pictures'
       expect(page).to have_content 'No pictures yet'
       expect(page).to have_link "Add a picture"
