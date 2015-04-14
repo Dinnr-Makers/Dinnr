@@ -1,16 +1,15 @@
 <div class="row">
-    <div class="toc-wrapper teal lighten-4 col s12 m3">
+    <div class="toc-wrapper teal lighten-5 col s12 m2">
       <ul class="section table-of-contents">
         <li><a href="#what">What?</a></li>
         <li><a href="#when">When?</a></li>
         <li><a href="#where">Where?</a></li>
         <li><a href="#who">Who + How Many?</a></li>
-        <li><a href="#publish">Publish</a></li>
       </ul>
   </div>
 
-  <div class="col s12 m6 offset-m3">
-      <div id="what" class="form-group section scrollspy">
+  <div class="form-group m6 offset-m3 col s12">
+      <div id="what" class="section scrollspy">
       <h3>What</h3>
         <%= form_for @event do |f| %>
           <%= f.label :title  %>
@@ -18,7 +17,7 @@
           <%= f.label :description %>
             <%= f.text_field :description, class: 'form-control', placeholder: "Tell us a little about what you'll be cooking", :required => true %>
 
-    <div  id="when" class="section scrollspy col s12">
+    <div  id="when" class="section scrollspy">
       <h3>When</h3>
         <% if @event.errors.any? %>
           <% @event.errors.full_messages.each do |message| %>
@@ -32,7 +31,7 @@
     </div>
 
     
-    <div id="where" class="section scrollspy col s12">
+    <div id="where" class="section scrollspy">
       <h3>Where</h3>
       <div class="input-group">
         <div id="locationField">
@@ -53,13 +52,13 @@
       </div>
     </div>
 
-    <div  id="who" class="section scrollspy col s12">
+    <div  id="who" class="section scrollspy">
       <h3>Who + How Many</h3>
         <%= f.label :size %>
           <%= f.text_field :size, class: 'form-control', placeholder: "Tell us how many people you'd like to attend", :required => true %>
     </div>
 
-    <div  id="publish" class="section scrollspy col s12">
+    <div  id="publish" class="section scrollspy">
       <h3>Publish</h3>
     <%= f.submit 'Create Event', :class => 'btn btn-primary'%>
     <% end %>
