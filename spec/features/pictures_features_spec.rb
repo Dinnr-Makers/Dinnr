@@ -41,24 +41,6 @@ feature 'Pictures' do
     end
   end
 
-  xcontext 'viewing pictures' do
-    let!(:piccy){Picture.create(title: 'Test picture', user_id: 4)}
-    let!(:user) {User.create(first_name: 'firstname', last_name: 'lastname', email: 'test@example.com', password: 'testtest', password_confirmation: 'testtest', id: 4 )}
-
-    scenario 'lets a user view a picture' do
-      visit '/'
-      click_link('Sign in', match: :first)
-      fill_in 'Email', with: 'test@example.com'
-      fill_in 'Password', with: 'testtest'
-      click_button('Log in')
-      visit '/pictures'
-      save_and_open_page
-      click_link 'Test picture'
-      expect(page).to have_content 'Test picture'
-      expect(current_path).to eq "/pictures/#{piccy.id}"
-    end
-  end
-
   context 'deleting pictures' do
 
     scenario 'user can delete a photo from their library' do

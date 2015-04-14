@@ -56,6 +56,17 @@ feature 'events' do
       click_link (dinwitht.title)
       expect(page).to have_content "No guests yet"
     end
+
+
+    it "shows a user's avatar as a thumbnail if they have joined the event" do
+      party = create(:event)
+      user_sign_up
+      visit '/'
+      click_link(party.title, match: :first)
+      click_link('Join Event')
+      find(:css, "img.avatar")
+      expect(page.find(:css, "img.avatar")['src']).to eq "https://s3-us-west-2.amazonaws.com/dinnr/pictures/chefhatsmall.jpg"
+    end
   end
 
   context 'editing events' do
