@@ -17,23 +17,34 @@ $(document).ready( function() {
       initializeAutocomplete();
     };
     
-    if($("#map-canvas").length > 0){
-      getGeoData();
+    if($("#main-map-canvas").length > 0){
+      getGeoDataMain('/api/v1/events/map');
+    }
+
+    if($("#single-map-canvas").length > 0){
+      var eventId = $("#single-map-canvas").data("id")
+      getGeoDataSingle('/api/v1/events/' + eventId + '/map');
     }
 });
   
   var map;
   var markers = [];
-  var getGeoData = function() {
-    $.getJSON( '/api/v1/events/map', function(json){
-      initializeMap(json) 
+  var getGeoDataMain = function(url) {
+    $.getJSON( url, function(json){
+       initializeMainMap(json) 
+    })
+  };
+
+  var getGeoDataSingle = function(url) {
+    $.getJSON( url, function(json){
+       initializeSingleMap(json) 
     })
   };
        
 
 
-function initializeMap(json) {
-  map = new google.maps.Map(document.getElementById('map-canvas'), {
+function initializeMainMap(json) {
+  map = new google.maps.Map(document.getElementById("main-map-canvas"), {
     zoom: 12,
     center: new google.maps.LatLng(json.features[0].geometry.coordinates[1], json.features[0].geometry.coordinates[0])
   });
@@ -45,6 +56,7 @@ function initializeMap(json) {
     var title = json.features[i].properties.title
     var description = json.features[i].properties.description
     var latLng = new google.maps.LatLng(lng, lat)
+    
     var marker = new google.maps.Marker({position: latLng, map: map, title: title, description: description})
     marker.infowindow = new google.maps.InfoWindow({content: marker.title});
     google.maps.event.addListener(marker, 'click', function() {   
@@ -54,9 +66,35 @@ function initializeMap(json) {
   };
 };
 
+function initializeSingleMap(json) {
+  map = new google.maps.Map(document.getElementById("single-map-canvas"), {
+    zoom: 12,
+    center: new google.maps.LatLng(json.features.geometry.coordinates[1], json.features.geometry.coordinates[0])
+  });
+
+
+    var lat = json.features.geometry.coordinates[0]
+    var lng = json.features.geometry.coordinates[1]
+    var title = json.features.properties.title
+    var description = json.features.properties.description
+    var latLng = new google.maps.LatLng(lng, lat)
+    
+    var marker = new google.maps.Marker({position: latLng, map: map, title: title, description: description})
+    marker.infowindow = new google.maps.InfoWindow({content: marker.title});
+    google.maps.event.addListener(marker, 'click', function() {   
+      this.infowindow.open(map, this)
+    });
+    markers.push(marker)
+  
+};
+
 
 checkInfo = function(){
   document.getElementById("info-box").innerHTML = markers[0].title 
+}
+
+checkInfoCount = function(){
+  document.getElementById("info-box").innerHTML = markers.length 
 }
 
 //Autocomplete
