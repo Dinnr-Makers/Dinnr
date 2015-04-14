@@ -1,37 +1,5 @@
 require 'rails_helper'
 
-def user_one_sign_up
-  visit '/'
-  click_link('Sign up', match: :first)
-  fill_in('First name', with: 'firstname')
-  fill_in('Last name', with: 'lastname')
-  fill_in('Email', with: 'test@example.com')
-  fill_in('Password', with: 'testtest')
-  fill_in('Password confirmation', with: 'testtest')
-  click_button('Sign up')
-end
-
-def user_two_sign_up
-  visit '/'
-  click_link('Sign up', match: :first)
-  fill_in('Email', with: 'alice@example.com')
-  fill_in('Password', with: 'password')
-  fill_in('Password confirmation', with: 'password')
-  click_button('Sign up')
-end
-
-def user_one_create_event
-  visit '/events'
-  click_link('Create event', match: :first)
-  fill_in 'Title', with: 'Dinner with Thomas'
-  fill_in 'Description', with: "Dinner at Thomas' house"
-  fill_in 'autocomplete', with: 'E1 1EJ'
-  fill_in 'Date', with: '2020-04-30'
-  fill_in 'Time', with: '17:20:00.000'
-  fill_in 'Size', with: '2'
-  click_button 'Create Event'
-end
-
 feature 'users' do
 
   let!(:dinwithC){create(:event)}
