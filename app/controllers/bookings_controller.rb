@@ -2,18 +2,14 @@ class BookingsController < ApplicationController
 
   def new
     @event = Event.find(params[:event_id])
-    if @event.user == current_user
-      flash[:notice] = "You cannot join your own event"
-    else
+    unless @event.user == current_user
       @booking = Booking.new
       @bookings = Booking.where("event_id = #{@event.id}")
       if @bookings.count == @event.size
         flash[:notice] = "Event is full you are unable to join at the moment"
       else
         @previous_booking = @bookings.select{|booking| booking.user == current_user}
-        if @previous_booking.length == 1
-          flash[:notice] = "You have already joined this event"
-        else
+        unless @previous_booking.length == 1
           @booking.user = current_user
           @booking.event = @event
           @booking.save

@@ -78,3 +78,58 @@ def user_one_create_event
   fill_in 'Size', with: '2'
   click_button 'Create Event'
 end
+
+# reviews features spec
+
+def leave_review(thoughts,rating)
+  visit 'events'
+  click_link "Makers Welcome Drinks"
+  click_link "Review"
+  fill_in 'Thoughts', with: thoughts
+  select rating, from: "Rating"
+  click_button 'Leave Review'
+end
+
+def makers_drinks
+  build(:event, title: "Makers Welcome Drinks",
+        description: "Welcome drinks for the Feb Cohort",
+        location: "50 Commercial Street, London, United Kingdom",
+        date: '2015-02-02',
+        time: '18:30:00.000',
+        size: 25,
+        user_id: nil,
+        housenumber: "50",
+        street: "Commercial Street",
+        city: "London",
+        country: "United Kingdom",
+        postcode: "E1 6LT",
+        id: 5)
+end
+
+def create_user_john
+  create(:user, id: 3, email: 'john@doe.com', password: 'testtest', password_confirmation: 'testtest')
+end
+
+def feedback
+  create(:review, id: 7, user_id: 3, event_id: 5, thoughts: 'so so', rating: 3)
+end
+
+def ticket
+  create(:booking, user_id: 3, event_id: 5)
+end
+
+# pictures features spec
+
+def create_picture
+  visit '/pictures'
+  click_link 'Add a picture'
+  fill_in 'Title', with: 'Test picture'
+  click_button 'Create Picture'
+end
+
+# bookings features spec
+
+def join_event
+  click_link "Dinner with Thomas"
+  click_link "Join Event"
+end
