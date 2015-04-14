@@ -7,7 +7,10 @@ class ReviewsController < ApplicationController
 
   def create
     @event = Event.find(params[:event_id])
-    @event.reviews.create(review_params)
+    @review = Review.new(review_params)
+    @review.user = current_user
+    @review.event_id = @event.id
+    @review.save
     redirect_to "/events/#{@event.id}"
   end
 
