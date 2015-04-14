@@ -7,29 +7,27 @@ describe Event, type: :model do
   it { is_expected.to have_many :eventpictures }
   it { is_expected.to have_many :reviews }
 
-  let(:kate) { double :user}
+  let(:kate) {double :user}
   let(:chris) {double :user}
   let(:thomas) {double :user}
   let(:sean) {double :user}
+  let(:party) {Event.new}
+  let(:add_guest) {party.add_guest(kate)}
 
   it 'should be able to add a user to an event' do
-    party = Event.new
     expect(party.guests).to eq([])
-    party.add_guest(kate)
+    add_guest
     expect(party.guests).to eq([kate])
   end
 
   it 'should not add a user that is already attending' do
-    party = Event.new
     expect(party.guests).to eq([])
-    party.add_guest(kate)
-    party.add_guest(kate)
+    2.times {add_guest}
     expect(party.guests).to eq([kate])
   end
 
   it 'should be able to remove a user' do
-    party = Event.new
-    party.add_guest(kate)
+    add_guest
     party.remove_guest(kate)
     expect(party.guests).to eq []
   end
@@ -58,19 +56,8 @@ describe Event, type: :model do
   end
 
   it 'should know if it has happened' do
-    drinks = build(:event, title: "Makers Welcome Drinks",
-            description: "Welcome drinks for the Feb Cohort",
-            location: "50 Commercial Street, London, United Kingdom",
-            date: '2015-02-02',
-            time: '18:30:00.000',
-            size: 25,
-            user_id: nil,
-            housenumber: "50",
-            street: "Commercial Street",
-            city: "London",
-            country: "United Kingdom",
-            postcode: "E1 6LT")
-    drinks.save(validate: false)
-    expect(drinks.happened?).to eq true
+    makers_drinks
+    makers_drinks.save(validate: false)
+    expect(makers_drinks.happened?).to eq true
   end
 end
