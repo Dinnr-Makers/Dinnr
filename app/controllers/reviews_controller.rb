@@ -15,4 +15,17 @@ class ReviewsController < ApplicationController
     params.require(:review).permit(:thoughts, :rating)
   end
 
+  def edit
+    @event = Event.find(params[:event_id])
+    event_reviews = Review.all.select{|review|review.event_id == @event.id}.select{|review|review.user_id == current_user.id}
+    @review = event_reviews.first
+  end
+
+  def update
+    @review = Review.find(params[:id])
+    @event = Event.find(@review.event_id)
+    @review.update(review_params)
+    redirect_to "/events/#{@event.id}"
+  end
+
 end
