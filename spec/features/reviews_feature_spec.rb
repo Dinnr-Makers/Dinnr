@@ -11,19 +11,15 @@ end
 
 feature 'reviewing' do
 
-  # scenario 'allows users to leave a review using a form' do
-  #   party = create(:event)
-  #   visit '/events'
-  #   click_link "Pauls Birthday Party"
-  #   click_link "Review"
-  #   fill_in 'Thoughts', with: "so so"
-  #   select '3', from: "Rating"
-  #   click_button 'Leave Review'
-  #   expect(current_path).to eq "/events/#{party.id}"
-  #   expect(page).to have_content('so so')
-  # end
+  scenario 'does not allow reviews before an event has happened' do
+    party = create(:event)
+    visit '/events'
+    click_link "Pauls Birthday Party"
+    expect(page).not_to have_link "Review"
+    expect(page).to have_content "Reviews available after event"
+  end
 
-  scenario 'allows reviews once an event has happened' do
+  scenario 'allows guests of an event to leave a review' do
     drinks = build(:event, title: "Makers Welcome Drinks",
             description: "Welcome drinks for the Feb Cohort",
             location: "50 Commercial Street, London, United Kingdom",
@@ -35,24 +31,42 @@ feature 'reviewing' do
             street: "Commercial Street",
             city: "London",
             country: "United Kingdom",
-            postcode: "E1 6LT")
+            postcode: "E1 6LT",
+            id: 5)
     drinks.save(validate: false)
+    john = create(:user, id: 3, email: 'john@doe.com', password: 'testtest', password_confirmation: 'testtest')
+    ticket = create(:booking, user_id: 3, event_id: 5)
+    sign_in
     leave_review("so so",3)
     expect(current_path).to eq "/events/#{drinks.id}"
     expect(page).to have_content('so so')
   end
 
-  scenario 'does not allow reviews before an event has happened' do
-    party = create(:event)
+  scenario 'does not let a non guest to leave a review' do
+    drinks = build(:event, title: "Makers Welcome Drinks",
+            description: "Welcome drinks for the Feb Cohort",
+            location: "50 Commercial Street, London, United Kingdom",
+            date: '2015-02-02',
+            time: '18:30:00.000',
+            size: 25,
+            user_id: nil,
+            housenumber: "50",
+            street: "Commercial Street",
+            city: "London",
+            country: "United Kingdom",
+            postcode: "E1 6LT",
+            id: 5)
+    drinks.save(validate: false)
+    dave = create(:user, id: 7)
     visit '/events'
-    click_link "Pauls Birthday Party"
+    click_link "Makers Welcome Drinks"
     expect(page).not_to have_link "Review"
     expect(page).to have_content "Reviews available after event"
   end
 
-  # scenario 'only allows guests of an event to leave a review' do
+  scenario 'user can edit their review' do
 
-  # end
+  end
 
 
 end
