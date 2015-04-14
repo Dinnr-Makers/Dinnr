@@ -13,9 +13,9 @@
       <div id="what" class="form-group section scrollspy">
       <h3>What</h3>
         <%= form_for @event do |f| %>
-          <%= f.label :title, :required => true  %>
+          <%= f.label :title  %>
             <%= f.text_field :title, class: 'form-control', placeholder: "Tell us what your evening's called", :required => true %>
-          <%= f.label :description, :required => true %>
+          <%= f.label :description %>
             <%= f.text_field :description, class: 'form-control', placeholder: "Tell us a little about what you'll be cooking", :required => true %>
 
     <div  id="when" class="section scrollspy col s12">
@@ -25,10 +25,10 @@
             <div class"form-error"><%= message %></div>
           <% end %>
         <% end %>
-        <%= f.label :date, :required => true, :required => true %>
-          <%= f.date_field :date, class: 'datepicker', placeholder: "When's it going to be?", :required => true %>
-        <%= f.label :time, :required => true %>
-          <%= f.time_field :time, placeholder: "What time should we arrive?", :required => true %>
+        <%= f.label :date %>
+          <%= f.date_field :date, class: 'datepicker', :required => true %>
+        <%= f.label :time %>
+          <%= f.time_field :time, :required => true %>
     </div>
 
     
@@ -36,26 +36,26 @@
       <h3>Where</h3>
       <div class="input-group">
         <div id="locationField">
-          <%= f.label :location, :required => true %>
+          <%= f.label :location %>
             <%= f.text_field :location, class: 'form-control', id: "autocomplete", placeholder: "Tell us where we're going", :required => true %>
         </div>
 
-        <%= f.label :housenumber, "House Number", :required => true %>
+        <%= f.label :housenumber, "House Number" %>
           <%= f.text_field :housenumber, class: 'form-control', id: "street_number", :required => true %> 
         <%= f.label :street %>
           <%= f.text_field :street, class: 'form-control', id: "route", :required => true %>
-        <%= f.label :city, :required => true %>
-          <%= f.text_field :city, class: 'form-control', id: "locality", :required => true %>     
-        <%= f.label :postcode, :required => true %>
+        <%= f.label :city %>
+          <%= f.text_field :city, class: 'form-control', id: "locality", :required => true %>
+        <%= f.label :postcode %>
           <%= f.text_field :postcode, class: 'form-control', id: "postal_code", :required => true %>
-        <%= f.label :country, :required => true %>
+        <%= f.label :country %>
           <%= f.text_field :country, class: 'form-control', id: "country", :required => true %>
       </div>
     </div>
 
     <div  id="who" class="section scrollspy col s12">
       <h3>Who + How Many</h3>
-        <%= f.label :size, :required => true %>
+        <%= f.label :size %>
           <%= f.text_field :size, class: 'form-control', placeholder: "Tell us how many people you'd like to attend", :required => true %>
     </div>
 
