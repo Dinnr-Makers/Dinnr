@@ -41,16 +41,9 @@ describe Event, type: :model do
     expect(party.size).to eq 3
   end
 
-  it 'should display a date' do
-    options = {:date => Date.new(2015,04,17)}
-    party = Event.new(options)
-    expect(party.date_format).to eq "Fri 17 Apr"
-  end
-
-  it 'should display a time' do
-    options = {:time => Time.new(2015,"apr",17,18,0,0)}
-    party = Event.new(options)
-    expect(party.time_format).to eq "06:00PM"
+  it 'nice_date stringifies the date nice' do
+    party = create(:event)
+    expect(party.nice_date).to eq "Thursday 30. April 17:20"
   end
 
   it 'will not allow an invalid date' do
@@ -79,5 +72,6 @@ describe Event, type: :model do
     eventish = create(:event, date: '2020-11-11', time: '17:20:00')
     expect(eventish.date.strftime('%A %_d. %B %k:%M')).to eq("Wednesday 11. November 17:20")
   end
+
 end
 

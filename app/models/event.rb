@@ -28,21 +28,14 @@ class Event < ActiveRecord::Base
     guests.delete(guest)
   end
 
-  def date_format
+  def nice_date
     if date.respond_to?(:strftime)
-      date.strftime('%a %d %b')
+      date.strftime('%A %_d. %B %k:%M')
     else
       date.to_s
     end
   end
 
-  def time_format
-    if time.respond_to?(:strftime)
-      time.strftime("%I:%M%p")
-    else
-      time.to_s
-    end
-  end
 
   def future?
     if date < Date.today
