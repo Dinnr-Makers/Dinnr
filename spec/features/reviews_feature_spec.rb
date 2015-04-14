@@ -13,7 +13,7 @@ feature 'reviewing' do
   scenario 'allows guests of an event to leave a review' do
     makers_drinks
     makers_drinks.save(validate: false)
-    john
+    create_user_john
     ticket
     sign_in
     leave_review("so so",3)
@@ -34,7 +34,7 @@ feature 'reviewing' do
   scenario 'user can edit their review' do
     makers_drinks
     makers_drinks.save(validate: false)
-    john
+    create_user_john
     ticket
     sign_in
     feedback
@@ -50,7 +50,7 @@ feature 'reviewing' do
   scenario 'user cannot edit somebody elses review' do
     makers_drinks
     makers_drinks.save(validate: false)
-    john
+    create_user_john
     ticket
     sign_in
     feedback
