@@ -1,6 +1,6 @@
 def user_sign_up
   visit '/'
-  click_link('Sign up', match: :first)
+  click_link('Sign up', match: :prefer_exact)
   fill_in('Email', with: 'test@example.com')
   fill_in('Password', with: 'testtest')
   fill_in('Password confirmation', with: 'testtest')
@@ -9,7 +9,7 @@ end
 
 def create_event
   visit '/events'
-  click_link('Create event', match: :first)
+  click_link('Create event', match: :prefer_exact)
   fill_in 'Title', with: 'Dinner with Thomas'
   fill_in 'Description', with: "Dinner at Thomas' house"
   fill_in 'autocomplete', with: '16 woodchurch road'
@@ -21,7 +21,7 @@ end
 
 def sign_in
   visit '/'
-  click_link('Sign in', match: :first)
+  click_link('Sign in', match: :prefer_exact)
   fill_in 'Email', with: 'john@doe.com'
   fill_in 'Password', with: 'testtest'
   click_button('Log in')
@@ -29,7 +29,7 @@ end
 
 def user_one_sign_up
   visit '/'
-  click_link('Sign up', match: :first)
+  click_link('Sign up', match: :prefer_exact)
   fill_in('user[first_name]', with: 'firstname')
   fill_in('user[last_name]', with: 'lastname')
   fill_in('Email', with: 'test@example.com')
@@ -40,7 +40,7 @@ end
 
 def user_two_sign_up
   visit '/'
-  click_link('Sign up', match: :first)
+  click_link('Sign up', match: :prefer_exact)
   fill_in('user[first_name]', with: 'alice')
   fill_in('user[last_name]', with: 'alice surname')
   fill_in('Email', with: 'alice@example.com')
@@ -51,7 +51,7 @@ end
 
 def user_three_sign_up
   visit '/'
-  click_link('Sign up', match: :first)
+  click_link('Sign up', match: :prefer_exact)
   fill_in('Email', with: 'chris@testy.com')
   fill_in('Password', with: 'password')
   fill_in('Password confirmation', with: 'password')
@@ -60,7 +60,7 @@ end
 
 def user_four_sign_up
   visit '/'
-  click_link('Sign up', match: :first)
+  click_link('Sign up', match: :prefer_exact)
   fill_in('Email', with: 'thomas@dinnr.com')
   fill_in('Password', with: 'password')
   fill_in('Password confirmation', with: 'password')
@@ -69,7 +69,7 @@ end
 
 def user_one_create_event
   visit '/events'
-  click_link('Create event', match: :first)
+  click_link('Create event', match: :prefer_exact)
   fill_in 'Title', with: 'Dinner with Thomas'
   fill_in 'Description', with: "Dinner at Thomas' house"
   fill_in 'autocomplete', with: 'E1 1EJ'

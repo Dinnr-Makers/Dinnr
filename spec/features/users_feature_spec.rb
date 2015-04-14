@@ -19,16 +19,15 @@ feature 'users' do
 
     it 'should not be able to create a new event' do
       visit '/'
-      click_link('Create event', match: :first)
-      expect(page).to have_content 'You need to sign in or sign up before continuing'
+      expect(page).not_to have_content 'Create event'
     end
 
     it 'should be sent email when they have forgotten their password' do
       visit '/'
       user_two_sign_up
-      click_link('Sign out', match: :first)
+      click_link('Sign out', match: :prefer_exact)
       visit '/'
-      click_link('Sign in', match: :first)
+      click_link('Sign in', match: :prefer_exact)
       click_link 'Forgot your password?'
       fill_in 'Email', with: 'alice@example.com'
       click_button 'Send me reset password instructions'
