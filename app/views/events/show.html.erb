@@ -12,7 +12,7 @@
   <% @guests.each_with_index do |guest, index| %>
     <p>Guest <%= index +1 %>: <%= guest.first_name %></p>
     <p><a href="/users"></a></p>
-    <%= image_tag guest.image ? guest.image : guest.avatar, :class => "avatar" %>
+    <%= image_tag guest.image ? guest.image : guest.avatar.url(:thumb), :class => "avatar" %>
   <% end %>
 <% else %>
   <p>No guests yet</p>

@@ -27,8 +27,8 @@ class User < ActiveRecord::Base
   end
 
   has_attached_file :avatar,
-                    :styles => { :normal => "50x50>", :thumb => "50x50>"  },
-                    :default_url => "https://s3-us-west-2.amazonaws.com/dinnr/pictures/ChefHat.jpg"
+                    :styles => {  :thumb => "50x50>"  },
+                    :default_url => "https://s3-us-west-2.amazonaws.com/dinnr/pictures/chefhatsmall.jpg"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
 end
