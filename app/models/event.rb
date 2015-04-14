@@ -9,9 +9,10 @@ class Event < ActiveRecord::Base
   validates :date, presence: true
   validate :future?
   serialize :guests, Array
-
+  before_save :compose_date
   geocoded_by :address
   after_validation :geocode
+
 
   def address
     [housenumber, street, city, postcode, country].compact.join(', ')
@@ -51,6 +52,12 @@ class Event < ActiveRecord::Base
 
   def happened?
     date < Date.today
+  end
+
+  def compose_date
+    minutes = time.strftime("%M").to_i
+    t = Time.gm(date.year, date.month, date.day, time.hour, minutes)
+    self.date = t
   end
 
 end

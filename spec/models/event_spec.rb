@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'rails_helper'
 
 describe Event, type: :model do
 
@@ -73,4 +74,10 @@ describe Event, type: :model do
     drinks.save(validate: false)
     expect(drinks.happened?).to eq true
   end
+
+  it "saves dates like this: Fri 04 Jan 10:02 PM" do
+    eventish = create(:event, date: '2020-11-11', time: '17:20:00')
+    expect(eventish.date.strftime('%A %_d. %B %k:%M')).to eq("Wednesday 11. November 17:20")
+  end
 end
+
