@@ -9,6 +9,17 @@ def user_sign_up
   click_button('Sign up')
 end
 
+def user_two_sign_up
+  visit '/'
+  click_link('Sign up', match: :first)
+  fill_in('user[first_name]', with: 'alice')
+  fill_in('user[last_name]', with: 'alice surname')
+  fill_in('Email', with: 'alice@example.com')
+  fill_in('Password', with: 'password')
+  fill_in('Password confirmation', with: 'password')
+  click_button('Sign up')
+end
+
 def create_event
   visit '/events'
   click_link('Create event', match: :first)
@@ -84,6 +95,17 @@ feature 'events' do
       visit '/events'
       click_link (dinwitht.title)
       expect(page).to have_content "No guests yet"
+    end
+
+
+    it "shows a user's avatar as a thumbnail if they have joined the event" do
+      party = create(:event)
+      user_sign_up
+      visit '/'
+      click_link(party.title, match: :first)
+      click_link('Join Event')
+      find(:css, "img.avatar")
+      expect(page.find(:css, "img.avatar")['src']).to eq "https://s3-us-west-2.amazonaws.com/dinnr/pictures/ChefHat.jpg"
     end
   end
 

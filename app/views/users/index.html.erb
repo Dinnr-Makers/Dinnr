@@ -25,7 +25,8 @@
         </tr>
         <tr>
           <th>Profile Picture</th>
-          <td><%= image_tag user.image %></td>
+          <td><%= image_tag user.image ? user.image : user.avatar, :class => "avatar" %></td>
+
         </tr>
       </tbody>
     </table>
