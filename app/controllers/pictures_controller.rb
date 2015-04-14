@@ -1,7 +1,9 @@
 class PicturesController < ApplicationController
 
+
   def index
     @pictures = Picture.all
+    @pictures = @pictures.select{|p| p.user_id == current_user.id}
   end
 
   def new
