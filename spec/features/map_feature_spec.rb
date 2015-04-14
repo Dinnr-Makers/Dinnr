@@ -2,9 +2,20 @@ require "rails_helper"
 
 describe "Map", js: true do
 
-  it "shows a marker for each geocoded event" do
-    create(:event)
+  let!(:event1){create(:event)}
+
+  it "shows a marker for each geocoded event" do  
     visit '/'
-    expect(find('#map-canvas')['data-markers'].split('},{').count).to eq(1)
+    find('#map-canvas')
+    page.execute_script('checkInfo()')
+    expect(page.find("div#info-box").text).to eq(event1.title)
   end
 end
+
+
+
+# map.data.getFeatureById(1).getProperty("title")
+# expect(find('#map-canvas')['data-markers'].split('},{').count).to eq(1)
+# idee = page.execute_script('map.data.getFeatureById(1).getProperty("title")')
+# find('.login-control').first
+# find('#map-canvas')

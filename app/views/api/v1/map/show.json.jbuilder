@@ -1,6 +1,7 @@
 json.type "FeatureCollection" 
 json.features do
   json.type "Feature"
+  json.id @event.id
   json.properties do
     json.color "blue"
     json.id @event.id

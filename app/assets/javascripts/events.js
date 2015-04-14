@@ -18,37 +18,48 @@ $(document).ready( function() {
     };
     
     if($("#map-canvas").length > 0){
-      initializeMap();
+      getGeoData();
     }
 });
+  
+  var map;
+  var markers = [];
+  var getGeoData = function() {
+    $.getJSON( '/api/v1/events/map', function(json){
+      initializeMap(json) 
+    })
+  };
+       
 
-var map;
-function initializeMap() {
-  // Create a simple map.
+
+function initializeMap(json) {
   map = new google.maps.Map(document.getElementById('map-canvas'), {
-    zoom: 10
-  });
-  // Load a GeoJSON from the same server as our demo.
-  map.data.loadGeoJson('/api/v1/events/map');
-
-  google.maps.event.addListener(map.data, 'addfeature', function(event_loc) {
-    if (event_loc.feature.getGeometry().getType() === 'Point') {
-      map.setCenter(event_loc.feature.getGeometry().get());
-    }
+    zoom: 12,
+    center: new google.maps.LatLng(json.features[0].geometry.coordinates[1], json.features[0].geometry.coordinates[0])
   });
 
-  //Create info window that pops up when you click the marker
-  var infowindow = new google.maps.InfoWindow();
-  map.data.addListener('click', function(event) {
-    var windowcontent = event.feature.getProperty('title') + event.feature.getProperty('description');
-    infowindow.setContent("<div class='window-thing' style='width:150px;'>"+ windowcontent +"</div>");
-    infowindow.setPosition(event.feature.getGeometry().get());
-    infowindow.setOptions({pixelOffset: new google.maps.Size(0,-30)});
-    infowindow.open(map);
-  });
+
+  for (var i = json.features.length - 1; i >= 0; i--) {
+    var lat = json.features[ i ].geometry.coordinates[0]
+    var lng = json.features[ i ].geometry.coordinates[1]
+    var title = json.features[i].properties.title
+    var description = json.features[i].properties.description
+    var latLng = new google.maps.LatLng(lng, lat)
+    var marker = new google.maps.Marker({position: latLng, map: map, title: title, description: description})
+    marker.infowindow = new google.maps.InfoWindow({content: marker.title});
+    google.maps.event.addListener(marker, 'click', function() {   
+      this.infowindow.open(map, this)
+    });
+    markers.push(marker)
+  };
 };
 
 
+checkInfo = function(){
+  document.getElementById("info-box").innerHTML = markers[0].title 
+}
+
+//Autocomplete
 
 var placeSearch, autocomplete;
 var componentForm = {
