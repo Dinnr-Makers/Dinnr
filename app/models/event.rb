@@ -5,6 +5,7 @@ class Event < ActiveRecord::Base
   belongs_to :user
   has_many :bookings
   has_many :eventpictures
+  has_many :reviews
   validates :date, presence: true
   validate :future?
   serialize :guests, Array

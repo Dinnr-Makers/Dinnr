@@ -42,4 +42,19 @@
   <% end %>
 
 <% end %>
+<%= link_to "Review", new_event_review_path(@event) %>
+<h3>Reviews for <%= @event.title %></h3>
+
+<% if @event.reviews.any? %>
+  <ul>
+    <% @event.reviews.each do |review| %>
+      <li>
+        <%= review.thoughts %>, <strong><%= review.rating %></strong>/5
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No reviews.</p>
+<% end %>
+
 
