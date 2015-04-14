@@ -66,6 +66,7 @@ end
 
 group :test do
 
+  gem 'simplecov', :require => false
   gem 'rspec-rails'
   gem 'capybara'
   gem 'rspec-collection_matchers'
