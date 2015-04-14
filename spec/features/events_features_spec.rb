@@ -1,45 +1,5 @@
 require 'rails_helper'
 
-def user_sign_up
-  visit '/'
-  click_link('Sign up', match: :first)
-  fill_in('Email', with: 'test@example.com')
-  fill_in('Password', with: 'testtest')
-  fill_in('Password confirmation', with: 'testtest')
-  click_button('Sign up')
-end
-
-def user_two_sign_up
-  visit '/'
-  click_link('Sign up', match: :first)
-  fill_in('user[first_name]', with: 'alice')
-  fill_in('user[last_name]', with: 'alice surname')
-  fill_in('Email', with: 'alice@example.com')
-  fill_in('Password', with: 'password')
-  fill_in('Password confirmation', with: 'password')
-  click_button('Sign up')
-end
-
-def create_event
-  visit '/events'
-  click_link('Create event', match: :first)
-  fill_in 'Title', with: 'Dinner with Thomas'
-  fill_in 'Description', with: "Dinner at Thomas' house"
-  fill_in 'autocomplete', with: '16 woodchurch road'
-  fill_in 'Date', with: '2020-04-30'
-  fill_in 'Time', with: '17:20:00.000'
-  fill_in 'Size', with: '2'
-  click_button 'Create Event'
-end
-
-def sign_in
-  visit '/'
-  click_link('Sign in', match: :first)
-  fill_in 'Email', with: 'john@doe.com'
-  fill_in 'Password', with: 'testtest'
-  click_button('Log in')
-end
-
 feature 'events' do
   context 'no events have been added' do
     scenario 'should display a prompt to add an event' do
@@ -105,7 +65,7 @@ feature 'events' do
       click_link(party.title, match: :first)
       click_link('Join Event')
       find(:css, "img.avatar")
-      expect(page.find(:css, "img.avatar")['src']).to eq "https://s3-us-west-2.amazonaws.com/dinnr/pictures/ChefHat.jpg"
+      expect(page.find(:css, "img.avatar")['src']).to eq "https://s3-us-west-2.amazonaws.com/dinnr/pictures/chefhatsmall.jpg"
     end
   end
 
@@ -179,6 +139,24 @@ feature 'events' do
       expect(page).to have_content 'Select Image to add to Dinner with Thomas'
       expect(page).to have_content "No pictures available to add to event"
       expect(page).to have_content "Upload Pictures"
+    end
+  end
+
+  context 'deleting images from events' do
+
+    scenario 'user can delete their own image from an event' do
+      user = create(:user)
+      sign_in
+      image = create(:picture)
+      user.pictures << image
+      create_event
+      visit '/'
+      click_link('Dinner with Thomas', match: :first)
+      click_link("Add Image")
+      expect(page).to have_content 'Select Image to add to Dinner with Thomas'
+      click_link 'Add Test Picture'
+      click_link 'Remove Test Picture'
+      expect(page).not_to have_content 'Test Picture'
     end
   end
 

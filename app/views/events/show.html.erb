@@ -22,6 +22,7 @@
     <% @pictures.each do |picture|%>
       <li><%= image_tag picture.image.url(:thumb) %>
       <p> <%= picture.title %> </p></li>
+      <%= link_to "Remove #{picture.title}", eventpicture_path({"event_id" =>"#{@event.id}","picture_id"=>"#{picture.id}"}), method: :delete %>
       <% end %>
   <% else %>
     <li><p>No images yet yet</p></li>
@@ -43,4 +44,24 @@
   <% end %>
 
 <% end %>
+
+<% if @event.happened? && @guests.include?(current_user) %>
+  <%= link_to "Review", new_event_review_path(@event) %>
+<% else %>
+  <p>Reviews available after event</p>
+<% end %>
+<h3>Reviews for <%= @event.title %></h3>
+
+<% if @event.reviews.any? %>
+  <ul>
+    <% @event.reviews.each do |review| %>
+      <li>
+        <%= review.thoughts %>, <strong><%= review.rating %></strong>/5
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No reviews.</p>
+<% end %>
+
 

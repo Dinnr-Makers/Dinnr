@@ -5,6 +5,7 @@ describe Event, type: :model do
   it { is_expected.to belong_to :user }
   it { is_expected.to have_many :bookings }
   it { is_expected.to have_many :eventpictures }
+  it { is_expected.to have_many :reviews }
 
   let(:kate) { double :user}
   let(:chris) {double :user}
@@ -56,4 +57,20 @@ describe Event, type: :model do
     expect(party).not_to be_valid
   end
 
+  it 'should know if it has happened' do
+    drinks = build(:event, title: "Makers Welcome Drinks",
+            description: "Welcome drinks for the Feb Cohort",
+            location: "50 Commercial Street, London, United Kingdom",
+            date: '2015-02-02',
+            time: '18:30:00.000',
+            size: 25,
+            user_id: nil,
+            housenumber: "50",
+            street: "Commercial Street",
+            city: "London",
+            country: "United Kingdom",
+            postcode: "E1 6LT")
+    drinks.save(validate: false)
+    expect(drinks.happened?).to eq true
+  end
 end

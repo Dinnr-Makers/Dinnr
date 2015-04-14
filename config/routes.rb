@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'pictures' => 'pictures#index'
 
   resources :events do
+    resources :reviews
     resources :bookings do
       collection do
         get "leave"
