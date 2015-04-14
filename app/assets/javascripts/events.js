@@ -62,7 +62,7 @@ function initializeMainMap(json) {
     var latLng = new google.maps.LatLng(lng, lat)
     
     var marker = new google.maps.Marker({position: latLng, map: map, title: title, description: description, time: eventTime})
-    marker.infowindow = new google.maps.InfoWindow({content: title + " " + eventTime});
+    marker.infowindow = new google.maps.InfoWindow({content: title + ", " + eventTime});
     google.maps.event.addListener(marker, 'click', function() {   
       this.infowindow.open(map, this)
     });

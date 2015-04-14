@@ -7,7 +7,7 @@ json.features @events do |event|
     json.id event.id
     json.title event.title
     json.description event.description
-    json.eventTime event.date
+    json.eventTime event.date.strftime('%A %_d. %B %k:%M')
   end
 
   json.geometry do
