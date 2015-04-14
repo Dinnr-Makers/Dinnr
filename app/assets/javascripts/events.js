@@ -26,7 +26,10 @@ $(document).ready( function() {
       getGeoDataSingle('/api/v1/events/' + eventId + '/map');
     }
 });
-  
+
+
+//Maps: Single map for event pages and main map on front page
+
   var map;
   var markers = [];
   var getGeoDataMain = function(url) {
@@ -55,10 +58,11 @@ function initializeMainMap(json) {
     var lng = json.features[ i ].geometry.coordinates[1]
     var title = json.features[i].properties.title
     var description = json.features[i].properties.description
+    var eventTime = json.features[i].properties.eventTime
     var latLng = new google.maps.LatLng(lng, lat)
     
-    var marker = new google.maps.Marker({position: latLng, map: map, title: title, description: description})
-    marker.infowindow = new google.maps.InfoWindow({content: marker.title});
+    var marker = new google.maps.Marker({position: latLng, map: map, title: title, description: description, time: eventTime})
+    marker.infowindow = new google.maps.InfoWindow({content: title + " " + eventTime});
     google.maps.event.addListener(marker, 'click', function() {   
       this.infowindow.open(map, this)
     });
@@ -78,7 +82,6 @@ function initializeSingleMap(json) {
     var title = json.features.properties.title
     var description = json.features.properties.description
     var latLng = new google.maps.LatLng(lng, lat)
-    
     var marker = new google.maps.Marker({position: latLng, map: map, title: title, description: description})
     marker.infowindow = new google.maps.InfoWindow({content: marker.title});
     google.maps.event.addListener(marker, 'click', function() {   
@@ -88,14 +91,6 @@ function initializeSingleMap(json) {
   
 };
 
-
-checkInfo = function(){
-  document.getElementById("info-box").innerHTML = markers[0].title 
-}
-
-checkInfoCount = function(){
-  document.getElementById("info-box").innerHTML = markers.length 
-}
 
 //Autocomplete
 
@@ -161,4 +156,17 @@ function geolocate() {
   }
 }
 // [END region_geolocation]
+
+// Test helper methods
+testInfo = function(){
+  document.getElementById("info-box").innerHTML = markers[0].title 
+}
+
+testInfoCount = function(){
+  document.getElementById("info-box").innerHTML = markers.length 
+}
+
+testInfoWindow = function(){
+  document.getElementById("info-box").innerHTML = markers[0].infowindow.content
+}
 

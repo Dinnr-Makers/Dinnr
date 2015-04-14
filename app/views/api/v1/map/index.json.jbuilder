@@ -7,6 +7,7 @@ json.features @events do |event|
     json.id event.id
     json.title event.title
     json.description event.description
+    json.eventTime event.date
   end
 
   json.geometry do
