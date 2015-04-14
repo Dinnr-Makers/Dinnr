@@ -6,24 +6,24 @@ feature 'users' do
 
   context 'user not signed in and on the home page' do
 
-    it 'should see a sign in and sign up link' do
+    it 'does see a sign in and sign up link' do
       visit '/'
       expect(page).to have_content("Sign in")
       expect(page).to have_content("Sign up")
     end
 
-    it 'should not see a sign out link' do
+    it 'does not see a sign out link' do
       visit '/'
       expect(page).not_to have_link('Sign out')
     end
 
-    it 'should not be able to create a new event' do
+    it 'is not be able to create a new event' do
       visit '/'
       click_link('Create event', match: :first)
       expect(page).to have_content 'You need to sign in or sign up before continuing'
     end
 
-    it 'should be sent email when they have forgotten their password' do
+    it 'is sent email when they have forgotten their password' do
       visit '/'
       user_two_sign_up
       click_link('Sign out', match: :first)
@@ -35,12 +35,12 @@ feature 'users' do
       expect(page).to have_content "You will receive an email with instructions on how to reset your password in a few minutes."
     end
 
-    it 'should not see an edit link' do
+    it 'does not see an edit link' do
       visit '/'
       expect(page).not_to have_link('Edit')
     end
 
-    it 'should not see a delete link' do
+    it 'does not see a delete link' do
       visit '/'
       expect(page).not_to have_link('Delete')
     end
@@ -53,18 +53,18 @@ feature 'users' do
       user_one_sign_up
     end
 
-    it 'should see a sign out link' do
+    it 'does see a sign out link' do
       visit '/'
       expect(page).to have_link('Sign out')
     end
 
-    it 'should not have a sign in or or sign up link' do
+    it 'does not see a sign in or or sign up link' do
       visit '/'
       expect(page).not_to have_link('Sign in')
       expect(page).not_to have_link('Sign up')
     end
 
-    it 'should be able to create a new event' do
+    it 'is able to create a new event' do
       create_event
       expect(page).to have_content 'Dinner with Thomas'
       expect(current_path).to eq '/events'
@@ -77,7 +77,7 @@ end
 feature 'users profile page' do
 
   context 'no users signed up' do
-    it 'should display no users yet' do
+    it 'displays no users yet' do
       visit '/users'
       expect(page).to have_content 'No users yet'
     end
@@ -85,14 +85,14 @@ feature 'users profile page' do
   end
 
   context 'user signed in and on profile page' do
-    it 'should display the user details' do
+    it 'displays the user details' do
       user_one_sign_up
       visit '/users'
       expect(page).to have_content 'test@example.com'
       expect(page).to have_content 'firstname'
     end
 
-    it 'should display the user\'s last name' do
+    it 'displays the user\'s last name' do
       user_one_sign_up
       visit '/users'
       expect(page).to have_content 'lastname'
@@ -104,7 +104,7 @@ end
 
 feature 'updating profile details' do
 
-  it 'should be able to change the users first name' do
+  it 'is able to change the users first name' do
     user_one_sign_up
     visit 'users/edit'
     fill_in('First name', with: 'Chris')
@@ -115,7 +115,7 @@ feature 'updating profile details' do
     expect(page).to have_content 'Chris'
   end
 
-  it 'should be able to change the users last name' do
+  it 'is able to change the users last name' do
     user_one_sign_up
     visit 'users/edit'
     fill_in('Last name', with: 'Ward')

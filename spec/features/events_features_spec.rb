@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'events' do
   context 'no events have been added' do
-    scenario 'should display a prompt to add an event' do
+    scenario 'displays a prompt to add an event' do
       visit '/events'
       expect(page).to have_content 'No events yet'
       expect(page).to have_link 'Create event'
@@ -10,7 +10,7 @@ feature 'events' do
   end
 
   context 'events have been added' do
-    scenario 'display events' do
+    scenario 'displays events when an event has been added' do
       event = create(:event)
       visit '/events'
       expect(page).to have_content event.title
@@ -26,7 +26,7 @@ feature 'events' do
       expect(current_path).to eq '/events'
     end
 
-    scenario "Shows error message if date is invalid" do
+    scenario "shows an error message if the date is invalid" do
       user_sign_up
       visit '/events'
       click_link('Create event', match: :first)
@@ -51,7 +51,7 @@ feature 'events' do
       expect(current_path).to eq "/events/#{dinwitht.id}"
     end
 
-    scenario 'should show that there are no guests when created' do
+    scenario 'shows that there are no guests when created' do
       visit '/events'
       click_link (dinwitht.title)
       expect(page).to have_content "No guests yet"

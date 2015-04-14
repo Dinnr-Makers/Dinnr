@@ -6,7 +6,7 @@ context 'user signed in and on the home page' do
     user_one_sign_up
   end
 
-  it 'should be able to join another users event' do
+  it 'is able to join another users event' do
     visit '/'
     user_one_create_event
     click_link("Sign out", match: :first)
@@ -22,14 +22,14 @@ context 'user signed in and on the home page' do
     expect(page).to have_content "Guest 1: alice"
   end
 
-  it 'should not be able to join their own event' do
+  it 'is not able to join their own event' do
     visit '/'
     user_one_create_event
     click_link "Dinner with Thomas"
     expect(page).not_to have_content "Join Event"
   end
 
-  it 'should not let a user join an event if it is full' do
+  it 'does not let a user join an event if it is full' do
     visit '/'
     user_one_create_event
     click_link("Sign out", match: :first)
@@ -50,13 +50,13 @@ context 'user not signed in and on an event page' do
 
   let!(:dinwithC){create(:event)}
 
-  it 'should not see a join event button' do
+  it 'does not see a join event button' do
     visit '/'
     click_link dinwithC.title
     expect(page).not_to have_link('Join Event')
   end
 
-  it 'should not see a leave event' do
+  it 'does not see a leave event' do
     visit '/'
     click_link dinwithC.title
     expect(page).not_to have_link('Leave Event')
@@ -66,12 +66,12 @@ end
 context 'user not signed in and on the home page' do
   let!(:dinwithC){create(:event)}
 
-  it 'should not see a join event button' do
+  it 'does not see a join event button' do
     visit '/'
     expect(page).not_to have_link('Join Event')
   end
 
-  it 'should not see a leave event' do
+  it 'does not see a leave event' do
     visit '/'
     expect(page).not_to have_link('Leave Event')
   end
@@ -83,7 +83,7 @@ context 'user signed in and on an event page' do
     user_one_sign_up
   end
 
-  it 'should not show a join event link if the user has already signed up on the event page' do
+  it 'does not show a join event link if the user has already signed up on the event page' do
     visit '/'
     user_one_create_event
     click_link("Sign out", match: :first)
