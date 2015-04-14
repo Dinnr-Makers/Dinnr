@@ -49,4 +49,8 @@ class Event < ActiveRecord::Base
     end
   end
 
+  def happened?
+    date < Date.today
+  end
+
 end

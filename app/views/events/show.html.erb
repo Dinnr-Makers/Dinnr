@@ -43,7 +43,12 @@
   <% end %>
 
 <% end %>
-<%= link_to "Review", new_event_review_path(@event) %>
+
+<% if @event.happened? %>
+  <%= link_to "Review", new_event_review_path(@event) %>
+<% else %>
+  <p>Reviews available after event</p>
+<% end %>
 <h3>Reviews for <%= @event.title %></h3>
 
 <% if @event.reviews.any? %>
