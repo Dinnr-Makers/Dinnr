@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   has_many :events
   has_many :bookings
   has_many :pictures
+  has_many :reviews
+  has_many :reviewed_events, through: :reviews, source: :event
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -26,6 +28,9 @@ class User < ActiveRecord::Base
     end
   end
 
-  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+  has_attached_file :avatar,
+                    :styles => {  :thumb => "50x50>"  },
+                    :default_url => "https://s3-us-west-2.amazonaws.com/dinnr/pictures/chefhatsmall.jpg"
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
 end
