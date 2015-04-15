@@ -14,8 +14,8 @@ class BookingsController < ApplicationController
           @booking.event = @event
           @booking.save
           options = {user: current_user, event: @event}
-          p options
           JoinEventMailer.join_email(options).deliver_now
+          JoinEventMailer.host_email(options).deliver_now
         end
       end
     end

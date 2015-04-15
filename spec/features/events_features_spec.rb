@@ -61,8 +61,14 @@ feature 'events' do
 
 
     it "shows a user's avatar as a thumbnail if they have joined the event" do
-      party = create(:event)
-      user_sign_up
+      john = create(:user, email: 'john@doe.com', password: 'testtest', password_confirmation: 'testtest')
+      party = create(:event, user: john, title: "John's Party")
+      kate = create(:user, email: 'kate@test.com', password: 'testtest', password_confirmation: 'testtest')
+      visit '/'
+      click_link('Sign in', match: :prefer_exact)
+      fill_in 'Email', with: 'kate@test.com'
+      fill_in 'Password', with: 'testtest'
+      click_button('Log in')
       visit '/'
       click_link(party.title, match: :first)
       click_link('Join Event')

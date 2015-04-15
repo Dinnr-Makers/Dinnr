@@ -7,4 +7,12 @@ class JoinEventMailer < ApplicationMailer
     mail(to: @user.email, subject: "You have succesfully joined an event")
   end
 
+  def host_email(options)
+
+    @user = options[:user]
+    @event = options[:event]
+    @host = User.find(@event.user_id)
+    mail(to: @host.email, subject: "Somebody has joined your event")
+  end
+
 end
