@@ -12,7 +12,7 @@
     <%= @event.city %><br>
     <%= @event.postcode %><br>
     <%= @event.country %></p>
-    <p>You can view the event <%= link_to 'here', "localhost:3000/events/#{@event.id}" %></p>
+    <p>You can view the event <%= link_to 'here', event_url(@event.id) %></p>
 
   </body>
 </html>
