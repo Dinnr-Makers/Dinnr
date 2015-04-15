@@ -35,9 +35,18 @@ describe "Map", js: true do
       visit "/"
       find('#main-map-canvas')
       page.execute_script('testInfoWindow()')
-      expect(page.find("div#info-box")).to have_content("Pauls Birthday Party, #{event1.date.strftime('%A %_d. %B %k:%M')}")
+      expect(page.find("div#info-box")).to have_content("Pauls Birthday Party, #{event1.nice_date}")
     end
 
+    it "Shows a photo of the event - on single map" do
+      visit "/"
+      find('#main-map-canvas')
+      page.execute_script('testInfoWindow()')
+      expect(page.find("div#info-box.img")["src"]).to have_content("https://s3-us-west-2.amazonaws.com/dinnr/")
+    end
+
+    xit "Shows a photo of each event - on main map" do
+    end
 
   end
 end
