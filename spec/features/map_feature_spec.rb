@@ -38,7 +38,7 @@ describe "Map", js: true do
       expect(page.find("div#info-box")).to have_content("Pauls Birthday Party, #{event1.nice_date}")
     end
 
-    it "Shows a photo of the event - on single map" do
+    xit "Shows a photo of the event - on single map" do
       visit "/"
       find('#main-map-canvas')
       page.execute_script('testInfoWindow()')

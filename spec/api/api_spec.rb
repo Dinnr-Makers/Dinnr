@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe "API", :type => :request do
   let!(:geocoded_event){create(:event)}
-  let!(:event_with_photo{create(:event)}
+  let!(:nice_pic){create(:picture)}
+  let!(:event_pic){create(:eventpicture, event_id: geocoded_event.id, picture_id: nice_pic.id)}
 
   scenario "it serves events" do
     get "/api/v1/events/map"
@@ -24,6 +25,6 @@ describe "API", :type => :request do
 
   scenario "it serves a link if the event has a photo" do
     get "/api/v1/events/#{geocoded_event.id}/map"
-
+    assert response.body.include?(nice_pic.image.url(:thumb))
   end
 end
