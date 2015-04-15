@@ -10,6 +10,8 @@ json.features do
     json.eventpictures @pictures do |picture|
       json.pictureId picture.id
       json.thumbURL picture.image.url(:thumb)
+      json.mediumURL picture.image.url(:medium)
+      json.originalURL picture.image.url
     end
   end
 

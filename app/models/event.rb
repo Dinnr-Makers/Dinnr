@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
 
-  attr_accessor :time_format
+  attr_accessor :time_format, :eventpictures
 
   belongs_to :user
   has_many :bookings

@@ -7,7 +7,13 @@ json.features @events do |event|
     json.id event.id
     json.title event.title
     json.description event.description
-    json.eventTime event.date.strftime('%A %_d. %B %k:%M')
+    json.eventTime event.nice_date
+    json.eventpictures event.eventpictures do |picture|
+      json.pictureId picture.id
+      json.thumbURL picture.image.url(:thumb)
+      json.mediumURL picture.image.url(:medium)
+      json.originalURL picture.image.url
+    end
   end
 
   json.geometry do
