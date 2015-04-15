@@ -1,6 +1,7 @@
 class Event < ActiveRecord::Base
 
-  attr_accessor :time_format, :eventpictures
+  attr_accessor :time_format
+
 
   belongs_to :user
 

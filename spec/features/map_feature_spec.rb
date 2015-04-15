@@ -30,8 +30,6 @@ describe "Map", js: true do
   context "Tooltips" do
   let!(:event1){create(:event)}
   let!(:event2){create(:event)}
-  let!(:nice_pic){create(:picture)}
-  let!(:event_pic){create(:eventpicture, event_id: event1.id, picture_id: nice_pic.id)}
    
     it "shows title and date on frontpage" do
       visit "/"

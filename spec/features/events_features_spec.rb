@@ -131,6 +131,7 @@ feature 'events' do
       expect(page).to have_content "Test Picture"
     end
 
+
     scenario 'user can not add an image to an event if they have no images uploaded' do
       user = create(:user)
       sign_in
@@ -161,5 +162,19 @@ feature 'events' do
       expect(page).not_to have_content 'Test Picture'
     end
   end
+
+  context "Event with image has been created", js: true do
+    scenario "image is visible on frontpage" do
+      user1 = create(:user)
+      event1 = create(:event, user: user1)
+      image = create(:picture, user: user1)
+      event1.pictures << image
+      visit '/'
+      within(:css, "div.card") do
+        expect(page.find(:css, "img")["src"]).to eq(image.image.url(:medium))
+      end
+    end
+  end
+
 
 end
