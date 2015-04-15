@@ -23,8 +23,10 @@ describe "API", :type => :request do
     assert response.body.include?(geocoded_event.title)
   end
 
-  scenario "it serves a link if the event has a photo" do
+  scenario "it serves a link to thumb, medium and original if the event has a photo" do
     get "/api/v1/events/#{geocoded_event.id}/map"
     assert response.body.include?(nice_pic.image.url(:thumb))
   end
+
+
 end

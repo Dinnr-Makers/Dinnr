@@ -40,17 +40,6 @@ describe "Map", js: true do
       expect(page.find("div#info-box")).to have_content("Pauls Birthday Party, #{event1.nice_date}")
     end
 
-    it "Shows a photo of the event - on single map" do
-      visit "/events/#{event1.id}"
-      find('#single-map-canvas')
-      page.execute_script('testInfoWindow()')
-      thumblink = nice_pic.image.url(:thumb).to_s
-      expect(page.find("div#info-box.img")["src"]).to include?(thumblink)
-    end
-
-    xit "Shows a photo of each event - on main map" do
-    end
-
   end
 end
 

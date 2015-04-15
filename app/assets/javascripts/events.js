@@ -82,9 +82,14 @@ function initializeSingleMap(json) {
     var lng = json.features.geometry.coordinates[1]
     var title = json.features.properties.title
     var description = json.features.properties.description
-    var thumb = json.features.properties.eventpictures[0]
+    if(json.features.properties.eventpictures.length > 0){
+      var thumb = json.features.properties.eventpictures[0].thumbURL
+    }else{
+      var thumb = ""
+    };
+    
     var latLng = new google.maps.LatLng(lng, lat)
-    var marker = new google.maps.Marker({position: latLng, map: map, title: title, description: description})
+    var marker = new google.maps.Marker({position: latLng, map: map, title: title, description: description, photo: thumb})
     marker.infowindow = new google.maps.InfoWindow({content: title + " " + "<img src=" + thumb + ">"});
     google.maps.event.addListener(marker, 'click', function() {   
       this.infowindow.open(map, this)
