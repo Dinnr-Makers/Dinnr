@@ -1,20 +1,55 @@
-<p>Edit event</p>
+<div class="row">
 
-<%= form_for @event do |f| %>
+ <div class="form-group m6 offset-m3 col s12">
+ <h3>Edit event</h3>
+  <%= form_for @event do |f| %>
   <%= f.label :title %>
-  <%= f.text_field :title %>
+  <%= f.text_field :title, :required => true %>
 
-    <%= f.label :description %>
-  <%= f.text_field :description %>
+  <%= f.label :description %>
+  <%= f.text_field :description, :required => true %>
 
-    <%= f.label :location %>
-  <%= f.text_field :location %>
+  <% if @event.errors.any? %>
+    <% @event.errors.full_messages.each do |message| %>
+      <div class"form-error"><%= message %></div>
+    <% end %>
+  <% end %>
+  
+  <%= f.label :date %>
+  <%= f.date_field :date, class: 'datepicker', :required => true %>
+  
+  <%= f.label :time %>
+  <%= f.time_field :time, :required => true %>
 
-    <%= f.label :date %>
-  <%= f.text_field :date %>
+  <div class="input-group">
+   <div class="edit-event-form">
+      <div id="locationField">
+        <%= f.label :location %>
+        <%= f.text_field :location, class: 'form-control', id: "autocomplete", :required => true %>
+      </div>
+    </div>
+  </div>
 
-    <%= f.label :size %>
-  <%= f.text_field :size %>
+  <%= f.label :housenumber, "House Number" %>
+  <%= f.text_field :housenumber, id: "street_number", :required => true %> 
+
+  <%= f.label :street %>
+  <%= f.text_field :street, id: "route", :required => true %>
+
+  <%= f.label :city %>
+  <%= f.text_field :city, id: "locality", :required => true %>
+
+  <%= f.label :postcode %>
+  <%= f.text_field :postcode, id: "postal_code", :required => true %>
+
+  <%= f.label :country %>
+  <%= f.text_field :country, id: "country", :required => true %>
+
+  <%= f.label :size %>
+  <%= f.text_field :size, :required => true %>
 
   <%= f.submit %>
+  </div>
+
 <% end %>
+</div>
