@@ -57,13 +57,18 @@ function initializeMainMap(json) {
     var lat = json.features[ i ].geometry.coordinates[0]
     var lng = json.features[ i ].geometry.coordinates[1]
     var title = json.features[i].properties.title
-
+    if(json.features[i].properties.eventpictures.length > 0){
+      var mediumPic = json.features[i].properties.eventpictures[0].mediumURL
+    }else{
+      var mediumURL = ""
+    };
+    
     var description = json.features[i].properties.description
     var eventTime = json.features[i].properties.eventTime
     var latLng = new google.maps.LatLng(lng, lat)
     
     var marker = new google.maps.Marker({position: latLng, map: map, title: title, description: description, time: eventTime})
-    marker.infowindow = new google.maps.InfoWindow({content: title + ", " + eventTime});
+    marker.infowindow = new google.maps.InfoWindow({content: "<img src=" + mediumPic + ">" + "<br>" + title + ", " + "<br>"+ eventTime});
     google.maps.event.addListener(marker, 'click', function() {   
       this.infowindow.open(map, this)
     });
@@ -87,7 +92,6 @@ function initializeSingleMap(json) {
     }else{
       var thumb = ""
     };
-    
     var latLng = new google.maps.LatLng(lng, lat)
     var marker = new google.maps.Marker({position: latLng, map: map, title: title, description: description, photo: thumb})
     marker.infowindow = new google.maps.InfoWindow({content: title + " " + "<img src=" + thumb + ">"});
