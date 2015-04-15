@@ -7,11 +7,11 @@ json.features do
     json.id @event.id
     json.title @event.title
     json.description @event.description
-    json.eventpictures @pictures do |picture|
-      json.pictureId picture.id
-      json.thumbURL picture.image.url(:thumb)
-      json.mediumURL picture.image.url(:medium)
-      json.originalURL picture.image.url
+    json.eventpictures @event.pictures do |pic|
+      json.pictureId pic.id
+      json.thumbURL pic.image.url(:thumb)
+      json.mediumURL pic.image.url(:medium)
+      json.originalURL pic.image.url
     end
   end
 
