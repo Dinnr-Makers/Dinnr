@@ -13,6 +13,7 @@ class Event < ActiveRecord::Base
   geocoded_by :address
   after_validation :geocode
 
+  acts_as_commentable
 
   def address
     [housenumber, street, city, postcode, country].compact.join(', ')

@@ -8,6 +8,8 @@ gem 'geocoder'
 
 gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
+gem 'acts_as_commentable_with_threading'
+gem 'simple_form'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'

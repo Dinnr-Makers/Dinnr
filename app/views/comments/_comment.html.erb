@@ -1,0 +1,13 @@
+<div class="comment" id="comment-<%= comment.id %>">
+  <hr/>
+  <%= link_to "×", comment_path(comment), :method => :delete, :remote => true, :confirm => "Are you sure you want to remove this comment?", :disable_with => "×", :class => 'close' %>
+  <p>
+    <%= comment.user.first_name %>
+    <small>
+      <%= comment.nice_date %>
+    </small>
+  </p>
+  <p>
+    <%= comment.body %>
+  </p>
+</div>
