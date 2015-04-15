@@ -32,6 +32,8 @@ gem 'jbuilder', '~> 2.0'
 #Front-end dependencies
 gem "bower"
 
+gem 'rmagick', '2.13.2'
+
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
