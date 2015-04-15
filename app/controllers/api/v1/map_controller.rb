@@ -17,6 +17,7 @@ end
 
 def all_pics_for_each_of(events)
   events.each do |event|
-    event.eventpictures = Eventpicture.all.where("event_id" => event.id).map{|ep| ep.picture_id}.map{|pic|Picture.find(pic)} 
+    event.eventpictures = Eventpicture.all.where("event_id" => event.id).map{|ep| ep.picture_id}.map{|pic|Picture.find(pic)}
+    event.save 
   end
 end

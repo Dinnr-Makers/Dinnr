@@ -58,19 +58,18 @@ function initializeMainMap(json) {
     var lng = json.features[ i ].geometry.coordinates[1]
     var title = json.features[i].properties.title
     if(json.features[i].properties.eventpictures.length > 0){
-      var mediumPic = json.features[i].properties.eventpictures[0].mediumURL
+      var mediumURL = json.features[i].properties.eventpictures[0].mediumURL
     }else{
       var mediumURL = ""
     };
-    
     var description = json.features[i].properties.description
     var eventTime = json.features[i].properties.eventTime
     var latLng = new google.maps.LatLng(lng, lat)
-    
-    var marker = new google.maps.Marker({position: latLng, map: map, title: title, description: description, time: eventTime})
-    marker.infowindow = new google.maps.InfoWindow({content: "<img src=" + mediumPic + ">" + "<br>" + title + ", " + "<br>"+ eventTime});
-    google.maps.event.addListener(marker, 'click', function() {   
-      this.infowindow.open(map, this)
+    var marker = new google.maps.Marker({position: latLng, map: map, title: title, description: description, time: eventTime, photo: mediumURL})
+    var infowindow = new google.maps.InfoWindow()
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.setContent("<div class='infowindow'><img src=" + this.photo + ">" + "<br>" + this.title + ", " + "<br>"+ this.time)
+      infowindow.open(map, this)
     });
     markers.push(marker)
   };
@@ -178,6 +177,6 @@ testInfoCount = function(){
 }
 
 testInfoWindow = function(){
-  document.getElementById("info-box").innerHTML = markers[0].infowindow.content
+  document.getElementById("info-box").innerHTML = markers[0].title + ", " + markers[0].time
 }
 

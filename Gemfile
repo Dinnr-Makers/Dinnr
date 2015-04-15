@@ -5,7 +5,7 @@ gem 'devise'
 gem 'omniauth-facebook'
 
 gem 'geocoder'
-
+gem 'rmagick', '~> 2.14.0'
 gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
 
