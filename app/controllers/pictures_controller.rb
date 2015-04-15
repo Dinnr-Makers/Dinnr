@@ -2,6 +2,7 @@ class PicturesController < ApplicationController
 
 
   def index
+    @picture = Picture.new
     @pictures = Picture.all
     @pictures = @pictures.select{|p| p.user_id == current_user.id}
   end
@@ -14,7 +15,7 @@ class PicturesController < ApplicationController
     @picture = Picture.new(picture_params)
     @picture.user = current_user
     if @picture.save
-      redirect_to '/pictures'
+      redirect_to :back
     else
       render 'new'
     end
@@ -36,6 +37,7 @@ class PicturesController < ApplicationController
   end
 
   def library
+    @picture = Picture.new
     @event = Event.find(params[:event_id])
     @pictures = current_user.pictures
   end

@@ -10,4 +10,14 @@
   No pictures yet
 <% end %>
 
+<p>Upload a new picture</p>
+
+<%= form_for @picture, html: {multipart: true} do |f| %>
+  <%= f.label :image %>
+  <%= f.file_field :image %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.submit %>
+<% end %>
+
 <a href='pictures/new'>Add a picture</a>
