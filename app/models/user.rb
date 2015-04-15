@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_many :reviews
   has_many :reviewed_events, through: :reviews, source: :event
 
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, :omniauth_providers => [:facebook]
 
