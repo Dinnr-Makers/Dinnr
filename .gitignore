@@ -18,5 +18,3 @@ coverage/.resultset.json
 coverage/index.html
 vendor/assets/bower_components/
 node_modules
-/coverage/index.html
-/coverage/.resultset.json
