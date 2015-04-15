@@ -8,7 +8,7 @@ json.features @events do |event|
     json.title event.title
     json.description event.description
     json.eventTime event.nice_date
-    json.eventpictures event.eventpictures do |picture|
+    json.eventpictures event.pictures do |picture|
       json.pictureId picture.id
       json.thumbURL picture.image.url(:thumb)
       json.mediumURL picture.image.url(:medium)

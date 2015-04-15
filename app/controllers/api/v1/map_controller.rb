@@ -2,8 +2,9 @@ class API::V1::MapController < ApplicationController
   
   
   def index
-    @events = Event.all.where.not("longitude" => nil)
-    all_pics_for_each_of(@events)
+    # @events = Event.where.not("longitude" => nil)
+    # attach_pics_to_each_of(@events)
+    @events = Event.mappable_events
   end
 
   def show
@@ -15,9 +16,8 @@ end
 
 
 
-def all_pics_for_each_of(events)
+def attach_pics_to_each_of(events)
   events.each do |event|
     event.eventpictures = Eventpicture.all.where("event_id" => event.id).map{|ep| ep.picture_id}.map{|pic|Picture.find(pic)}
-    event.save 
   end
 end

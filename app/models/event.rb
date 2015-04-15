@@ -3,16 +3,21 @@ class Event < ActiveRecord::Base
   attr_accessor :time_format, :eventpictures
 
   belongs_to :user
+
   has_many :bookings
   has_many :eventpictures
+  has_many :pictures, through: :eventpictures
   has_many :reviews
+
   validates :date, presence: true
   validate :future?
+  
   serialize :guests, Array
   before_save :compose_date
   geocoded_by :address
   after_validation :geocode
 
+  scope :mappable_events, -> { where.not(longitude: nil) }
 
   def address
     [housenumber, street, city, postcode, country].compact.join(', ')
@@ -35,7 +40,6 @@ class Event < ActiveRecord::Base
       date.to_s
     end
   end
-
 
   def future?
     if date < Date.today
