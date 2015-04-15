@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col s12 main-map" id="map-canvas"></div>
+  <div class="col s12 map" id="main-map-canvas"></div>
   <div id="info-box"></div>
 </div>
 <div> 
@@ -21,8 +21,7 @@
         </tr>
         <tr>
           <th>When?</th>
-          <td><%= event.date_format %><br>
-              <%= event.time_format %>
+          <td><%= event.nice_date %>
           </td>
         </tr>
         <tr>

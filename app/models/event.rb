@@ -5,12 +5,14 @@ class Event < ActiveRecord::Base
   belongs_to :user
   has_many :bookings
   has_many :eventpictures
+  has_many :reviews
   validates :date, presence: true
   validate :future?
   serialize :guests, Array
-
+  before_save :compose_date
   geocoded_by :address
   after_validation :geocode
+
 
   def address
     [housenumber, street, city, postcode, country].compact.join(', ')
@@ -26,26 +28,29 @@ class Event < ActiveRecord::Base
     guests.delete(guest)
   end
 
-  def date_format
+  def nice_date
     if date.respond_to?(:strftime)
-      date.strftime('%a %d %b')
+      date.strftime('%A %_d. %B %k:%M')
     else
       date.to_s
     end
   end
 
-  def time_format
-    if time.respond_to?(:strftime)
-      time.strftime("%I:%M%p")
-    else
-      time.to_s
-    end
-  end
 
   def future?
     if date < Date.today
       errors.add(:date, "is not valid")
     end
+  end
+
+  def happened?
+    date < Date.today
+  end
+
+  def compose_date
+    minutes = time.strftime("%M").to_i
+    t = Time.gm(date.year, date.month, date.day, time.hour, minutes)
+    self.date = t
   end
 
 end

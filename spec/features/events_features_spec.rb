@@ -1,37 +1,10 @@
 require 'rails_helper'
 
-def user_sign_up
-  visit '/'
-  click_link('Sign up', match: :first)
-  fill_in('Email', with: 'test@example.com')
-  fill_in('Password', with: 'testtest')
-  fill_in('Password confirmation', with: 'testtest')
-  click_button('Sign up')
-end
-
-def create_event
-  visit '/events'
-  click_link('Create event', match: :first)
-  fill_in 'Title', with: 'Dinner with Thomas'
-  fill_in 'Description', with: "Dinner at Thomas' house"
-  fill_in 'autocomplete', with: '16 woodchurch road'
-  fill_in 'Date', with: '2020-04-30'
-  fill_in 'Time', with: '17:20:00.000'
-  fill_in 'Size', with: '2'
-  click_button 'Create Event'
-end
-
-def sign_in
-  visit '/'
-  click_link('Sign in', match: :first)
-  fill_in 'Email', with: 'john@doe.com'
-  fill_in 'Password', with: 'testtest'
-  click_button('Log in')
-end
-
 feature 'events' do
   context 'no events have been added' do
-    scenario 'should display a prompt to add an event' do
+
+    scenario 'displays a prompt to add an event' do
+      user_sign_up
       visit '/events'
       expect(page).to have_content 'No events yet'
       expect(page).to have_link 'Create event'
@@ -39,7 +12,7 @@ feature 'events' do
   end
 
   context 'events have been added' do
-    scenario 'display events' do
+    scenario 'displays events when an event has been added' do
       event = create(:event)
       visit '/events'
       expect(page).to have_content event.title
@@ -55,14 +28,14 @@ feature 'events' do
       expect(current_path).to eq '/events'
     end
 
-    scenario "Shows error message if date is invalid" do
+    scenario "shows an error message if the date is invalid" do
       user_sign_up
       visit '/events'
       click_link('Create event', match: :first)
       fill_in 'Title', with: 'Dinner with Thomas'
       fill_in 'Description', with: "Dinner at Thomas' house"
       fill_in 'autocomplete', with: '16 woodchurch road'
-      fill_in 'Date', with: '1984-04-30'
+      fill_in 'Date', with: '1984-12-30'
       fill_in 'Time', with: '17:20:00.000'
       fill_in 'Size', with: '2'
       click_button 'Create Event'
@@ -80,10 +53,21 @@ feature 'events' do
       expect(current_path).to eq "/events/#{dinwitht.id}"
     end
 
-    scenario 'should show that there are no guests when created' do
+    scenario 'shows that there are no guests when created' do
       visit '/events'
       click_link (dinwitht.title)
       expect(page).to have_content "No guests yet"
+    end
+
+
+    it "shows a user's avatar as a thumbnail if they have joined the event" do
+      party = create(:event)
+      user_sign_up
+      visit '/'
+      click_link(party.title, match: :first)
+      click_link('Join Event')
+      find(:css, "img.avatar")
+      expect(page.find(:css, "img.avatar")['src']).to eq "https://s3-us-west-2.amazonaws.com/dinnr/pictures/chefhatsmall.jpg"
     end
   end
 
@@ -157,6 +141,24 @@ feature 'events' do
       expect(page).to have_content 'Select Image to add to Dinner with Thomas'
       expect(page).to have_content "No pictures available to add to event"
       expect(page).to have_content "Upload Pictures"
+    end
+  end
+
+  context 'deleting images from events' do
+
+    scenario 'user can delete their own image from an event' do
+      user = create(:user)
+      sign_in
+      image = create(:picture)
+      user.pictures << image
+      create_event
+      visit '/'
+      click_link('Dinner with Thomas', match: :first)
+      click_link("Add Image")
+      expect(page).to have_content 'Select Image to add to Dinner with Thomas'
+      click_link 'Add Test Picture'
+      click_link 'Remove Test Picture'
+      expect(page).not_to have_content 'Test Picture'
     end
   end
 

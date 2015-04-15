@@ -17,40 +17,82 @@ $(document).ready( function() {
       initializeAutocomplete();
     };
     
-    if($("#map-canvas").length > 0){
-      initializeMap();
+    if($("#main-map-canvas").length > 0){
+      getGeoDataMain('/api/v1/events/map');
+    }
+
+    if($("#single-map-canvas").length > 0){
+      var eventId = $("#single-map-canvas").data("id")
+      getGeoDataSingle('/api/v1/events/' + eventId + '/map');
     }
 });
 
 
+//Maps: Single map for event pages and main map on front page
 
-var map;
-function initializeMap() {
-  // Create a simple map.
-  map = new google.maps.Map(document.getElementById('map-canvas'), {
-    zoom: 10
-  });
-  // Load a GeoJSON from the same server as our demo.
-  map.data.loadGeoJson('/api/v1/events/map');
+  var map;
+  var markers = [];
+  var getGeoDataMain = function(url) {
+    $.getJSON( url, function(json){
+       initializeMainMap(json) 
+    })
+  };
 
-  google.maps.event.addListener(map.data, 'addfeature', function(event_loc) {
-    if (event_loc.feature.getGeometry().getType() === 'Point') {
-      map.setCenter(event_loc.feature.getGeometry().get());
-    }
+  var getGeoDataSingle = function(url) {
+    $.getJSON( url, function(json){
+       initializeSingleMap(json) 
+    })
+  };
+       
+
+
+function initializeMainMap(json) {
+  map = new google.maps.Map(document.getElementById("main-map-canvas"), {
+    zoom: 12,
+    center: new google.maps.LatLng(json.features[0].geometry.coordinates[1], json.features[0].geometry.coordinates[0])
   });
 
-  //Create info window that pops up when you click the marker
-  var infowindow = new google.maps.InfoWindow();
-  map.data.addListener('click', function(event) {
-    var windowcontent = event.feature.getProperty('title') + event.feature.getProperty('description');
-    infowindow.setContent("<div class='window-thing' style='width:150px;'>"+ windowcontent +"</div>");
-    infowindow.setPosition(event.feature.getGeometry().get());
-    infowindow.setOptions({pixelOffset: new google.maps.Size(0,-30)});
-    infowindow.open(map);
+
+  for (var i = json.features.length - 1; i >= 0; i--) {
+    var lat = json.features[ i ].geometry.coordinates[0]
+    var lng = json.features[ i ].geometry.coordinates[1]
+    var title = json.features[i].properties.title
+    var description = json.features[i].properties.description
+    var eventTime = json.features[i].properties.eventTime
+    var latLng = new google.maps.LatLng(lng, lat)
+    
+    var marker = new google.maps.Marker({position: latLng, map: map, title: title, description: description, time: eventTime})
+    marker.infowindow = new google.maps.InfoWindow({content: title + ", " + eventTime});
+    google.maps.event.addListener(marker, 'click', function() {   
+      this.infowindow.open(map, this)
+    });
+    markers.push(marker)
+  };
+};
+
+function initializeSingleMap(json) {
+  map = new google.maps.Map(document.getElementById("single-map-canvas"), {
+    zoom: 12,
+    center: new google.maps.LatLng(json.features.geometry.coordinates[1], json.features.geometry.coordinates[0])
   });
+
+
+    var lat = json.features.geometry.coordinates[0]
+    var lng = json.features.geometry.coordinates[1]
+    var title = json.features.properties.title
+    var description = json.features.properties.description
+    var latLng = new google.maps.LatLng(lng, lat)
+    var marker = new google.maps.Marker({position: latLng, map: map, title: title, description: description})
+    marker.infowindow = new google.maps.InfoWindow({content: marker.title});
+    google.maps.event.addListener(marker, 'click', function() {   
+      this.infowindow.open(map, this)
+    });
+    markers.push(marker)
+  
 };
 
 
+//Autocomplete
 
 var placeSearch, autocomplete;
 var componentForm = {
@@ -114,4 +156,17 @@ function geolocate() {
   }
 }
 // [END region_geolocation]
+
+// Test helper methods
+testInfo = function(){
+  document.getElementById("info-box").innerHTML = markers[0].title 
+}
+
+testInfoCount = function(){
+  document.getElementById("info-box").innerHTML = markers.length 
+}
+
+testInfoWindow = function(){
+  document.getElementById("info-box").innerHTML = markers[0].infowindow.content
+}
 
