@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Thank you <%= @user.first_name %></h1>
+    <p>You have successfully joined <%= @event.title %>.</p>
+    <p><%= @event.description %></p>
+    <p><%= @event.nice_date %>
+    <p><%= @event.housenumber %> <%= @event.street %><br>
+    <%= @event.city %><br>
+    <%= @event.postcode %><br>
+    <%= @event.country %></p>
+    <p>You can view the event <%= link_to 'here', "localhost:3000/events/#{@event.id}" %></p>
+
+  </body>
+</html>
