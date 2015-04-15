@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/christopherward/Projects/dinnr/spec/api/api_spec.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/spec/api/api_spec.rb": [
         1,
         null,
         1,
@@ -26,7 +26,7 @@
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/spec/rails_helper.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/spec/rails_helper.rb": [
         null,
         1,
         1,
@@ -91,7 +91,7 @@
         1,
         1,
         null,
-        5178,
+        5399,
         null,
         null,
         null,
@@ -123,14 +123,14 @@
         1,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/config/environment.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/config/environment.rb": [
         null,
         1,
         null,
         null,
         1
       ],
-      "/Users/christopherward/Projects/dinnr/config/application.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/config/application.rb": [
         1,
         null,
         1,
@@ -172,12 +172,12 @@
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/config/boot.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/config/boot.rb": [
         1,
         null,
         1
       ],
-      "/Users/christopherward/Projects/dinnr/config/environments/test.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/config/environments/test.rb": [
         1,
         null,
         null,
@@ -223,7 +223,7 @@
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/config/initializers/assets.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/config/initializers/assets.rb": [
         null,
         null,
         null,
@@ -236,7 +236,7 @@
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/config/initializers/backtrace_silencers.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/config/initializers/backtrace_silencers.rb": [
         null,
         null,
         null,
@@ -245,12 +245,12 @@
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/config/initializers/cookies_serializer.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/config/initializers/cookies_serializer.rb": [
         null,
         null,
         1
       ],
-      "/Users/christopherward/Projects/dinnr/config/initializers/devise.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/config/initializers/devise.rb": [
         1,
         null,
         1,
@@ -280,13 +280,13 @@
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/config/initializers/filter_parameter_logging.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/config/initializers/filter_parameter_logging.rb": [
         null,
         null,
         null,
         1
       ],
-      "/Users/christopherward/Projects/dinnr/config/initializers/inflections.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/config/initializers/inflections.rb": [
         null,
         null,
         null,
@@ -305,22 +305,22 @@
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/config/initializers/mime_types.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/config/initializers/mime_types.rb": [
         null,
         null,
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/config/initializers/paperclip.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/config/initializers/paperclip.rb": [
         1,
         1
       ],
-      "/Users/christopherward/Projects/dinnr/config/initializers/session_store.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/config/initializers/session_store.rb": [
         null,
         null,
         1
       ],
-      "/Users/christopherward/Projects/dinnr/config/initializers/wrap_parameters.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/config/initializers/wrap_parameters.rb": [
         null,
         null,
         null,
@@ -336,7 +336,7 @@
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/test/factories/bookings.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/test/factories/bookings.rb": [
         1,
         1,
         1,
@@ -344,7 +344,7 @@
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/test/factories/events.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/test/factories/events.rb": [
         1,
         1,
         1,
@@ -353,25 +353,6 @@
         1,
         1,
         1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
-        null
-      ],
-      "/Users/christopherward/Projects/dinnr/test/factories/pictures.rb": [
-        1,
-        1,
-        1,
-        null,
-        null,
-        null
-      ],
-      "/Users/christopherward/Projects/dinnr/test/factories/review.rb": [
         1,
         1,
         1,
@@ -382,7 +363,26 @@
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/test/factories/users.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/test/factories/pictures.rb": [
+        1,
+        1,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/Users/makerslaptop19/makers/Dinnr/test/factories/review.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/Users/makerslaptop19/makers/Dinnr/test/factories/users.rb": [
         1,
         1,
         1,
@@ -393,7 +393,7 @@
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/config/routes.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/config/routes.rb": [
         1,
         null,
         1,
@@ -434,7 +434,7 @@
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/app/models/user.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/app/models/user.rb": [
         1,
         null,
         1,
@@ -458,8 +458,8 @@
         null,
         null,
         1,
-        62,
-        62,
+        66,
+        66,
         0,
         null,
         null,
@@ -472,35 +472,35 @@
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/app/helpers/application_helper.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/app/helpers/bookings_helper.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/app/helpers/bookings_helper.rb": [
         1,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/app/helpers/eventpictures_helper.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/app/helpers/eventpictures_helper.rb": [
         1,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/app/helpers/events_helper.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/app/helpers/events_helper.rb": [
         1,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/app/helpers/pictures_helper.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/app/helpers/pictures_helper.rb": [
         1,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/app/helpers/reviews_helper.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/app/helpers/reviews_helper.rb": [
         1,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/app/helpers/users_helper.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/app/helpers/users_helper.rb": [
         1,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/spec/support/test_methods.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/spec/support/test_methods.rb": [
         1,
         8,
         8,
@@ -531,34 +531,25 @@
         null,
         null,
         1,
-        16,
-        16,
-        16,
-        16,
-        16,
-        16,
-        16,
-        16,
+        17,
+        17,
+        17,
+        17,
+        17,
+        17,
+        17,
+        17,
         null,
         null,
         1,
-        4,
-        4,
-        4,
-        4,
-        4,
-        4,
-        4,
-        4,
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
         null,
         null,
         1,
@@ -571,15 +562,24 @@
         null,
         null,
         1,
-        4,
-        4,
-        4,
-        4,
-        4,
-        4,
-        4,
-        4,
-        4,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
         null,
         null,
         null,
@@ -633,17 +633,17 @@
         null,
         null,
         1,
-        5,
-        5,
+        6,
+        6,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/spec/features/bookings_features_spec.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/spec/features/bookings_features_spec.rb": [
         1,
         null,
         1,
         null,
         1,
-        3,
+        4,
         null,
         null,
         1,
@@ -655,13 +655,6 @@
         1,
         1,
         1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
         1,
         1,
         1,
@@ -673,6 +666,24 @@
         1,
         1,
         1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
         1,
         1,
         1,
@@ -734,7 +745,7 @@
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/spec/features/events_features_spec.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/spec/features/events_features_spec.rb": [
         1,
         null,
         1,
@@ -901,7 +912,7 @@
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/spec/features/map_feature_spec.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/spec/features/map_feature_spec.rb": [
         1,
         null,
         1,
@@ -948,7 +959,7 @@
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/spec/features/pictures_features_spec.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/spec/features/pictures_features_spec.rb": [
         1,
         null,
         1,
@@ -1011,7 +1022,7 @@
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/spec/features/reviews_feature_spec.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/spec/features/reviews_feature_spec.rb": [
         1,
         null,
         1,
@@ -1078,7 +1089,7 @@
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/spec/features/users_feature_spec.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/spec/features/users_feature_spec.rb": [
         1,
         null,
         1,
@@ -1209,7 +1220,7 @@
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/spec/models/booking_spec.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/spec/models/booking_spec.rb": [
         1,
         null,
         1,
@@ -1219,7 +1230,7 @@
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/app/models/booking.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/app/models/booking.rb": [
         1,
         null,
         1,
@@ -1227,7 +1238,7 @@
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/spec/models/event_spec.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/spec/models/event_spec.rb": [
         1,
         1,
         null,
@@ -1293,7 +1304,7 @@
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/app/models/event.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/app/models/event.rb": [
         1,
         null,
         1,
@@ -1311,7 +1322,7 @@
         null,
         null,
         1,
-        49,
+        50,
         null,
         null,
         1,
@@ -1325,8 +1336,8 @@
         null,
         null,
         1,
-        126,
-        126,
+        133,
+        133,
         null,
         0,
         null,
@@ -1334,56 +1345,34 @@
         null,
         null,
         1,
-        49,
+        50,
         2,
         null,
         null,
         null,
         1,
-        36,
+        38,
         null,
         null,
         1,
-        52,
-        52,
-        52,
+        53,
+        53,
+        53,
         null,
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/spec/models/eventpicture_spec.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/spec/models/eventpicture_spec.rb": [
         1,
         null,
         1,
         null,
-        2,
-        2,
-        null,
-        null
-      ],
-      "/Users/christopherward/Projects/dinnr/app/models/eventpicture.rb": [
-        1,
-        null,
-        1,
-        1,
-        null,
-        null
-      ],
-      "/Users/christopherward/Projects/dinnr/spec/models/picture_spec.rb": [
-        1,
-        null,
-        1,
-        null,
-        2,
         2,
         2,
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/app/models/picture.rb": [
-        1,
-        null,
-        1,
+      "/Users/makerslaptop19/makers/Dinnr/app/models/eventpicture.rb": [
         1,
         null,
         1,
@@ -1391,7 +1380,29 @@
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/spec/models/review_spec.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/spec/models/picture_spec.rb": [
+        1,
+        null,
+        1,
+        null,
+        2,
+        2,
+        2,
+        null,
+        null
+      ],
+      "/Users/makerslaptop19/makers/Dinnr/app/models/picture.rb": [
+        1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/makerslaptop19/makers/Dinnr/spec/models/review_spec.rb": [
         1,
         null,
         1,
@@ -1409,7 +1420,7 @@
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/app/models/review.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/app/models/review.rb": [
         1,
         null,
         1,
@@ -1418,7 +1429,7 @@
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/spec/models/user_spec.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/spec/models/user_spec.rb": [
         1,
         null,
         1,
@@ -1431,7 +1442,7 @@
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/app/controllers/api/v1/map_controller.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/app/controllers/api/v1/map_controller.rb": [
         1,
         1,
         5,
@@ -1442,34 +1453,20 @@
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/app/controllers/application_controller.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/app/controllers/application_controller.rb": [
         1,
         null,
         null,
         1,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/app/controllers/events_controller.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/app/controllers/events_controller.rb": [
         1,
         null,
         1,
         null,
         1,
-        146,
-        null,
-        null,
-        1,
-        12,
-        null,
-        null,
-        1,
-        12,
-        12,
-        12,
-        11,
-        null,
-        1,
-        null,
+        155,
         null,
         null,
         1,
@@ -1477,25 +1474,35 @@
         null,
         null,
         1,
-        35,
-        35,
-        67,
-        35,
-        35,
-        39,
+        13,
+        13,
+        13,
+        12,
+        null,
+        1,
+        null,
+        null,
+        null,
+        1,
+        14,
+        null,
+        null,
+        1,
+        37,
+        37,
+        71,
+        37,
+        37,
+        41,
+        null,
+        null,
+        1,
+        1,
         null,
         null,
         1,
         1,
         1,
-        0,
-        0,
-        null,
-        null,
-        null,
-        1,
-        1,
-        1,
         1,
         null,
         null,
@@ -1505,21 +1512,18 @@
         1,
         1,
         1,
-        null,
-        0,
-        0,
         null,
         null,
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/app/controllers/registrations_controller.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/app/controllers/registrations_controller.rb": [
         1,
         null,
         1,
         null,
         1,
-        31,
+        33,
         null,
         null,
         1,
@@ -1527,46 +1531,44 @@
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/app/controllers/bookings_controller.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/app/controllers/bookings_controller.rb": [
         1,
         null,
         1,
-        6,
-        6,
-        6,
-        6,
-        6,
+        7,
+        7,
+        7,
+        7,
+        7,
         1,
         null,
+        7,
         6,
-        5,
-        5,
-        5,
-        5,
-        null,
-        null,
-        null,
+        6,
+        6,
         6,
         null,
         null,
-        1,
+        null,
+        7,
         null,
         null,
         1,
-        0,
-        0,
-        0,
-        0,
-        0,
         null,
-        0,
         null,
-        0,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        null,
+        1,
         null,
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/app/controllers/pictures_controller.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/app/controllers/pictures_controller.rb": [
         1,
         null,
         null,
@@ -1611,7 +1613,7 @@
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/app/controllers/eventpictures_controller.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/app/controllers/eventpictures_controller.rb": [
         1,
         null,
         1,
@@ -1635,7 +1637,7 @@
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/app/controllers/reviews_controller.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/app/controllers/reviews_controller.rb": [
         1,
         null,
         1,
@@ -1671,7 +1673,7 @@
         null,
         null
       ],
-      "/Users/christopherward/Projects/dinnr/app/controllers/users_controller.rb": [
+      "/Users/makerslaptop19/makers/Dinnr/app/controllers/users_controller.rb": [
         1,
         null,
         1,
@@ -1681,6 +1683,6 @@
         null
       ]
     },
-    "timestamp": 1429086138
+    "timestamp": 1429087154
   }
 }
