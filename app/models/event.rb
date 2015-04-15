@@ -20,6 +20,8 @@ class Event < ActiveRecord::Base
 
   scope :mappable_events, -> { where.not(longitude: nil) }
 
+  acts_as_commentable
+
   def address
     [housenumber, street, city, postcode, country].compact.join(', ')
   end

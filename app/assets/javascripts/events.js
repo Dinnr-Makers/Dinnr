@@ -16,6 +16,10 @@ $(document).ready( function() {
       $('.toc-wrapper').pushpin({ offset: $('.toc-wrapper').offset().top });
       initializeAutocomplete();
     };
+
+    if($('.edit-event-form').length > 0){
+      initializeAutocomplete();
+    }
     
     if($("#main-map-canvas").length > 0){
       getGeoDataMain('/api/v1/events/map');

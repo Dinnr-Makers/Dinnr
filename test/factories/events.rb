@@ -6,7 +6,7 @@ FactoryGirl.define do
     date '2020-04-30'
     time '17:20:00.000'
     size 4
-    user_id nil
+    # user_id nil
     housenumber "22"
     street "Sancroft St"
     city "London"

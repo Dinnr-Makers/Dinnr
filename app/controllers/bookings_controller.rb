@@ -13,6 +13,9 @@ class BookingsController < ApplicationController
           @booking.user = current_user
           @booking.event = @event
           @booking.save
+          options = {user: current_user, event: @event}
+          JoinEventMailer.join_email(options).deliver_now
+          JoinEventMailer.host_email(options).deliver_now
         end
       end
     end
@@ -26,9 +29,7 @@ class BookingsController < ApplicationController
     @event = Event.find(params[:event_id])
     @bookings = Booking.where("event_id = #{@event.id}")
     @booking = @bookings.select{|booking| booking.user == current_user}
-    if @booking.length == 0
-      flash[:notice] = "You have not joined this event yet"
-    else
+    if @booking.length != 0
       @booking.first.destroy
     end
     redirect_to "/events"

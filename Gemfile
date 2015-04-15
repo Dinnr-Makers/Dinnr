@@ -8,6 +8,8 @@ gem 'geocoder'
 gem 'rmagick', '~> 2.14.0'
 gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
+gem 'acts_as_commentable_with_threading'
+gem 'simple_form'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
@@ -66,6 +68,7 @@ end
 
 group :test do
 
+  gem 'simplecov', :require => false
   gem 'rspec-rails'
   gem 'capybara'
   gem 'rspec-collection_matchers'
