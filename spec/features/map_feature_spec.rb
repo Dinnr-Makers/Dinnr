@@ -30,6 +30,8 @@ describe "Map", js: true do
   context "Tooltips" do
   let!(:event1){create(:event)}
   let!(:event2){create(:event)}
+  let!(:nice_pic){create(:picture)}
+  let!(:event_pic){create(:eventpicture, event_id: event1.id, picture_id: nice_pic.id)}
    
     it "shows title and date on frontpage" do
       visit "/"
@@ -38,11 +40,12 @@ describe "Map", js: true do
       expect(page.find("div#info-box")).to have_content("Pauls Birthday Party, #{event1.nice_date}")
     end
 
-    xit "Shows a photo of the event - on single map" do
-      visit "/"
-      find('#main-map-canvas')
+    it "Shows a photo of the event - on single map" do
+      visit "/events/#{event1.id}"
+      find('#single-map-canvas')
       page.execute_script('testInfoWindow()')
-      expect(page.find("div#info-box.img")["src"]).to have_content("https://s3-us-west-2.amazonaws.com/dinnr/")
+      thumblink = nice_pic.image.url(:thumb).to_s
+      expect(page.find("div#info-box.img")["src"]).to include?(thumblink)
     end
 
     xit "Shows a photo of each event - on main map" do

@@ -57,6 +57,7 @@ function initializeMainMap(json) {
     var lat = json.features[ i ].geometry.coordinates[0]
     var lng = json.features[ i ].geometry.coordinates[1]
     var title = json.features[i].properties.title
+
     var description = json.features[i].properties.description
     var eventTime = json.features[i].properties.eventTime
     var latLng = new google.maps.LatLng(lng, lat)
@@ -81,9 +82,10 @@ function initializeSingleMap(json) {
     var lng = json.features.geometry.coordinates[1]
     var title = json.features.properties.title
     var description = json.features.properties.description
+    var thumb = json.features.properties.eventpictures[0]
     var latLng = new google.maps.LatLng(lng, lat)
     var marker = new google.maps.Marker({position: latLng, map: map, title: title, description: description})
-    marker.infowindow = new google.maps.InfoWindow({content: marker.title});
+    marker.infowindow = new google.maps.InfoWindow({content: title + " " + "<img src=" + thumb + ">"});
     google.maps.event.addListener(marker, 'click', function() {   
       this.infowindow.open(map, this)
     });
