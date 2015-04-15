@@ -14,7 +14,7 @@ Devise.setup do |config|
 
   config.stretches = Rails.env.test? ? 1 : 10
 
-  config.reconfirmable = true
+  config.reconfirmable = false
 
   config.expire_all_remember_me_on_sign_out = true
 
@@ -24,5 +24,6 @@ Devise.setup do |config|
 
   config.sign_out_via = :delete
 
+  config.allow_unconfirmed_access_for = 365.days
 
 end

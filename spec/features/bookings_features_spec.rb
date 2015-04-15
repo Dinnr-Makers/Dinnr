@@ -44,6 +44,17 @@ context 'user signed in and on the home page' do
     expect(page).to have_content "Event is full you are unable to join at the moment"
   end
 
+    it 'lets a user leave an event' do
+    visit '/'
+    user_one_create_event
+    click_link("Sign out", match: :first)
+    user_two_sign_up
+    join_event
+    expect(page).to have_content 'alice'
+    click_link 'Leave Event'
+    expect(page).not_to have_content 'alice'
+  end
+
 end
 
 context 'user not signed in and on an event page' do
