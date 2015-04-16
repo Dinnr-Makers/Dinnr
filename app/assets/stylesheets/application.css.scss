@@ -13,17 +13,18 @@
  *= require_self
  */
 
+$roboto-font-path: "../assets/roboto/";
 $icons-font-path: "../assets/material-design-icons/";
 @import 'materialize/sass/materialize.scss';
 
 
 html{  
-  font-family: "Brown", bold, sans-serif;
+  font-family: "Brown", sans-serif;
   font-weight: normal;
   color: rgba(0, 0, 0, 0.87)
 }
 
 @font-face {
   font-family: "Brown";
-  src: url("../assets/fonts/brown/Brown-Regular.otf") format("truetype");
-   }
+  src: font-url("brown/Brown-Regular.otf") format("truetype");
+}
