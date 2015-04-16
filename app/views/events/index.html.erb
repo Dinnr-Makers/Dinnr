@@ -2,59 +2,47 @@
   <div class="col s12 map" id="main-map-canvas"></div>
   <div id="info-box"></div>
 </div>
-<div> 
-</div>
 <div class="row">
 <% if @events.any? %>
   <% @events.each do |event| %>
 <div class="panel col s12 m6 l4">
-  <div class="card blue-grey lighten-5">
+  <div class="card teal lighten-4">
     <div class="card-image">
       <% if event.pictures.any? %>
-        <%= image_tag event.pictures[0].image.url(:medium) %>  
+        <%= image_tag event.pictures[0].image.url(:medium), class: 'responsive-img' %>
       <% end %>
     </div>
-  <div class="card-content ">
-    <span class="card-title"><%= link_to event.title, event_path(event)%></span>
-    <table>
-      <tbody>
-        <tr>
-          <th>Where?</th>
-          <td><%= event.location %></td>
-        </tr>
-        <tr>
-          <th>When?</th>
-          <td><%= event.nice_date %>
-          </td>
-        </tr>
-        <tr>
-          <th>What?</th>
-          <td><%= event.description %></td>
-        </tr>
-        <tr>
-          <th>How many?</th>
-          <td><%= event.size %></td>
-        </tr>
-        <tr>
-          <th>How much?</th>
-          <td>....Price....</td>
-        </tr>
-      </tbody>
-    </table>
-    <div>
-    <% if user_signed_in? %>
-
-    </div>
-    <div class="card-action">
-      <%= link_to "Join Event", new_event_booking_path(event.id) %>
-      <%= link_to "Leave Event", leave_event_bookings_path(event.id) %>
-    <% end %>
-    </div>
-
-
-
-        </div>
+    <div class="card-content ">
+      <span class="card-title"><%= link_to event.title, event_path(event)%></span>
+      <table>
+        <tbody>
+          <tr>
+            <td><%= event.description %></td>
+          </tr>
+            <td><%= event.nice_date %>
+            </td>
+          </tr>
+          <tr>
+            <td><%= event.location %></td>
+          </tr>
+          <tr>
+            <td><%= event.size %></td>
+          </tr>
+        </tbody>
+      </table>
+      <div>
+      <% if user_signed_in? %>
       </div>
-    </div><% end %><% else %>
-    <p>No events yet</p><% end %>
-  </div>
+      <div class="card-action">
+        <%= link_to "Join Event", new_event_booking_path(event.id) %>
+        <%= link_to "Leave Event", leave_event_bookings_path(event.id) %>
+      <% end %>
+      </div>
+
+
+
+          </div>
+        </div>
+      </div><% end %><% else %>
+      <p>No events yet</p><% end %>
+    </div>
