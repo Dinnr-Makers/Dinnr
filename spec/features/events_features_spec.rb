@@ -134,7 +134,7 @@ feature 'events' do
       click_link("Add Image")
       expect(page).to have_content 'Select Image to add to Dinner with Thomas'
       click_link 'Add Test Picture'
-      expect(page).to have_content "Test Picture"
+      expect(page.find(:css, "img")["src"]).to eq(image.image.url)
     end
 
 
