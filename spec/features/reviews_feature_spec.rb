@@ -61,5 +61,15 @@ feature 'reviewing' do
     expect(page).not_to have_link "Edit"
   end
 
+  scenario 'users name is added to their review' do
+    makers_drinks
+    makers_drinks.save(validate: false)
+    create_user_john
+    ticket
+    sign_in
+    leave_review("so so",3)
+    expect(page).to have_content("John:")
+  end
+
 
 end

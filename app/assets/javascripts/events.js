@@ -36,7 +36,13 @@ $(document).ready( function() {
       });
     }
 
-        
+    if($("#event-container").length > 0){
+      var $container = $('#event-container');
+      // initialize Masonry
+      $container.masonry({
+        itemSelector: '.panel'
+      });
+    };
 });
 
 
@@ -67,9 +73,10 @@ function initializeMainMap(json) {
     mapTypeControl: false,
     streetViewControl: false,
     overviewMapControl: false,
-    styles: [{"featureType":"landscape.natural","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#e0efef"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"hue":"#1900ff"},{"color":"#c0e8e8"}]},{"featureType":"road","elementType":"geometry","stylers":[{"lightness":100},{"visibility":"simplified"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"visibility":"on"},{"lightness":700}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#7dcdcd"}]}]
+    styles: [{"featureType":"administrative.locality","elementType":"all","stylers":[{"hue":"#2c2e33"},{"saturation":7},{"lightness":19},{"visibility":"on"}]},{"featureType": "poi","stylers": [{"visibility": "off"}]},{"featureType":"landscape","elementType":"all","stylers":[{"hue":"#ffffff"},{"saturation":-100},{"lightness":100},{"visibility":"simplified"}]},{"featureType":"road","elementType":"geometry","stylers":[{"hue":"#bbc0c4"},{"saturation":-53},{"lightness":31}]},{"featureType":"road","stylers":[{"hue":"#bbc0c4"},{"saturation":-93},{"lightness":31},{"visibility":"on"}]},{"featureType":"road.arterial","stylers":[{"hue":"#bbc0c4"},{"saturation":-93},{"lightness":-2},{"visibility":"simplified"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"hue":"#e9ebed"},{"saturation":-90},{"lightness":-8},{"visibility":"simplified"}]},{"featureType":"transit"},{"featureType":"water","elementType":"all","stylers":[{"hue":"#e9ebed"},{"saturation":-78},{"lightness":67},{"visibility":"simplified"}]}]
   }
 
+  
   map = new google.maps.Map(document.getElementById("main-map-canvas"), mapOptions);
 
   for (var i = json.features.length - 1; i >= 0; i--) {
@@ -77,17 +84,18 @@ function initializeMainMap(json) {
     var lng = json.features[ i ].geometry.coordinates[1]
     var title = json.features[i].properties.title
     if(json.features[i].properties.eventpictures.length > 0){
-      var mediumURL = json.features[i].properties.eventpictures[0].mediumURL
+      var mediumURL = json.features[i].properties.eventpictures[0].thumbURL
     }else{
       var mediumURL = ""
     };
+    var id = json.features[i].id
     var description = json.features[i].properties.description
     var eventTime = json.features[i].properties.eventTime
     var latLng = new google.maps.LatLng(lng, lat)
-    var marker = new google.maps.Marker({position: latLng, map: map, title: title, description: description, time: eventTime, photo: mediumURL})
+    var marker = new google.maps.Marker({position: latLng, map: map, title: title, description: description, time: eventTime, photo: mediumURL, id: id})
     var infowindow = new google.maps.InfoWindow()
     google.maps.event.addListener(marker, 'click', function() {
-      infowindow.setContent("<div class='infowindow'><img src=" + this.photo + ">" + "<br>" + this.title + ", " + "<br>"+ this.time)
+      infowindow.setContent("<div class='infowindow'><img class='responsive-img' src=" + this.photo + ">" + "<br>" + this.title + ", " + "<br>"+ this.time + "<br><a href='/events/" + this.id +"'>More</a></div>")
       infowindow.open(map, this)
     });
     markers.push(marker)
@@ -188,14 +196,14 @@ function geolocate() {
 
 // Test helper methods
 testInfo = function(){
-  document.getElementById("info-box").innerHTML = markers[0].title 
-}
+  document.getElementById("info-box").innerHTML = markers[0].title;
+};
 
 testInfoCount = function(){
-  document.getElementById("info-box").innerHTML = markers.length 
-}
+  document.getElementById("info-box").innerHTML = markers.length;
+};
 
 testInfoWindow = function(){
-  document.getElementById("info-box").innerHTML = markers[0].title + ", " + markers[0].time
-}
+  document.getElementById("info-box").innerHTML = markers[0].title + ", " + markers[0].time;
+};
 

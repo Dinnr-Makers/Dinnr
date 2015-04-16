@@ -1,21 +1,25 @@
-<p>Select Image to add to <%= @event.title %></p>
+<div class="container">
+<h4>Select an image to add to <%= @event.title %></h4>
+<blockquote>
+  Please make sure, your image is wider than high. It will look much better on the frontpage.
+</blockquote>
+
 <ul>
   <% if @pictures.any? %>
     <% @pictures.each do |picture|%>
-      <li><%= image_tag picture.image.url(:thumb) %>
-       <%= link_to "Add #{picture.title}", new_eventpicture_path({"event_id" =>"#{@event.id}","picture_id"=>"#{picture.id}"}) %>
+      <li><%= image_tag picture.image.url(:medium), class: "photos" %>
+       <%= link_to "Add", new_eventpicture_path({"event_id" =>"#{@event.id}","picture_id"=>"#{picture.id}"}), class: "waves-effect waves-light btn add-buttons" %>
       </li>
     <% end %>
-    <li><%= link_to "Upload Pictures", pictures_path %></li>
+
   <% else %>
     <li><p>No pictures available to add to event</p></li>
-    <li><%= link_to "Upload Pictures", pictures_path %></li>
   <% end %>
 </ul>
 <%= form_for @picture, html: {multipart: true} do |f| %>
-      <%= f.label :image %>
       <%= f.file_field :image %>
-      <%= f.label :title %>
-      <%= f.text_field :title %>
-      <%= f.submit %>
+      <br />
+      <%= f.text_field :title, placeholder: "Image title", :required => true %>
+      <%= f.submit "Upload", class: "new" %>
     <% end %>
+</div>

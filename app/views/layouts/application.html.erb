@@ -6,12 +6,13 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application'%>
   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.0/masonry.pkgd.min.js"></script>
   <%= csrf_meta_tags %>
 </head>
 
 <body>
   <header class="row">
-    <nav>
+    <nav class="teal lighten-2">
       <div class="nav-wrapper col s12">
         <%= link_to "Dinnr", root_path, class: "brand-logo" %>
         <a href="#" data-activates="dinnr-nav" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
@@ -20,6 +21,17 @@
             <li ><%= link_to "Create event", new_event_path %></li>
             <li><%= link_to "Users", users_path %></li>
             <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+            <li>
+              <a class="dropdown-button" href='#' data-activates='dropdown1'><%= image_tag current_user.image ? current_user.image : current_user.avatar.url(:thumb), :class => "menu-avatar" %>
+              </a>
+              <ul id='dropdown1' class='dropdown-content'>
+                <li><a href="/users">PROFILE</a></li>
+                <li class="divider"></li>
+                <li><a href="/users/edit">EDIT</a></li>
+                <li class="divider"></li>
+                <li><a href="/pictures">IMAGES</a></li>
+              </ul>
+            </li>
           <% else %>
             <li><%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %></li>
             <li><%= link_to "Sign in", new_user_session_path %></li>
@@ -48,7 +60,10 @@
 
 <main><%= yield %></main>
 
-<footer class="row"></footer>
+<footer class="page-footer teal lighten-4">
+    <%= render "layouts/footer" %>
+</footer>
+
 
 </body>
 </html>

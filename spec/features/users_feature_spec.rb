@@ -44,6 +44,11 @@ feature 'users' do
       expect(page).not_to have_link('Delete')
     end
 
+    # it 'does not see a profile picture' do
+    #   visit '/'
+    #   expect(page).not_to have_content
+    # end
+
   end
 
   context 'user signed in and on the home page' do
@@ -57,7 +62,7 @@ feature 'users' do
       expect(page).to have_link('Sign out')
     end
 
-    it 'does not see a sign in or or sign up link' do
+    it 'does not see a sign in or sign up link' do
       visit '/'
       expect(page).not_to have_link('Sign in')
       expect(page).not_to have_link('Sign up')
@@ -69,8 +74,12 @@ feature 'users' do
       expect(current_path).to eq '/events'
     end
 
+    it "sees a profile picture in the menu bar" do
+      visit '/'
+      find(:css, "img.menu-avatar")
+      expect(page.find(:css, "img.menu-avatar")['src']).to eq "https://s3-us-west-2.amazonaws.com/dinnr/pictures/chefhatsmall.jpg"
+    end
   end
-
 end
 
 feature 'users profile page' do
@@ -80,14 +89,12 @@ feature 'users profile page' do
       visit '/users'
       expect(page).to have_content 'No users yet'
     end
-
   end
 
   context 'user signed in and on profile page' do
     it 'displays the user details' do
       user_one_sign_up
       visit '/users'
-      expect(page).to have_content 'test@example.com'
       expect(page).to have_content 'firstname'
     end
 

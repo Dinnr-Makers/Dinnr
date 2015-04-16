@@ -12,7 +12,7 @@ class Event < ActiveRecord::Base
 
   validates :date, presence: true
   validate :future?
-  
+
   serialize :guests, Array
   before_save :compose_date
   geocoded_by :address
@@ -38,7 +38,7 @@ class Event < ActiveRecord::Base
 
   def nice_date
     if date.respond_to?(:strftime)
-      date.strftime('%A %_d. %B %k:%M')
+      date.strftime('%A %_d %B %k:%M')
     else
       date.to_s
     end

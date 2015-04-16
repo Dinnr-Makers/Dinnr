@@ -41,7 +41,7 @@ describe Event, type: :model do
 
   it 'nice_date stringifies the date nice' do
     party = create(:event)
-    expect(party.nice_date).to eq "Thursday 30. April 17:20"
+    expect(party.nice_date).to eq "Thursday 30 April 17:20"
   end
 
   it 'will not allow an invalid date' do

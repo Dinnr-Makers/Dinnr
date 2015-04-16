@@ -68,7 +68,7 @@ feature 'events' do
       click_link('Sign in', match: :prefer_exact)
       fill_in 'Email', with: 'kate@test.com'
       fill_in 'Password', with: 'testtest'
-      click_button('Log in')
+      click_button('LOG IN')
       visit '/'
       click_link(party.title, match: :first)
       click_link('Join Event')
@@ -132,9 +132,11 @@ feature 'events' do
       visit '/'
       click_link('Dinner with Thomas', match: :first)
       click_link("Add Image")
-      expect(page).to have_content 'Select Image to add to Dinner with Thomas'
-      click_link 'Add Test Picture'
-      expect(page.find(:css, "img")["src"]).to eq(image.image.url)
+      expect(page).to have_content 'Select an image to add to Dinner with Thomas'
+      click_link 'Add'
+      within "div.slider" do
+        expect(page.find(:css, "img")["src"]).to eq(image.image.url)
+      end
     end
 
 
@@ -145,9 +147,9 @@ feature 'events' do
       visit '/'
       click_link('Dinner with Thomas', match: :first)
       click_link("Add Image")
-      expect(page).to have_content 'Select Image to add to Dinner with Thomas'
+      expect(page).to have_content 'Select an image to add to Dinner with Thomas'
       expect(page).to have_content "No pictures available to add to event"
-      expect(page).to have_content "Upload Pictures"
+      expect(page).to have_css "form.new_picture"
     end
   end
 
