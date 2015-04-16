@@ -19,7 +19,7 @@ context 'user signed in and on the home page' do
     fill_in('Password confirmation', with: 'password')
     click_button('Sign up')
     join_event
-    expect(page).to have_content "Guest 1: alice"
+    expect(page).to have_content "alice"
   end
 
   it 'is not able to join their own event' do

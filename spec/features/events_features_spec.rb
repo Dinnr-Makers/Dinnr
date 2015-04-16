@@ -151,24 +151,6 @@ feature 'events' do
     end
   end
 
-  context 'deleting images from events' do
-
-    scenario 'user can delete their own image from an event' do
-      user = create(:user)
-      sign_in
-      image = create(:picture)
-      user.pictures << image
-      create_event
-      visit '/'
-      click_link('Dinner with Thomas', match: :first)
-      click_link("Add Image")
-      expect(page).to have_content 'Select Image to add to Dinner with Thomas'
-      click_link 'Add Test Picture'
-      click_link 'Remove Test Picture'
-      expect(page).not_to have_content 'Test Picture'
-    end
-  end
-
   context "Event with image has been created", js: true do
     scenario "image is visible on frontpage" do
       user1 = create(:user)
@@ -177,7 +159,7 @@ feature 'events' do
       event1.pictures << image
       visit '/'
       within(:css, "div.card") do
-        expect(page.find(:css, "img")["src"]).to eq(image.image.url(:medium))
+      expect(page.find(:css, "img")["src"]).to eq(image.image.url(:medium))
       end
     end
   end

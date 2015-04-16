@@ -7,7 +7,7 @@ feature 'reviewing' do
     visit '/events'
     click_link "Pauls Birthday Party"
     expect(page).not_to have_link "Review"
-    expect(page).to have_content "Reviews available after event"
+    expect(page).to have_content "Reviews will be available after event"
   end
 
   scenario 'allows guests of an event to leave a review' do
@@ -28,7 +28,7 @@ feature 'reviewing' do
     visit '/events'
     click_link "Makers Welcome Drinks"
     expect(page).not_to have_link "Review"
-    expect(page).to have_content "Reviews available after event"
+    expect(page).to have_content "Reviews will be available after event"
   end
 
   scenario 'user can edit their review' do

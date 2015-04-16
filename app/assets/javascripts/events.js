@@ -29,6 +29,14 @@ $(document).ready( function() {
       var eventId = $("#single-map-canvas").data("id")
       getGeoDataSingle('/api/v1/events/' + eventId + '/map');
     }
+  
+    if($(".slider").length > 0){
+      $('.slider').slider({
+      full_width: true
+      });
+    }
+
+        
 });
 
 

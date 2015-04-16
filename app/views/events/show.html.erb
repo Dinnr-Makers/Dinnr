@@ -1,38 +1,66 @@
 <div data-id=<%= @event.id %> class="col s12 map" id="single-map-canvas"></div>
 <div id="info-box"></div>
-<p><%= @event.title %></p>
-<p><%= @event.description %></p>
+
+<div class="row">
+
+<div class="form-group m6 offset-m3 col s12">
+<h3><p><%= @event.title %><br></h3>
+<p><h5><%= @event.size %> people welcome</p></h5><br>
+
+<p><div class="divider"></div><br>
+<h5>What, when & where</h5><br>
+<%= @event.description %></p>
+
 <p><%= @event.nice_date %>
 <p><%= @event.housenumber %> <%= @event.street %><br>
 <%= @event.city %><br>
 <%= @event.postcode %><br>
 <%= @event.country %></p>
-<p><%= @event.size %></p>
 
+<div class="divider"></div><br>
+
+<h5>Who's coming</h5><br>
+<div class="row">
 <%if @guests.any? %>
   <% @guests.each_with_index do |guest, index| %>
-    <p>Guest <%= index +1 %>: <%= guest.first_name %></p>
-    <p><a href="/users">
-    <%= image_tag guest.image ? guest.image : guest.avatar.url(:thumb), :class => "avatar" %></a></p>
+  <p>
+    <div class="col s1.5">
+    <a href="/users">
+    <center>
+    <%= image_tag guest.image ? guest.image : guest.avatar.url(:thumb), :class => "avatar circle" %><br>
+    <%= guest.first_name %></a>
+    </center>
+    </div>
+  </p>
   <% end %>
+</div>
 <% else %>
   <p>No guests yet</p>
-<% end %>
+<% end %><br>
+
 <ul>
+<div class="divider"></div><br>
   <% if @pictures.any? %>
-    <% @pictures.each do |picture|%>
-      <li><%= image_tag picture.image.url(:thumb) %>
-      <p> <%= picture.title %> </p></li>
-      <%= link_to "Remove #{picture.title}", eventpicture_path({"event_id" =>"#{@event.id}","picture_id"=>"#{picture.id}"}), method: :delete %>
+
+    <div class="slider">
+    <ul class="slides">
+      <% @pictures.each do |picture|%>
+      <li>
+        <%= image_tag picture.image.url %><br>
+      </li>
+      <%= link_to "Remove '#{picture.title}'", eventpicture_path({"event_id" =>"#{@event.id}","picture_id"=>"#{picture.id}"}), method: :delete %>
       <% end %>
-  <% else %>
-    <li><p>No images yet yet</p></li>
+      </ul>
+      </div>
+    <% else %>
+    <li><p>No images yet</p></li>
   <% end %>
 </ul>
-<%= link_to "Add Image", library_event_pictures_path(@event.id)%>
 
+
+<%= link_to "Add Image", library_event_pictures_path(@event.id)%><br>
 <% if @display_edit == true %>
-  <%= link_to "Edit", edit_event_path(@event) %>
+  <%= link_to "Edit", edit_event_path(@event) %><br>
   <%= link_to "Delete", event_path(@event), method: :delete %>
 <% else %>
 
@@ -43,16 +71,12 @@
     <%= link_to "Join Event", new_event_booking_path(@event.id) %>
     <% end %>
   <% end %>
+<% end %><br><br>
+<div class="divider"></div><br>
 
-<% end %>
-
-<% if @event.happened? && @guests.include?(current_user) %>
-  <%= link_to "Review", new_event_review_path(@event) %>
-<% else %>
-  <p>Reviews available after event</p>
-<% end %>
-<h5>Reviews for <%= @event.title %></h5>
-
+ <h5>
+  Reviews for <%= @event.title %>
+</h5>
 <% if @event.reviews.any? %>
   <ul>
     <% @event.reviews.each do |review| %>
@@ -65,15 +89,25 @@
     <% end %>
   </ul>
 <% else %>
-  <p>No reviews.</p>
+  <p>No reviews to display</p>
 <% end %>
 
+ <% if @event.happened? && @guests.include?(current_user) %>
+  <%= link_to "Review", new_event_review_path(@event) %>
+<% else %>
+  <p>Reviews will be available after event</p>
+<% end %>
+
+<div class="divider"></div><br>
+
 <% if user_signed_in? %>
+<div class="toc-wrapper teal lighten-5 m6 offset-m3 col s12">
   <div class="comments">
     <h5>Comments</h5>
     <%= render :partial => 'comments/form', :locals => { :comment => @new_comment } %>
     <%= render :partial => 'comments/comment', :collection => @comments, :as => :comment %>
   </div>
+</div>
 <% end %>
 
 
