@@ -132,7 +132,7 @@ feature 'events' do
       visit '/'
       click_link('Dinner with Thomas', match: :first)
       click_link("Add Image")
-      expect(page).to have_content 'Select Image to add to Dinner with Thomas'
+      expect(page).to have_content 'Select an image to add to Dinner with Thomas'
       click_link 'Add Test Picture'
       expect(page).to have_content "Test Picture"
     end
@@ -145,9 +145,9 @@ feature 'events' do
       visit '/'
       click_link('Dinner with Thomas', match: :first)
       click_link("Add Image")
-      expect(page).to have_content 'Select Image to add to Dinner with Thomas'
+      expect(page).to have_content 'Select an image to add to Dinner with Thomas'
       expect(page).to have_content "No pictures available to add to event"
-      expect(page).to have_content "Upload Pictures"
+      expect(page).to have_css "form.new_picture"
     end
   end
 
@@ -162,7 +162,7 @@ feature 'events' do
       visit '/'
       click_link('Dinner with Thomas', match: :first)
       click_link("Add Image")
-      expect(page).to have_content 'Select Image to add to Dinner with Thomas'
+      expect(page).to have_content 'Select an image to add to Dinner with Thomas'
       click_link 'Add Test Picture'
       click_link 'Remove Test Picture'
       expect(page).not_to have_content 'Test Picture'
