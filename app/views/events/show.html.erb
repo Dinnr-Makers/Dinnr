@@ -57,6 +57,7 @@
   <ul>
     <% @event.reviews.each do |review| %>
       <li>
+        <%= review.name %>:
         <%= review.thoughts %>, <strong><%= review.rating %></strong>/10
         <% if current_user.id == review.user_id %>
         <%= link_to "Edit", edit_event_review_path(review.event_id, @event.id) %>
