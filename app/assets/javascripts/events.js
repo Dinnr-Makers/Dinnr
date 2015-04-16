@@ -78,17 +78,18 @@ function initializeMainMap(json) {
     var lng = json.features[ i ].geometry.coordinates[1]
     var title = json.features[i].properties.title
     if(json.features[i].properties.eventpictures.length > 0){
-      var mediumURL = json.features[i].properties.eventpictures[0].mediumURL
+      var mediumURL = json.features[i].properties.eventpictures[0].thumbURL
     }else{
       var mediumURL = ""
     };
+    var id = json.features[i].id
     var description = json.features[i].properties.description
     var eventTime = json.features[i].properties.eventTime
     var latLng = new google.maps.LatLng(lng, lat)
-    var marker = new google.maps.Marker({position: latLng, map: map, title: title, description: description, time: eventTime, photo: mediumURL})
+    var marker = new google.maps.Marker({position: latLng, map: map, title: title, description: description, time: eventTime, photo: mediumURL, id: id})
     var infowindow = new google.maps.InfoWindow()
     google.maps.event.addListener(marker, 'click', function() {
-      infowindow.setContent("<div class='infowindow'><img src=" + this.photo + ">" + "<br>" + this.title + ", " + "<br>"+ this.time)
+      infowindow.setContent("<div class='infowindow'><img class='responsive-img' src=" + this.photo + ">" + "<br>" + this.title + ", " + "<br>"+ this.time + "<br><a href='/events/" + this.id +"'>More</a></div>")
       infowindow.open(map, this)
     });
     markers.push(marker)
