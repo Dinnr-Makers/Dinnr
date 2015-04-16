@@ -36,6 +36,7 @@ $(document).ready( function() {
 
   var map;
   var markers = [];
+
   var getGeoDataMain = function(url) {
     $.getJSON( url, function(json){
        initializeMainMap(json) 
@@ -51,24 +52,35 @@ $(document).ready( function() {
 
 
 function initializeMainMap(json) {
-  map = new google.maps.Map(document.getElementById("main-map-canvas"), {
+    var mapOptions = {
     zoom: 12,
-    center: new google.maps.LatLng(json.features[0].geometry.coordinates[1], json.features[0].geometry.coordinates[0])
-  });
+    center: new google.maps.LatLng(json.features[0].geometry.coordinates[1], json.features[0].geometry.coordinates[0]),
+    panControl: false,
+    mapTypeControl: false,
+    streetViewControl: false,
+    overviewMapControl: false,
+    styles: [{"featureType":"landscape.natural","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#e0efef"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"hue":"#1900ff"},{"color":"#c0e8e8"}]},{"featureType":"road","elementType":"geometry","stylers":[{"lightness":100},{"visibility":"simplified"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"visibility":"on"},{"lightness":700}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#7dcdcd"}]}]
+  }
 
+  map = new google.maps.Map(document.getElementById("main-map-canvas"), mapOptions);
 
   for (var i = json.features.length - 1; i >= 0; i--) {
     var lat = json.features[ i ].geometry.coordinates[0]
     var lng = json.features[ i ].geometry.coordinates[1]
     var title = json.features[i].properties.title
+    if(json.features[i].properties.eventpictures.length > 0){
+      var mediumURL = json.features[i].properties.eventpictures[0].mediumURL
+    }else{
+      var mediumURL = ""
+    };
     var description = json.features[i].properties.description
     var eventTime = json.features[i].properties.eventTime
     var latLng = new google.maps.LatLng(lng, lat)
-    
-    var marker = new google.maps.Marker({position: latLng, map: map, title: title, description: description, time: eventTime})
-    marker.infowindow = new google.maps.InfoWindow({content: title + ", " + eventTime});
-    google.maps.event.addListener(marker, 'click', function() {   
-      this.infowindow.open(map, this)
+    var marker = new google.maps.Marker({position: latLng, map: map, title: title, description: description, time: eventTime, photo: mediumURL})
+    var infowindow = new google.maps.InfoWindow()
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.setContent("<div class='infowindow'><img src=" + this.photo + ">" + "<br>" + this.title + ", " + "<br>"+ this.time)
+      infowindow.open(map, this)
     });
     markers.push(marker)
   };
@@ -85,9 +97,14 @@ function initializeSingleMap(json) {
     var lng = json.features.geometry.coordinates[1]
     var title = json.features.properties.title
     var description = json.features.properties.description
+    if(json.features.properties.eventpictures.length > 0){
+      var thumb = json.features.properties.eventpictures[0].thumbURL
+    }else{
+      var thumb = ""
+    };
     var latLng = new google.maps.LatLng(lng, lat)
-    var marker = new google.maps.Marker({position: latLng, map: map, title: title, description: description})
-    marker.infowindow = new google.maps.InfoWindow({content: marker.title});
+    var marker = new google.maps.Marker({position: latLng, map: map, title: title, description: description, photo: thumb})
+    marker.infowindow = new google.maps.InfoWindow({content: title + " " + "<img src=" + thumb + ">"});
     google.maps.event.addListener(marker, 'click', function() {   
       this.infowindow.open(map, this)
     });
@@ -171,6 +188,6 @@ testInfoCount = function(){
 }
 
 testInfoWindow = function(){
-  document.getElementById("info-box").innerHTML = markers[0].infowindow.content
+  document.getElementById("info-box").innerHTML = markers[0].title + ", " + markers[0].time
 }
 

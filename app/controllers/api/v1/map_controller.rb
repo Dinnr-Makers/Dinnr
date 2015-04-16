@@ -1,6 +1,8 @@
 class API::V1::MapController < ApplicationController
+  
+  
   def index
-    @events = Event.all.where.not("longitude" => nil)
+    @events = Event.mappable_events
   end
 
   def show

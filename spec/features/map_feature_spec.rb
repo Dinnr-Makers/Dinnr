@@ -35,9 +35,8 @@ describe "Map", js: true do
       visit "/"
       find('#main-map-canvas')
       page.execute_script('testInfoWindow()')
-      expect(page.find("div#info-box")).to have_content("Pauls Birthday Party, #{event1.date.strftime('%A %_d. %B %k:%M')}")
+      expect(page.find("div#info-box")).to have_content("Pauls Birthday Party, #{event1.nice_date}")
     end
-
 
   end
 end

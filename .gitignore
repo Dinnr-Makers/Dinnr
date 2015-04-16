@@ -14,7 +14,6 @@
 !/log/.keep
 /tmp
 /bower_components/
-coverage/.resultset.json
-coverage/index.html
+coverage
 vendor/assets/bower_components/
 node_modules
