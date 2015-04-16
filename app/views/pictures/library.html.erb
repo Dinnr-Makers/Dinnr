@@ -1,4 +1,9 @@
-<p>Select Image to add to <%= @event.title %></p>
+<div class="container">
+<h4>Select an image to add to <%= @event.title %></h4>
+<blockquote>
+  Please make sure, your image is wider than high. It will look much better on the frontpage.
+</blockquote>
+
 <ul>
   <% if @pictures.any? %>
     <% @pictures.each do |picture|%>
@@ -9,7 +14,7 @@
     <li><%= link_to "Upload Pictures", pictures_path %></li>
   <% else %>
     <li><p>No pictures available to add to event</p></li>
-    <li><%= link_to "Upload Pictures", pictures_path %></li>
+   <!--  <li><%= link_to "Upload Pictures", pictures_path %></li> -->
   <% end %>
 </ul>
 <%= form_for @picture, html: {multipart: true} do |f| %>
@@ -19,3 +24,4 @@
       <%= f.text_field :title %>
       <%= f.submit %>
     <% end %>
+</div>
