@@ -13,7 +13,7 @@
       <% end %>
     </div>
     <div class="card-content ">
-      <span class="card-title"><%= link_to event.title, event_path(event)%></span>
+      <span class="card-title"><%= link_to event.title, event_path(event), class: "event-title" %></span>
       <table>
         <tbody>
           <tr>
@@ -26,7 +26,7 @@
             <td><%= event.location %></td>
           </tr>
           <tr>
-            <td><%= event.size %></td>
+            <td><p>Guest Spaces:     <%= event.size %></p></td>
           </tr>
         </tbody>
       </table>
@@ -34,8 +34,8 @@
       <% if user_signed_in? %>
       </div>
       <div class="card-action">
-        <%= link_to "Join Event", new_event_booking_path(event.id) %>
-        <%= link_to "Leave Event", leave_event_bookings_path(event.id) %>
+        <%= link_to "Join Event", new_event_booking_path(event.id), class: "join-leave-buttons" %>
+        <%= link_to "Leave Event", leave_event_bookings_path(event.id), class: "join-leave-buttons" %>
       <% end %>
       </div>
 

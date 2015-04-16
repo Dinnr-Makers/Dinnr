@@ -133,7 +133,7 @@ feature 'events' do
       click_link('Dinner with Thomas', match: :first)
       click_link("Add Image")
       expect(page).to have_content 'Select an image to add to Dinner with Thomas'
-      click_link 'Add Test Picture'
+      click_link 'Add'
       expect(page).to have_content "Test Picture"
     end
 
@@ -163,7 +163,7 @@ feature 'events' do
       click_link('Dinner with Thomas', match: :first)
       click_link("Add Image")
       expect(page).to have_content 'Select an image to add to Dinner with Thomas'
-      click_link 'Add Test Picture'
+      click_link 'Add'
       click_link 'Remove Test Picture'
       expect(page).not_to have_content 'Test Picture'
     end
