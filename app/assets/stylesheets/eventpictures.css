@@ -1,0 +1,21 @@
+.photos{
+  display: inline;
+  margin-right: 20px;
+  border-radius: 5px;
+}
+
+.add-buttons{
+  position: relative;
+  top: -100px;
+}
+
+.join-leave-buttons{
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: capitalize !important;
+  color: black !important;
+}
+
+.event-title{
+  color: #00695c;
+}
