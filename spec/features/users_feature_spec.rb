@@ -44,6 +44,11 @@ feature 'users' do
       expect(page).not_to have_link('Delete')
     end
 
+    # it 'does not see a profile picture' do
+    #   visit '/'
+    #   expect(page).not_to have_content
+    # end
+
   end
 
   context 'user signed in and on the home page' do
@@ -67,6 +72,12 @@ feature 'users' do
       create_event
       expect(page).to have_content 'Dinner with Thomas'
       expect(current_path).to eq '/events'
+    end
+
+    it "sees a profile picture in the menu bar" do
+      visit '/'
+      find(:css, "img.menu-avatar")
+      expect(page.find(:css, "img.menu-avatar")['src']).to eq "https://s3-us-west-2.amazonaws.com/dinnr/pictures/chefhatsmall.jpg"
     end
 
   end

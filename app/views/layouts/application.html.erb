@@ -20,6 +20,8 @@
             <li ><%= link_to "Create event", new_event_path %></li>
             <li><%= link_to "Users", users_path %></li>
             <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+            <li>
+    <%= image_tag current_user.image ? current_user.image : current_user.avatar.url(:thumb), :class => "menu-avatar" %></li>
           <% else %>
             <li><%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %></li>
             <li><%= link_to "Sign in", new_user_session_path %></li>
