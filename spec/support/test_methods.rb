@@ -24,7 +24,7 @@ def sign_in
   click_link('Sign in', match: :prefer_exact)
   fill_in 'Email', with: 'john@doe.com'
   fill_in 'Password', with: 'testtest'
-  click_button('Log in')
+  click_button('LOG IN')
 end
 
 def user_one_sign_up

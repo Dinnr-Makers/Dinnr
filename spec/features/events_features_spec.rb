@@ -68,7 +68,7 @@ feature 'events' do
       click_link('Sign in', match: :prefer_exact)
       fill_in 'Email', with: 'kate@test.com'
       fill_in 'Password', with: 'testtest'
-      click_button('Log in')
+      click_button('LOG IN')
       visit '/'
       click_link(party.title, match: :first)
       click_link('Join Event')
