@@ -69,10 +69,10 @@
 <% else %>
 
   <% if user_signed_in? && @guests.include?(current_user) %>
-    <%= link_to "Leave Event", leave_event_bookings_path(@event.id) %>
+    <%= link_to "Leave Event", leave_event_bookings_path(@event.id), class: "new btn" %>
   <% else %>
     <% if user_signed_in? %>
-      <%= link_to "Join Event", new_event_booking_path(@event.id) %>
+      <%= link_to "Join Event", new_event_booking_path(@event.id), class: "new btn" %>
     <% end %>
   <% end %>
 <% end %><br><br>

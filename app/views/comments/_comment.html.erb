@@ -2,6 +2,7 @@
   <hr/>
   <%= link_to "×", comment_path(comment), :method => :delete, :remote => true, :confirm => "Are you sure you want to remove this comment?", :disable_with => "×", :class => 'close' %>
   <p>
+    <%= image_tag comment.user.image ? comment.user.image : comment.user.avatar.url(:thumb), class: "menu-avatar" %>
     <%= comment.user.first_name %>
     <small>
       <%= comment.nice_date %>
