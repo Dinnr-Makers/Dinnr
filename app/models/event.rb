@@ -5,10 +5,10 @@ class Event < ActiveRecord::Base
 
   belongs_to :user
 
-  has_many :bookings
-  has_many :eventpictures
+  has_many :bookings, dependent: :destroy
+  has_many :eventpictures, dependent: :destroy
   has_many :pictures, through: :eventpictures
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
 
   validates :date, presence: true
   validate :future?
@@ -59,5 +59,21 @@ class Event < ActiveRecord::Base
     t = Time.gm(date.year, date.month, date.day, time.hour, minutes)
     self.date = t
   end
+
+  def name
+    return 'No Host' if self.user_id == nil
+    User.find(self.user_id).first_name
+  end
+
+  def photo
+    return 'No Host' if self.user_id == nil
+    User.find(self.user_id).image
+  end
+
+  def avatar
+    return 'No Host' if self.user_id == nil
+    User.find(self.user_id).avatar
+  end
+
 
 end
