@@ -56,8 +56,12 @@
   <% end %>
 </ul>
 
-
-<%= link_to "Add Image", library_event_pictures_path(@event.id)%><br>
+<% if user_signed_in? && @guests.include?(current_user) %>
+  <%= link_to "Add Image", library_event_pictures_path(@event.id)%><br>
+<% elsif @display_edit == true  %>
+  <%= link_to "Add Image", library_event_pictures_path(@event.id)%><br>
+<% else %>
+<% end %>
 <% if @display_edit == true %>
   <%= link_to "Edit", edit_event_path(@event) %><br>
   <%= link_to "Delete", event_path(@event), method: :delete %>
