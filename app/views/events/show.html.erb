@@ -100,6 +100,8 @@
 
 <% if @event.happened? && @guests.include?(current_user) %>
   <%= link_to "Review", new_event_review_path(@event), class: "new btn" %>
+    <% else %>
+  <p>Reviews available after event</p>
 <% end %>
 
 <div class="divider"></div><br>
