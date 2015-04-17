@@ -89,7 +89,7 @@
         <%= review.name %>:
         <%= review.thoughts %>, <strong><%= review.rating %></strong>/10
         <% if user_signed_in? && current_user.id == review.user_id %>
-        <%= link_to "Edit", edit_event_review_path(review.event_id, @event.id) %>
+        <%= link_to "Edit", edit_event_review_path(review.event_id, @event.id), class: "new btn" %>
         <% end %>
       </li>
     <% end %>
@@ -99,7 +99,7 @@
 <% end %>
 
 <% if @event.happened? && @guests.include?(current_user) %>
-  <%= link_to "Review", new_event_review_path(@event) %>
+  <%= link_to "Review", new_event_review_path(@event), class: "new btn" %>
 <% end %>
 
 <div class="divider"></div><br>
