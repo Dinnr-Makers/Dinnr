@@ -40,28 +40,29 @@
 <% end %><br>
 
 <ul>
-<div class="divider"></div><br>
+  <div class="divider"></div><br>
   <% if @pictures.any? %>
-
     <div class="slider">
-    <ul class="slides">
-      <% @pictures.each do |picture|%>
-      <li class = "indicator-item active">
-        <%= image_tag picture.image.url %><br>
-      </li>
-      <% end %>
+      <ul class="slides">
+        <% @pictures.each do |picture|%>
+          <li class = "indicator-item active">
+            <%= image_tag picture.image.url %><br>
+          </li>
+        <% end %>
       </ul>
-      </div>
-    <% else %>
+    </div>
+  <% else %>
     <li><p>No images yet</p></li>
   <% end %>
 </ul>
 
 
-<%= link_to "Add Image", library_event_pictures_path(@event.id)%><br>
+<%= link_to "Add Image", library_event_pictures_path(@event.id), class: "new btn"%><br>
 <% if @display_edit == true %>
-  <%= link_to "Edit", edit_event_path(@event) %><br>
-  <%= link_to "Delete", event_path(@event), method: :delete %>
+<div class="divider"></div><br>
+<p>Change to Event</p>
+  <%= link_to "Edit", edit_event_path(@event), class: "new btn" %><br>
+  <%= link_to "Delete", event_path(@event), method: :delete, class: "new btn" %>
 <% else %>
 
   <% if user_signed_in? && @guests.include?(current_user) %>
