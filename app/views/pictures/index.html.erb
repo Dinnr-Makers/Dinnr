@@ -1,10 +1,12 @@
-
+<div class="row">
+<div class="container">
+<div class="col s12">
 <% if @pictures.any? %>
   <% @pictures.each do |picture| %>
     <%= image_tag picture.image.url(:thumb) %>
     <h2> <%= picture.title %> </h2>
     <%= link_to picture.title, picture_path(picture) %>
-    <%= link_to "Delete #{picture.title}", picture_path(picture), method: :delete %>
+    <%= link_to "Delete #{picture.title}", picture_path(picture), class: "btn new", method: :delete %>
   <% end %>
 <% else %>
   No pictures yet
@@ -13,11 +15,14 @@
 <p>Upload a new picture</p>
 
 <%= form_for @picture, html: {multipart: true} do |f| %>
-  <%= f.label :image %>
   <%= f.file_field :image %>
+  <br>
   <%= f.label :title %>
-  <%= f.text_field :title %>
+  <%= f.text_field :title, :required => true %>
   <%= f.submit %>
 <% end %>
 
 <a href='pictures/new'>Add a picture</a>
+</div>
+</div>
+</div>
