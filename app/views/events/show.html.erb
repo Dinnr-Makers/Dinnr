@@ -5,6 +5,7 @@
 
 <div class="form-group m6 offset-m3 col s12">
 <h3><p><%= @event.title %><br></h3>
+<p>Hosted by: <%= link_to "#{@event.name}", users_path %> <%= image_tag @event.photo ? @event.photo : @event.avatar.url(:thumb), class: "menu-avatar" %></p>
 <p><h5><%= @event.size %> people welcome</p></h5><br>
 
 <p><div class="divider"></div><br>

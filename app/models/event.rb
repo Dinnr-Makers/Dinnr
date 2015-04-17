@@ -60,4 +60,17 @@ class Event < ActiveRecord::Base
     self.date = t
   end
 
+  def name
+    User.find(self.user_id).first_name
+  end
+
+  def photo
+    User.find(self.user_id).image
+  end
+
+  def avatar
+    User.find(self.user_id).avatar
+  end
+
+
 end
