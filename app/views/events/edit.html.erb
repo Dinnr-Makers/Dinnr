@@ -14,10 +14,10 @@
       <div class"form-error"><%= message %></div>
     <% end %>
   <% end %>
-  
+
   <%= f.label :date %>
   <%= f.date_field :date, class: 'datepicker', :required => true %>
-  
+
   <%= f.label :time %>
   <%= f.time_field :time, :required => true %>
 
@@ -31,7 +31,7 @@
   </div>
 
   <%= f.label :housenumber, "House Number" %>
-  <%= f.text_field :housenumber, id: "street_number", :required => true %> 
+  <%= f.text_field :housenumber, id: "street_number", :required => true %>
 
   <%= f.label :street %>
   <%= f.text_field :street, id: "route", :required => true %>
@@ -48,7 +48,7 @@
   <%= f.label :size %>
   <%= f.text_field :size, :required => true %>
 
-  <%= f.submit %>
+  <%= f.submit class: "new" %>
   </div>
 
 <% end %>
