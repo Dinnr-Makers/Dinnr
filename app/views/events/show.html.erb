@@ -3,7 +3,7 @@
 
 <div class="row">
 
-<div class="form-group m6 offset-m3 col s12">
+<div class="m6 offset-m3 col s12">
 <h3><p><%= @event.title %><br></h3>
 <p><h5><%= @event.size %> people welcome</p></h5><br>
 
@@ -11,11 +11,11 @@
 <h5>What, when & where</h5><br>
 <%= @event.description %></p>
 
-<p><%= @event.nice_date %>
+<p><%= @event.nice_date %></p>
 <p><%= @event.housenumber %> <%= @event.street %><br>
 <%= @event.city %><br>
 <%= @event.postcode %><br>
-<%= @event.country %></p>
+<%= @event.country %></p><br>
 
 <div class="divider"></div><br>
 
@@ -38,23 +38,21 @@
   <p>No guests yet</p>
 <% end %><br>
 
-<ul>
-<div class="divider"></div><br>
-  <% if @pictures.any? %>
 
+<div class="divider"></div><br>
+
+  <% if @pictures.any? %>
     <div class="slider">
-    <ul class="slides">
-      <% @pictures.each do |picture|%>
-      <li class = "indicator-item active">
-        <%= image_tag picture.image.url %><br>
-      </li>
-      <% end %>
+      <ul class="slides">
+        <% @pictures.each do |picture|%>
+          <li><%= image_tag picture.image.url %></li>
+        <% end %>
       </ul>
-      </div>
+    </div>
     <% else %>
-    <li><p>No images yet</p></li>
+      <p>No images yet</p>
   <% end %>
-</ul>
+
 
 
 <%= link_to "Add Image", library_event_pictures_path(@event.id)%><br>
