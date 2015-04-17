@@ -61,14 +61,17 @@ class Event < ActiveRecord::Base
   end
 
   def name
+    return 'No Host' if self.user_id == nil
     User.find(self.user_id).first_name
   end
 
   def photo
+    return 'No Host' if self.user_id == nil
     User.find(self.user_id).image
   end
 
   def avatar
+    return 'No Host' if self.user_id == nil
     User.find(self.user_id).avatar
   end
 
