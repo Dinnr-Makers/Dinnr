@@ -14,6 +14,7 @@
     "tests"
   ],
   "dependencies": {
-    "materialize": "~0.96.1"
+    "materialize": "~0.96.1",
+    "imagesloaded": "~3.1.8"
   }
 }

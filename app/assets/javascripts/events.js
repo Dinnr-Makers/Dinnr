@@ -37,13 +37,17 @@ $(document).ready( function() {
     }
 
     if($("#event-container").length > 0){
-      var $container = $('#event-container');
-      // initialize Masonry
-      $container.masonry({
-        itemSelector: '.panel'
+      $('#event-container').imagesLoaded( function() {
+        console.log('images loaded');
+      })
+      .done(function(instance){
+        var $container = $('#event-container');
+        $container.masonry({
+          itemSelector: '.panel'
+        });
       });
-    };
-});
+    };  
+  });
 
 
 //Maps: Single map for event pages and main map on front page
