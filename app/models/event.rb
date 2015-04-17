@@ -5,10 +5,10 @@ class Event < ActiveRecord::Base
 
   belongs_to :user
 
-  has_many :bookings
-  has_many :eventpictures
+  has_many :bookings, dependent: :destroy
+  has_many :eventpictures, dependent: :destroy
   has_many :pictures, through: :eventpictures
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
 
   validates :date, presence: true
   validate :future?

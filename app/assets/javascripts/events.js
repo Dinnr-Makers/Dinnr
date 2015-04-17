@@ -64,6 +64,8 @@ $(document).ready( function() {
   };
        
 
+  var mapStyles = [{"featureType":"administrative.locality","elementType":"all","stylers":[{"hue":"#2c2e33"},{"saturation":7},{"lightness":19},{"visibility":"on"}]},{"featureType": "poi","stylers": [{"visibility": "off"}]},{"featureType":"landscape","elementType":"all","stylers":[{"hue":"#ffffff"},{"saturation":-100},{"lightness":100},{"visibility":"simplified"}]},{"featureType":"road","elementType":"geometry","stylers":[{"hue":"#bbc0c4"},{"saturation":-53},{"lightness":31}]},{"featureType":"road","stylers":[{"hue":"#bbc0c4"},{"saturation":-93},{"lightness":31},{"visibility":"on"}]},{"featureType":"road.arterial","stylers":[{"hue":"#bbc0c4"},{"saturation":-93},{"lightness":-2},{"visibility":"simplified"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"hue":"#e9ebed"},{"saturation":-90},{"lightness":-8},{"visibility":"simplified"}]},{"featureType":"transit"},{"featureType":"water","elementType":"all","stylers":[{"hue":"#e9ebed"},{"saturation":-78},{"lightness":67},{"visibility":"simplified"}]}]
+
 
 function initializeMainMap(json, mapOptions) {
 
@@ -75,7 +77,7 @@ function initializeMainMap(json, mapOptions) {
     streetViewControl: false,
     overviewMapControl: false,
     scrollwheel: false,
-    styles: [{"featureType":"administrative.locality","elementType":"all","stylers":[{"hue":"#2c2e33"},{"saturation":7},{"lightness":19},{"visibility":"on"}]},{"featureType": "poi","stylers": [{"visibility": "off"}]},{"featureType":"landscape","elementType":"all","stylers":[{"hue":"#ffffff"},{"saturation":-100},{"lightness":100},{"visibility":"simplified"}]},{"featureType":"road","elementType":"geometry","stylers":[{"hue":"#bbc0c4"},{"saturation":-53},{"lightness":31}]},{"featureType":"road","stylers":[{"hue":"#bbc0c4"},{"saturation":-93},{"lightness":31},{"visibility":"on"}]},{"featureType":"road.arterial","stylers":[{"hue":"#bbc0c4"},{"saturation":-93},{"lightness":-2},{"visibility":"simplified"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"hue":"#e9ebed"},{"saturation":-90},{"lightness":-8},{"visibility":"simplified"}]},{"featureType":"transit"},{"featureType":"water","elementType":"all","stylers":[{"hue":"#e9ebed"},{"saturation":-78},{"lightness":67},{"visibility":"simplified"}]}]
+    styles: mapStyles
   }
   
   map = new google.maps.Map(document.getElementById("main-map-canvas"), mapOptions);
@@ -106,7 +108,13 @@ function initializeMainMap(json, mapOptions) {
 function initializeSingleMap(json) {
   map = new google.maps.Map(document.getElementById("single-map-canvas"), {
     zoom: 12,
-    center: new google.maps.LatLng(json.features.geometry.coordinates[1], json.features.geometry.coordinates[0])
+    center: new google.maps.LatLng(json.features.geometry.coordinates[1], json.features.geometry.coordinates[0]),
+    panControl: false,
+    mapTypeControl: false,
+    streetViewControl: false,
+    overviewMapControl: false,
+    scrollwheel: false,
+    styles: mapStyles
   });
 
 
