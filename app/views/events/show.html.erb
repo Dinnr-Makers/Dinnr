@@ -39,7 +39,6 @@
   <p>No guests yet</p>
 <% end %><br>
 
-
 <div class="divider"></div><br>
 
   <% if @pictures.any? %>
@@ -56,17 +55,24 @@
 
 
 
-<%= link_to "Add Image", library_event_pictures_path(@event.id)%><br>
+<% if user_signed_in? && @guests.include?(current_user) %>
+  <%= link_to "Add Image", library_event_pictures_path(@event.id), class: "new btn"%><br>
+<% elsif @display_edit == true  %>
+  <%= link_to "Add Image", library_event_pictures_path(@event.id), class: "new btn"%><br>
+<% else %>
+<% end %>
 <% if @display_edit == true %>
-  <%= link_to "Edit", edit_event_path(@event) %><br>
-  <%= link_to "Delete", event_path(@event), method: :delete %>
+<div class="divider"></div><br>
+<p>Change to Event</p>
+  <%= link_to "Edit", edit_event_path(@event), class: "new btn" %><br>
+  <%= link_to "Delete", event_path(@event), method: :delete, class: "new btn" %>
 <% else %>
 
   <% if user_signed_in? && @guests.include?(current_user) %>
-    <%= link_to "Leave Event", leave_event_bookings_path(@event.id) %>
+    <%= link_to "Leave Event", leave_event_bookings_path(@event.id), class: "new btn" %>
   <% else %>
     <% if user_signed_in? %>
-      <%= link_to "Join Event", new_event_booking_path(@event.id) %>
+      <%= link_to "Join Event", new_event_booking_path(@event.id), class: "new btn" %>
     <% end %>
   <% end %>
 <% end %><br><br>
@@ -83,7 +89,7 @@
         <%= review.name %>:
         <%= review.thoughts %>, <strong><%= review.rating %></strong>/10
         <% if user_signed_in? && current_user.id == review.user_id %>
-        <%= link_to "Edit", edit_event_review_path(review.event_id, @event.id) %>
+        <%= link_to "Edit", edit_event_review_path(review.event_id, @event.id), class: "new btn" %>
         <% end %>
       </li>
     <% end %>
@@ -93,7 +99,7 @@
 <% end %>
 
 <% if @event.happened? && @guests.include?(current_user) %>
-  <%= link_to "Review", new_event_review_path(@event) %>
+  <%= link_to "Review", new_event_review_path(@event), class: "new btn" %>
 <% end %>
 
 <div class="divider"></div><br>
