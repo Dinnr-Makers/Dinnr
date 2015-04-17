@@ -4,7 +4,7 @@
         <li><a href="#what">What?</a></li>
         <li><a href="#when">When?</a></li>
         <li><a href="#where">Where?</a></li>
-        <li><a href="#who">Who + How Many?</a></li>
+        <li><a href="#who">Who & How Many?</a></li>
       </ul>
   </div>
 
@@ -30,7 +30,7 @@
           <%= f.time_field :time, :required => true %>
     </div>
 
-    
+
     <div id="where" class="section scrollspy">
       <h3>Where</h3>
       <div class="input-group">
@@ -40,7 +40,7 @@
         </div>
 
         <%= f.label :housenumber, "House Number" %>
-          <%= f.text_field :housenumber, class: 'form-control', id: "street_number", :required => true %> 
+          <%= f.text_field :housenumber, class: 'form-control', id: "street_number", :required => true %>
         <%= f.label :street %>
           <%= f.text_field :street, class: 'form-control', id: "route", :required => true %>
         <%= f.label :city %>
@@ -53,7 +53,7 @@
     </div>
 
     <div  id="who" class="section scrollspy">
-      <h3>Who + How Many</h3>
+      <h3>Who & How Many</h3>
         <%= f.label :size %>
           <%= f.text_field :size, class: 'form-control', placeholder: "Tell us how many people you'd like to attend", :required => true %>
     </div>
