@@ -5,3 +5,7 @@
 ul#dropdown1.dropdown-content.active li a {
   font-size: 16px
 }
+
+time {
+  text-decoration: underline;
+}
