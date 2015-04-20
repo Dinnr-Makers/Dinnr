@@ -3,9 +3,7 @@ source 'https://rubygems.org'
 gem 'devise'
 
 gem 'omniauth-facebook'
-
 gem 'geocoder'
-gem 'rmagick', '~> 2.14.0'
 gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
 gem 'acts_as_commentable_with_threading'
@@ -63,6 +61,9 @@ group :development, :test do
   gem 'factory_girl_rails'
 
   gem 'foreman'
+  # When running on windows machines:
+  gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
+  gem 'tzinfo-data'
 
 end
 
@@ -78,4 +79,3 @@ group :test do
   gem "test-unit"
   gem "selenium-webdriver"
 end
-
