@@ -1,6 +1,4 @@
 class PicturesController < ApplicationController
-
-
   def index
     @picture = Picture.new
     @pictures = Picture.all
@@ -41,5 +39,4 @@ class PicturesController < ApplicationController
     @event = Event.find(params[:event_id])
     @pictures = current_user.pictures
   end
-
 end

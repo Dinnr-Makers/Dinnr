@@ -30,5 +30,4 @@ class ReviewsController < ApplicationController
     @review.update(review_params)
     redirect_to "/events/#{@event.id}"
   end
-
 end

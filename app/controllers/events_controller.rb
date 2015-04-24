@@ -32,9 +32,7 @@ class EventsController < ApplicationController
     @eventpictures = Eventpicture.where("event_id = #{@event.id}")
     @pictures = @eventpictures.map{|ep| ep.picture_id}.map{|picture| Picture.find(picture)}
     @comments = @event.comment_threads.order('created_at desc')
-    if current_user
-      @new_comment = Comment.build_from(@event, current_user.id, "")
-    end
+    @new_comment = Comment.build_from(@event, current_user.id, "") if current_user
   end
 
   def edit
