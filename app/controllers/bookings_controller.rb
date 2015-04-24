@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+  include BookingsHelper
 
   def new
     @event = Event.find(params[:event_id])
@@ -6,16 +7,12 @@ class BookingsController < ApplicationController
       @booking = Booking.new
       @bookings = Booking.where("event_id = #{@event.id}")
       if @bookings.count == @event.size
-        flash[:notice] = "Event is full you are unable to join at the moment"
+        flash[:notice] = 'Event is full you are unable to join at the moment'
       else
-        @previous_booking = @bookings.select{|booking| booking.user == current_user}
-        unless @previous_booking.length == 1
-          @booking.user = current_user
-          @booking.event = @event
-          @booking.save
-          options = {user: current_user, event: @event}
-          JoinEventMailer.join_email(options).deliver_now
-          JoinEventMailer.host_email(options).deliver_now
+        unless previous_booking?
+          save_booking
+          options = { user: current_user, event: @event }
+          booking_emails(options)
         end
       end
     end
@@ -28,11 +25,8 @@ class BookingsController < ApplicationController
   def leave
     @event = Event.find(params[:event_id])
     @bookings = Booking.where("event_id = #{@event.id}")
-    @booking = @bookings.select{|booking| booking.user == current_user}
-    if @booking.length != 0
-      @booking.first.destroy
-    end
-    redirect_to "/events"
+    @booking = @bookings.select { |booking| booking.user == current_user }
+    @booking.first.destroy if @booking.length != 0
+    redirect_to '/events'
   end
-
 end
