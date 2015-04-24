@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-
   has_many :events
   has_many :bookings
   has_many :pictures
@@ -16,21 +15,20 @@ class User < ActiveRecord::Base
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
       user.image = auth.info.image
-      user.password = Devise.friendly_token[0,20]
+      user.password = Devise.friendly_token[0, 20]
     end
   end
 
   def self.new_with_session(params, session)
     super.tap do |user|
-      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
-        user.email = data["email"] if user.email.blank?
+      if data = session['devise.facebook_data'] && session['devise.facebook_data']['extra']['raw_info']
+        user.email = data['email'] if user.email.blank?
       end
     end
   end
 
   has_attached_file :avatar,
-                    :styles => {  :thumb => "50x50>"  },
-                    :default_url => "https://s3-us-west-2.amazonaws.com/dinnr/pictures/chefhatsmall.jpg"
+                    :styles => { :thumb => '50x50>' },
+                    :default_url => 'https://s3-us-west-2.amazonaws.com/dinnr/pictures/chefhatsmall.jpg'
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
-
 end
