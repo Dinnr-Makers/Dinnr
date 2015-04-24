@@ -33,11 +33,7 @@ class Event < ActiveRecord::Base
   end
 
   def nice_date
-    if date.respond_to?(:strftime)
-      date.strftime('%A %_d %B %k:%M')
-    else
-      date.to_s
-    end
+    date.respond_to?(:strftime) ? date.strftime('%A %_d %B %k:%M') : date.to_s
   end
 
   def future?
