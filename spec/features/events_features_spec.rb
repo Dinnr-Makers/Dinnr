@@ -2,7 +2,6 @@ require 'rails_helper'
 
 feature 'events' do
   context 'no events have been added' do
-
     scenario 'displays a prompt to add an event' do
       user_sign_up
       visit '/events'
@@ -20,7 +19,6 @@ feature 'events' do
   end
 
   context 'adding an event' do
-
     scenario 'prompts a user to fill out a form and then displays the new event' do
       user_sign_up
       create_event
@@ -28,7 +26,7 @@ feature 'events' do
       expect(current_path).to eq '/events'
     end
 
-    scenario "shows an error message if the date is invalid" do
+    scenario 'shows an error message if the date is invalid' do
       user_sign_up
       visit '/events'
       click_link('Create event', match: :first)
@@ -39,26 +37,25 @@ feature 'events' do
       fill_in 'Time', with: '17:20:00.000'
       fill_in 'Size', with: '2'
       click_button 'Create Event'
-      expect(page).to have_content("Date is not valid")
+      expect(page).to have_content('Date is not valid')
     end
   end
 
   context 'viewing an event' do
-    let!(:dinwitht){create(:event)}
+    let!(:dinwitht) { create(:event) }
 
     scenario 'lets a user view an event' do
       visit '/events'
-      click_link (dinwitht.title)
+      click_link(dinwitht.title)
       expect(page).to have_content dinwitht.description
       expect(current_path).to eq "/events/#{dinwitht.id}"
     end
 
     scenario 'shows that there are no guests when created' do
       visit '/events'
-      click_link (dinwitht.title)
-      expect(page).to have_content "No guests yet"
+      click_link(dinwitht.title)
+      expect(page).to have_content 'No guests yet'
     end
-
 
     it "shows a user's avatar as a thumbnail if they have joined the event" do
       john = create(:user, email: 'john@doe.com', password: 'testtest', password_confirmation: 'testtest')
@@ -72,13 +69,12 @@ feature 'events' do
       visit '/'
       click_link(party.title, match: :first)
       click_link('Join Event')
-      find(:css, "img.avatar")
-      expect(page.find(:css, "img.avatar")['src']).to eq "https://s3-us-west-2.amazonaws.com/dinnr/pictures/chefhatsmall.jpg"
+      find(:css, 'img.avatar')
+      expect(page.find(:css, 'img.avatar')['src']).to eq 'https://s3-us-west-2.amazonaws.com/dinnr/pictures/chefhatsmall.jpg'
     end
   end
 
   context 'editing events' do
-
     scenario 'does not let a user edit an event that they have not created' do
       party = create(:event)
       user_sign_up
@@ -101,7 +97,6 @@ feature 'events' do
   end
 
   context 'deleting events' do
-
     scenario 'does not let a user delete and event that they have not created' do
       party = create(:event)
       user_sign_up
@@ -115,15 +110,14 @@ feature 'events' do
       visit '/'
       create_event
       click_link('Dinner with Thomas', match: :first)
-      click_link "Delete"
+      click_link 'Delete'
       expect(page).to have_content 'Event deleted successfully'
       expect(current_path).to eq '/events'
     end
   end
 
   context 'adding images to events' do
-
-    scenario'User can add an image to an event they have created' do
+    scenario 'User can add an image to an event they have created' do
       user = create(:user)
       sign_in
       image = create(:picture)
@@ -131,14 +125,13 @@ feature 'events' do
       create_event
       visit '/'
       click_link('Dinner with Thomas', match: :first)
-      click_link("Add Image")
+      click_link('Add Image')
       expect(page).to have_content 'Select an image to add to Dinner with Thomas'
       click_link 'Add'
-      within "div.slider" do
-        expect(page.find(:css, "img")["src"]).to eq(image.image.url)
+      within 'div.slider' do
+        expect(page.find(:css, 'img')['src']).to eq(image.image.url)
       end
     end
-
 
     scenario 'user can not add an image to an event if they have no images uploaded' do
       user = create(:user)
@@ -146,25 +139,23 @@ feature 'events' do
       create_event
       visit '/'
       click_link('Dinner with Thomas', match: :first)
-      click_link("Add Image")
+      click_link('Add Image')
       expect(page).to have_content 'Select an image to add to Dinner with Thomas'
-      expect(page).to have_content "No pictures available to add to event"
-      expect(page).to have_css "form.new_picture"
+      expect(page).to have_content 'No pictures available to add to event'
+      expect(page).to have_css 'form.new_picture'
     end
   end
 
-  context "Event with image has been created", js: true do
-    scenario "image is visible on frontpage" do
+  context 'Event with image has been created', js: true do
+    scenario 'image is visible on frontpage' do
       user1 = create(:user)
       event1 = create(:event, user: user1)
       image = create(:picture, user: user1)
       event1.pictures << image
       visit '/'
-      within(:css, "div.card") do
-      expect(page.find(:css, "img")["src"]).to eq(image.image.url(:medium))
+      within(:css, 'div.card') do
+        expect(page.find(:css, 'img')['src']).to eq(image.image.url(:medium))
       end
     end
   end
-
-
 end

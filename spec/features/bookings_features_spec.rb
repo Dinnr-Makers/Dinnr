@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 context 'user signed in and on the home page' do
-
   before do
     user_one_sign_up
   end
@@ -9,7 +8,7 @@ context 'user signed in and on the home page' do
   it 'is able to join another users event' do
     visit '/'
     user_one_create_event
-    click_link("Sign out", match: :first)
+    click_link('Sign out', match: :first)
     visit '/'
     click_link('Sign up', match: :first)
     fill_in('user[first_name]', with: 'alice')
@@ -19,47 +18,45 @@ context 'user signed in and on the home page' do
     fill_in('Password confirmation', with: 'password')
     click_button('Sign up')
     join_event
-    expect(page).to have_content "alice"
+    expect(page).to have_content 'alice'
   end
 
   it 'is not able to join their own event' do
     visit '/'
     user_one_create_event
-    click_link "Dinner with Thomas"
-    expect(page).not_to have_content "Join Event"
+    click_link 'Dinner with Thomas'
+    expect(page).not_to have_content 'Join Event'
   end
 
   it 'does not let a user join an event if it is full' do
     visit '/'
     user_one_create_event
-    click_link("Sign out", match: :first)
+    click_link('Sign out', match: :first)
     user_two_sign_up
     join_event
-    click_link("Sign out", match: :first)
+    click_link('Sign out', match: :first)
     user_three_sign_up
     join_event
-    click_link("Sign out", match: :first)
+    click_link('Sign out', match: :first)
     user_four_sign_up
     join_event
-    expect(page).to have_content "Event is full you are unable to join at the moment"
+    expect(page).to have_content 'Event is full you are unable to join at the moment'
   end
 
-    it 'lets a user leave an event' do
+  it 'lets a user leave an event' do
     visit '/'
     user_one_create_event
-    click_link("Sign out", match: :first)
+    click_link('Sign out', match: :first)
     user_two_sign_up
     join_event
     expect(page).to have_content 'alice'
     click_link 'Leave Event'
     expect(page).not_to have_content 'alice'
   end
-
 end
 
 context 'user not signed in and on an event page' do
-
-  let!(:dinwithC){create(:event)}
+  let!(:dinwithC) { create(:event) }
 
   it 'does not see a join event button' do
     visit '/'
@@ -75,7 +72,7 @@ context 'user not signed in and on an event page' do
 end
 
 context 'user not signed in and on the home page' do
-  let!(:dinwithC){create(:event)}
+  let!(:dinwithC) { create(:event) }
 
   it 'does not see a join event button' do
     visit '/'
@@ -89,7 +86,6 @@ context 'user not signed in and on the home page' do
 end
 
 context 'user signed in and on an event page' do
-
   before do
     user_one_sign_up
   end
@@ -97,10 +93,9 @@ context 'user signed in and on an event page' do
   it 'does not show a join event link if the user has already signed up on the event page' do
     visit '/'
     user_one_create_event
-    click_link("Sign out", match: :first)
+    click_link('Sign out', match: :first)
     user_two_sign_up
     join_event
     expect(page).not_to have_link('Join Event')
   end
-
 end
