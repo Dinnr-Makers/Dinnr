@@ -46,7 +46,7 @@ group :production do
   gem 'rails_12factor'
 end
 
-group :development, :test do
+group :development, :test, :development_windows do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
@@ -61,10 +61,14 @@ group :development, :test do
   gem 'factory_girl_rails'
 
   gem 'foreman'
+
   # When running on windows machines:
   gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
-  gem 'tzinfo-data'
+  
+end
 
+unless RUBY_PLATFORM=~ /win32/ 
+   gem 'rmagick', '~> 2.14.0'
 end
 
 group :test do

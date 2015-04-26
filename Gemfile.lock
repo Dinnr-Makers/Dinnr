@@ -305,6 +305,7 @@ DEPENDENCIES
   rack-test
   rails (= 4.2.1)
   rails_12factor
+  rmagick (~> 2.14.0)
   rspec-collection_matchers
   rspec-rails
   sass-rails (~> 5.0)

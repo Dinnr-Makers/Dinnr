@@ -7,6 +7,10 @@ Rails.application.configure do
       :secret_access_key => ENV['AWSSecretKey']
     }
   }
+  
+  #Special Paperclip options that make it work on windows without rmagick gem 
+  Paperclip.options[:command_path] = "C:\\Program\ Files\\ImageMagick-6.9.1-Q16"
+  Paperclip.options[:command_path] = "C:\\Program\ Files (x86)\\GnuWin32\\bin"
   # Settings specified here will take precedence over those in config/application.rb.
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   # In the development environment your application's code is reloaded on
