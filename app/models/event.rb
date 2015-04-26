@@ -1,7 +1,5 @@
 class Event < ActiveRecord::Base
-
   attr_accessor :time_format
-
 
   belongs_to :user
 
@@ -27,9 +25,7 @@ class Event < ActiveRecord::Base
   end
 
   def add_guest(guest)
-    unless guests.include? guest
-      guests << guest
-    end
+    guests << guest unless guests.include? guest
   end
 
   def remove_guest(guest)
@@ -37,17 +33,11 @@ class Event < ActiveRecord::Base
   end
 
   def nice_date
-    if date.respond_to?(:strftime)
-      date.strftime('%A %_d %B %k:%M')
-    else
-      date.to_s
-    end
+    date.respond_to?(:strftime) ? date.strftime('%A %_d %B %k:%M') : date.to_s
   end
 
   def future?
-    if date < Date.today
-      errors.add(:date, "is not valid")
-    end
+    errors.add(:date, 'is not valid') if date < Date.today
   end
 
   def happened?
@@ -55,25 +45,23 @@ class Event < ActiveRecord::Base
   end
 
   def compose_date
-    minutes = time.strftime("%M").to_i
+    minutes = time.strftime('%M').to_i
     t = Time.gm(date.year, date.month, date.day, time.hour, minutes)
     self.date = t
   end
 
   def name
-    return 'No Host' if self.user_id == nil
-    User.find(self.user_id).first_name
+    return 'No Host' if user_id.nil?
+    User.find(user_id).first_name
   end
 
   def photo
-    return 'No Host' if self.user_id == nil
-    User.find(self.user_id).image
+    return 'No Host' if user_id.nil?
+    User.find(user_id).image
   end
 
   def avatar
-    return 'No Host' if self.user_id == nil
-    User.find(self.user_id).avatar
+    return 'No Host' if user_id.nil?
+    User.find(user_id).avatar
   end
-
-
 end

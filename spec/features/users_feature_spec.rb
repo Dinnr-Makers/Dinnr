@@ -1,15 +1,13 @@
 require 'rails_helper'
 
 feature 'users' do
-
-  let!(:dinwithC){create(:event)}
+  let!(:dinwithC) { create(:event) }
 
   context 'user not signed in and on the home page' do
-
     it 'does see a sign in and sign up link' do
       visit '/'
-      expect(page).to have_content("Sign in")
-      expect(page).to have_content("Sign up")
+      expect(page).to have_content('Sign in')
+      expect(page).to have_content('Sign up')
     end
 
     it 'does not see a sign out link' do
@@ -31,7 +29,7 @@ feature 'users' do
       click_link 'Forgot your password?'
       fill_in 'Email', with: 'alice@example.com'
       click_button 'Send me reset password instructions'
-      expect(page).to have_content "You will receive an email with instructions on how to reset your password in a few minutes."
+      expect(page).to have_content 'You will receive an email with instructions on how to reset your password in a few minutes.'
     end
 
     it 'does not see an edit link' do
@@ -43,16 +41,9 @@ feature 'users' do
       visit '/'
       expect(page).not_to have_link('Delete')
     end
-
-    # it 'does not see a profile picture' do
-    #   visit '/'
-    #   expect(page).not_to have_content
-    # end
-
   end
 
   context 'user signed in and on the home page' do
-
     before do
       user_one_sign_up
     end
@@ -74,16 +65,15 @@ feature 'users' do
       expect(current_path).to eq '/events'
     end
 
-    it "sees a profile picture in the menu bar" do
+    it 'sees a profile picture in the menu bar' do
       visit '/'
-      find(:css, "img.menu-avatar")
-      expect(page.find(:css, "img.menu-avatar")['src']).to eq "https://s3-us-west-2.amazonaws.com/dinnr/pictures/chefhatsmall.jpg"
+      find(:css, 'img.menu-avatar')
+      expect(page.find(:css, 'img.menu-avatar')['src']).to eq 'https://s3-us-west-2.amazonaws.com/dinnr/pictures/chefhatsmall.jpg'
     end
   end
 end
 
 feature 'users profile page' do
-
   context 'no users signed up' do
     it 'displays no users yet' do
       visit '/users'
@@ -103,13 +93,10 @@ feature 'users profile page' do
       visit '/users'
       expect(page).to have_content 'lastname'
     end
-
   end
-
 end
 
 feature 'updating profile details' do
-
   it 'is able to change the users first name' do
     user_one_sign_up
     visit 'users/edit'
@@ -131,6 +118,4 @@ feature 'updating profile details' do
     visit '/users'
     expect(page).to have_content 'Ward'
   end
-
 end
-

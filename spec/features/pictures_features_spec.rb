@@ -1,20 +1,14 @@
 require 'rails_helper'
-
 feature 'Pictures' do
-
   context 'no pictures uploaded yet' do
-
     scenario 'displays a prompt to add a picture' do
       visit '/pictures'
       expect(page).to have_content 'No pictures yet'
-      expect(page).to have_link "Add a picture"
-
+      expect(page).to have_link 'Add a picture'
     end
-
   end
 
   context 'pictures have been added' do
-
     scenario 'display pictures' do
       user_one_sign_up
       create_picture
@@ -35,7 +29,6 @@ feature 'Pictures' do
   end
 
   context 'deleting pictures' do
-
     scenario 'user can delete a photo from their library' do
       user_one_sign_up
       create_picture
@@ -57,5 +50,4 @@ feature 'Pictures' do
       expect(page).to have_content 'No pictures yet'
     end
   end
-
 end
