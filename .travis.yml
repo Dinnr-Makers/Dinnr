@@ -10,3 +10,7 @@ script:
   - bundle exec bin/rake db:create
   - bundle exec bin/rake db:migrate
   - bundle exec rspec spec
+
+addons:
+  code_climate:
+    repo_token: 896771448094978736170a6d017cd97203b3bd08e970935cb3e1f615db68f0b8

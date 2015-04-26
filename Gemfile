@@ -74,6 +74,7 @@ end
 group :test do
 
   gem 'simplecov', :require => false
+  gem "codeclimate-test-reporter", group: :test, require: nil
   gem 'rspec-rails'
   gem 'capybara'
   gem 'rspec-collection_matchers'
