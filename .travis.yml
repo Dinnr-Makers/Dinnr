@@ -1,7 +1,4 @@
 rvm: '2.0.0'
-language: node_js
-node_js:
-  - "0.10"
 
 before_script:
   - export DISPLAY=:99.0
