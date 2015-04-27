@@ -58,4 +58,5 @@ describe Event, type: :model do
     eventish = create(:event, date: '2020-11-11', time: '17:20:00')
     expect(eventish.date.strftime('%A %_d. %B %k:%M')).to eq('Wednesday 11. November 17:20')
   end
+
 end

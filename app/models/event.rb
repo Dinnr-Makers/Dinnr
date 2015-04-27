@@ -64,4 +64,9 @@ class Event < ActiveRecord::Base
     return 'No Host' if user_id.nil?
     User.find(user_id).avatar
   end
+
+  def event_bookings
+    Booking.where("event_id = #{@event.id}")
+  end
+
 end
