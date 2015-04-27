@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
 
   before_action :authenticate_user!, :except => [:index, :show, :map]
+  include EventsHelper
 
   def index
     @events = Event.order(:date)
@@ -26,10 +27,8 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @guests = Booking.where("event_id = #{@event.id}").map{|booking| booking.user_id}.map{|guest| User.find(guest)}
     @event.user == current_user ? @display_edit = true : @display_edit = false
-    @eventpictures = Eventpicture.where("event_id = #{@event.id}")
-    @pictures = @eventpictures.map{|ep| ep.picture_id}.map{|picture| Picture.find(picture)}
+    get_guests_and_pictures
     @comments = @event.comment_threads.order('created_at desc')
     @new_comment = Comment.build_from(@event, current_user.id, "") if current_user
   end

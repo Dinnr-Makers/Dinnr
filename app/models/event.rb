@@ -65,8 +65,4 @@ class Event < ActiveRecord::Base
     User.find(user_id).avatar
   end
 
-  def event_bookings
-    Booking.where("event_id = #{@event.id}")
-  end
-
 end
