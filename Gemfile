@@ -3,9 +3,7 @@ source 'https://rubygems.org'
 gem 'devise'
 
 gem 'omniauth-facebook'
-
 gem 'geocoder'
-gem 'rmagick', '~> 2.14.0'
 gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
 gem 'acts_as_commentable_with_threading'
@@ -35,6 +33,8 @@ gem "bower"
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'rmagick', '~> 2.14.0', platforms: [:mri]
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -48,7 +48,7 @@ group :production do
   gem 'rails_12factor'
 end
 
-group :development, :test do
+group :development, :test, :development_windows do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
@@ -64,11 +64,19 @@ group :development, :test do
 
   gem 'foreman'
 
+  # When running on windows machines:
+  gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
+  
 end
+
+
+   
+
 
 group :test do
 
   gem 'simplecov', :require => false
+  gem "codeclimate-test-reporter", require: nil
   gem 'rspec-rails'
   gem 'capybara'
   gem 'rspec-collection_matchers'
@@ -78,4 +86,3 @@ group :test do
   gem "test-unit"
   gem "selenium-webdriver"
 end
-
