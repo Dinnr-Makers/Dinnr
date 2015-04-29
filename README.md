@@ -26,11 +26,11 @@ Installation Requirements
 
 Testing
 ------
-Dinnr is thoroughly tested with RSpec/Capybara. You can run the tests from the command line with:
+Dinnr is thoroughly tested with RSpec/Capybara. You can run these tests from the command line with:
 <br>```rspec```
 
 #On Windows:
-We included a third environment for windows development. To run the server in this environment run ```rails s -e development_windows```. In the other environments photo upload won't work on windows machines. This is because the rmagick gem doesn't work on windows machines. In development_windows environment photos get processed by ImageMagick instead. If it doesn't work properly, please check if the path to ImageMagick in ```config/environments/development_windows``` are correct for your ImageMagick installation:
+We included a third environment for Windows development. To run the server in this environment run ```rails s -e development_windows```. In the other environments photo upload won't work on Windows machines. This is because the Rmagick gem doesn't work on Windows machines. In development_windows environment photos get processed by ImageMagick instead. If it doesn't work properly, please check if the path to ImageMagick in ```config/environments/development_windows``` are correct for your ImageMagick installation:
 
 ```Paperclip.options[:command_path] = "C:\\Program\ Files\\ImageMagick-6.9.1-Q16"
-  Paperclip.options[:command_path] = "C:\\Program\ Files (x86)\\GnuWin32\\bin"```
+Paperclip.options[:command_path] = "C:\\Program\ Files (x86)\\GnuWin32\\bin"```
