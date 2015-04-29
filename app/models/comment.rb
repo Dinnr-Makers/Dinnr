@@ -14,10 +14,6 @@ class Comment < ActiveRecord::Base
       :user_id     => user_id
   end
 
-  def has_children?
-    children.any?
-  end
-
   scope :find_comments_by_user, lambda { |user|
     where(:user_id => user.id).order('created_at DESC')
   }
